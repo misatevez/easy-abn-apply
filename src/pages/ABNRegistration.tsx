@@ -208,6 +208,10 @@ const ABNRegistration = () => {
                   <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
                 </div>
               </div>
+
+              {/* Sticky progress bar */}
+              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} sticky />
+
               {/* Personal Details */}
               <div>
                 <ApplicantNameSection {...sectionProps} />
