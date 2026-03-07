@@ -543,7 +543,7 @@ const ABNCancellation = () => {
 
               {/* Terms & Declarations */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Terms and Conditions of Service</h2>
                 </div>
                 <SectionWrapper>
