@@ -45,7 +45,7 @@ const navItems: NavItem[] = [
   {
     label: "Support",
     dropdown: [
-      { label: "FAQs", href: "/#faq" },
+      { label: "FAQs", href: "/faq" },
       { label: "Contact Us", href: "/#contact" },
     ],
   },
