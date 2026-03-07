@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Apply from "./pages/Apply";
 import ABNRegistration from "./pages/ABNRegistration";
 import UpdateABNDetails from "./pages/UpdateABNDetails";
+import ABNCancellation from "./pages/ABNCancellation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
