@@ -20,7 +20,7 @@ import FinalConfirmationSection from "@/components/abn-registration/FinalConfirm
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Lock, CheckCircle2 } from "lucide-react";
 import type { ABNFormData } from "@/components/abn-registration/types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const TOTAL_SECTIONS = 18;
 
