@@ -213,11 +213,11 @@ const ABNRegistration = () => {
           <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header inside card */}
-              <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center ml-0 border-0 rounded-none">
+              <div className="px-6 pt-28 pb-2 md:pt-28 text-center ml-0 border-0 rounded-none md:px-[40px]">
                 <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
                   ABN & GST direct to your inbox in just 5 minutes
                 </h1>
-                <p className="mt-2 text-primary my-[13px] text-lg font-medium">
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 mx-0 font-sans pr-[20px] pt-[20px] pb-0">
                   Business Name & other services available in the same form.
                 </p>
                 <p className="mt-2 mx-auto max-w-lg leading-relaxed text-muted-foreground my-[10px] text-base px-0 py-0">
