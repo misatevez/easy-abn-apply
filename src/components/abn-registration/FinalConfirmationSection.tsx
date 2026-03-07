@@ -3,7 +3,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import type { SectionProps } from "./types";
 
 const FinalConfirmationSection = ({ form, errors, updateBoolean }: SectionProps) => (
-  <SectionWrapper>
+  <SectionWrapper title="Terms and Conditions of Service">
     <div className="space-y-4">
       <label className="flex cursor-pointer items-start gap-3">
         <Checkbox
