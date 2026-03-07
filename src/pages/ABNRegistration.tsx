@@ -204,9 +204,6 @@ const ABNRegistration = () => {
                 <p className="mt-2 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground">
                   Simply use the registration form to provide the necessary information for locating your ABN. The whole process will only take about a minute.
                 </p>
-                <div className="mt-6 mb-2">
-                  <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
-                </div>
               </div>
 
               {/* Sticky progress bar */}
