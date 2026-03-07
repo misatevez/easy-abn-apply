@@ -365,98 +365,112 @@ const UpdateABNDetails = () => {
                   </p>
                   <Label>I need to update the following information: <span className="text-destructive">*</span></Label>
                   <div className="mt-3 space-y-2.5">
-                    {updateOptions.map((opt) => (
-                      <label key={opt} className="flex cursor-pointer items-center gap-2.5">
-                        <Checkbox
-                          checked={form.updateFields.includes(opt)}
-                          onCheckedChange={() => toggleArrayField("updateFields", opt)}
-                        />
-                        <span className="text-sm text-foreground">{opt}</span>
+                    {/* Personal Address */}
+                    <div>
+                      <label className="flex cursor-pointer items-center gap-2.5">
+                        <Checkbox checked={form.updateFields.includes("Personal Address")} onCheckedChange={() => toggleArrayField("updateFields", "Personal Address")} />
+                        <span className="text-sm text-foreground">Personal Address</span>
                       </label>
-                    ))}
+                      {form.updateFields.includes("Personal Address") && (
+                        <div className="ml-7 mt-2">
+                          <div className="flex items-end gap-3">
+                            <div className="flex-1">
+                              <Label>New Personal Address <span className="text-destructive">*</span></Label>
+                              <StyledInput value={form.newPersonalAddress} onChange={(v) => update("newPersonalAddress", v)} placeholder="Start typing your address..." error={errors.newPersonalAddress} />
+                            </div>
+                            {form.newPersonalAddress && (
+                              <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newPersonalAddress", "")}>
+                                <X className="h-3 w-3" /> Clear address
+                              </Button>
+                            )}
+                          </div>
+                          <FieldError error={errors.newPersonalAddress} />
+                          <div className="mt-2 space-y-1">
+                            <HelperText>Type in the field above to search and select your address</HelperText>
+                            <HelperText>This must be a street address. It cannot be a PO Box, RMB, RSD or other delivery point address.</HelperText>
+                            <HelperText>Please check the address above and edit the fields if required</HelperText>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Business Address */}
+                    <div>
+                      <label className="flex cursor-pointer items-center gap-2.5">
+                        <Checkbox checked={form.updateFields.includes("Business Address")} onCheckedChange={() => toggleArrayField("updateFields", "Business Address")} />
+                        <span className="text-sm text-foreground">Business Address</span>
+                      </label>
+                      {form.updateFields.includes("Business Address") && (
+                        <div className="ml-7 mt-2">
+                          <div className="flex items-end gap-3">
+                            <div className="flex-1">
+                              <Label>New Business Address <span className="text-destructive">*</span></Label>
+                              <StyledInput value={form.newBusinessAddress} onChange={(v) => update("newBusinessAddress", v)} placeholder="Start typing your address..." error={errors.newBusinessAddress} />
+                            </div>
+                            {form.newBusinessAddress && (
+                              <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newBusinessAddress", "")}>
+                                <X className="h-3 w-3" /> Clear address
+                              </Button>
+                            )}
+                          </div>
+                          <FieldError error={errors.newBusinessAddress} />
+                          <div className="mt-2 space-y-1">
+                            <HelperText>Type in the field above to search and select your address</HelperText>
+                            <HelperText>This must be a street address. It cannot be a PO Box, RMB, RSD or other delivery point address.</HelperText>
+                            <HelperText>Please check the address above and edit the fields if required</HelperText>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Phone Number */}
+                    <div>
+                      <label className="flex cursor-pointer items-center gap-2.5">
+                        <Checkbox checked={form.updateFields.includes("Phone Number")} onCheckedChange={() => toggleArrayField("updateFields", "Phone Number")} />
+                        <span className="text-sm text-foreground">Phone Number</span>
+                      </label>
+                      {form.updateFields.includes("Phone Number") && (
+                        <div className="ml-7 mt-2 max-w-sm">
+                          <Label>New Phone Number <span className="text-destructive">*</span></Label>
+                          <StyledInput value={form.newPhone} onChange={(v) => update("newPhone", v)} placeholder="04XX XXX XXX" error={errors.newPhone} />
+                          <FieldError error={errors.newPhone} />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Email Address */}
+                    <div>
+                      <label className="flex cursor-pointer items-center gap-2.5">
+                        <Checkbox checked={form.updateFields.includes("Email Address")} onCheckedChange={() => toggleArrayField("updateFields", "Email Address")} />
+                        <span className="text-sm text-foreground">Email Address</span>
+                      </label>
+                      {form.updateFields.includes("Email Address") && (
+                        <div className="ml-7 mt-2 max-w-sm">
+                          <Label>New Email Address <span className="text-destructive">*</span></Label>
+                          <StyledInput value={form.newEmail} onChange={(v) => update("newEmail", v)} placeholder="new@email.com" type="email" error={errors.newEmail} />
+                          <FieldError error={errors.newEmail} />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Business Activity */}
+                    <div>
+                      <label className="flex cursor-pointer items-center gap-2.5">
+                        <Checkbox checked={form.updateFields.includes("Business Activity")} onCheckedChange={() => toggleArrayField("updateFields", "Business Activity")} />
+                        <span className="text-sm text-foreground">Business Activity</span>
+                      </label>
+                      {form.updateFields.includes("Business Activity") && (
+                        <div className="ml-7 mt-2 max-w-md">
+                          <Label>New Business Activity <span className="text-destructive">*</span></Label>
+                          <StyledInput value={form.newBusinessActivity} onChange={(v) => update("newBusinessActivity", v)} placeholder="e.g. driver, cleaner, beauty, plumber" error={errors.newBusinessActivity} />
+                          <FieldError error={errors.newBusinessActivity} />
+                          <HelperText>Example: driver, cleaner, beauty, plumber, babysitting services</HelperText>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <FieldError error={errors.updateFields} />
                 </SectionWrapper>
-
-                {/* Conditional: Personal Address */}
-                {form.updateFields.includes("Personal Address") && (
-                  <SectionWrapper>
-                    <div className="flex items-end gap-3">
-                      <div className="flex-1">
-                        <Label>New Personal Address <span className="text-destructive">*</span></Label>
-                        <StyledInput value={form.newPersonalAddress} onChange={(v) => update("newPersonalAddress", v)} placeholder="Start typing your address..." error={errors.newPersonalAddress} />
-                      </div>
-                      {form.newPersonalAddress && (
-                        <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newPersonalAddress", "")}>
-                          <X className="h-3 w-3" /> Clear address
-                        </Button>
-                      )}
-                    </div>
-                    <FieldError error={errors.newPersonalAddress} />
-                    <div className="mt-2 space-y-1">
-                      <HelperText>Type in the field above to search and select your address</HelperText>
-                      <HelperText>This must be a street address. It cannot be a PO Box, RMB, RSD or other delivery point address. This address should match your proof of identity (POI) documents.</HelperText>
-                      <HelperText>Please check the address above and edit the fields if required</HelperText>
-                    </div>
-                  </SectionWrapper>
-                )}
-
-                {/* Conditional: Business Address */}
-                {form.updateFields.includes("Business Address") && (
-                  <SectionWrapper>
-                    <div className="flex items-end gap-3">
-                      <div className="flex-1">
-                        <Label>New Business Address <span className="text-destructive">*</span></Label>
-                        <StyledInput value={form.newBusinessAddress} onChange={(v) => update("newBusinessAddress", v)} placeholder="Start typing your address..." error={errors.newBusinessAddress} />
-                      </div>
-                      {form.newBusinessAddress && (
-                        <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newBusinessAddress", "")}>
-                          <X className="h-3 w-3" /> Clear address
-                        </Button>
-                      )}
-                    </div>
-                    <FieldError error={errors.newBusinessAddress} />
-                    <div className="mt-2 space-y-1">
-                      <HelperText>Type in the field above to search and select your address</HelperText>
-                      <HelperText>This must be a street address. It cannot be a PO Box, RMB, RSD or other delivery point address. This address should match your proof of identity (POI) documents.</HelperText>
-                      <HelperText>Please check the address above and edit the fields if required</HelperText>
-                    </div>
-                  </SectionWrapper>
-                )}
-
-                {/* Conditional: Phone */}
-                {form.updateFields.includes("Phone Number") && (
-                  <SectionWrapper>
-                    <div className="max-w-sm">
-                      <Label>New Phone Number <span className="text-destructive">*</span></Label>
-                      <StyledInput value={form.newPhone} onChange={(v) => update("newPhone", v)} placeholder="04XX XXX XXX" error={errors.newPhone} />
-                      <FieldError error={errors.newPhone} />
-                    </div>
-                  </SectionWrapper>
-                )}
-
-                {/* Conditional: Email */}
-                {form.updateFields.includes("Email Address") && (
-                  <SectionWrapper>
-                    <div className="max-w-sm">
-                      <Label>New Email Address <span className="text-destructive">*</span></Label>
-                      <StyledInput value={form.newEmail} onChange={(v) => update("newEmail", v)} placeholder="new@email.com" type="email" error={errors.newEmail} />
-                      <FieldError error={errors.newEmail} />
-                    </div>
-                  </SectionWrapper>
-                )}
-
-                {/* Conditional: Business Activity */}
-                {form.updateFields.includes("Business Activity") && (
-                  <SectionWrapper>
-                    <div className="max-w-md">
-                      <Label>New Business Activity <span className="text-destructive">*</span></Label>
-                      <StyledInput value={form.newBusinessActivity} onChange={(v) => update("newBusinessActivity", v)} placeholder="e.g. driver, cleaner, beauty, plumber" error={errors.newBusinessActivity} />
-                      <FieldError error={errors.newBusinessActivity} />
-                      <HelperText>Example: driver, cleaner, beauty, plumber, babysitting services</HelperText>
-                    </div>
-                  </SectionWrapper>
-                )}
               </div>
 
               {/* Accounting Tasks */}
