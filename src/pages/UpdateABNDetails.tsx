@@ -509,19 +509,19 @@ const UpdateABNDetails = () => {
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <SectionWrapper>
+                <div className="bg-primary/[0.04] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
-                      What happens after you submit your update request
+                      What happens after you submit your application
                     </h3>
                     <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
-                      Once you submit your request, our team reviews your details and securely processes your ABN update.
+                      After submitting your application, our team reviews your details and securely processes your ABN registration.
                     </p>
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {steps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-muted/30 p-4 text-center">
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
@@ -531,11 +531,11 @@ const UpdateABNDetails = () => {
                     ))}
                   </div>
 
-                  <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                    <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-                    <span>Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
+                  <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-foreground">Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
                   </div>
-                </SectionWrapper>
+                </div>
               </div>
 
               {/* Final Confirmation */}
@@ -549,9 +549,10 @@ const UpdateABNDetails = () => {
                         className="mt-0.5"
                       />
                       <span className="text-sm text-foreground">
-                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use.
+                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
                       </span>
                     </label>
+                    <FieldError error={errors.acceptTerms} />
 
                     <label className="flex cursor-pointer items-start gap-3">
                       <Checkbox
@@ -591,10 +592,10 @@ const UpdateABNDetails = () => {
                   Update your ABN details
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-primary" /> Secure & Encrypted</span>
-                  <span className="flex items-center gap-1"><Lock className="h-3.5 w-3.5 text-primary" /> SSL Protected</span>
-                  <span className="flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Expert Reviewed</span>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
                 </div>
               </div>
             </div>
