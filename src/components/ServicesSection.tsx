@@ -131,6 +131,15 @@ const ServicesSection = () => {
                   </Button>
                 </Link>
 
+                {/* Renew link */}
+                {service.renewLink && (
+                  <Link to={service.renewLink} className="mt-2">
+                    <Button variant="outline" className="w-full text-sm">
+                      Renew my ABN
+                    </Button>
+                  </Link>
+                )}
+
                 {/* Note */}
                 <p className="mt-3 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground/80">
                   <Info className="mt-0.5 h-3 w-3 shrink-0 text-primary/50" />

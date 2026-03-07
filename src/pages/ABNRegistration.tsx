@@ -68,7 +68,13 @@ const initialForm: ABNFormData = {
 };
 
 const ABNRegistration = () => {
-  const [form, setForm] = useState<ABNFormData>(initialForm);
+  const [searchParams] = useSearchParams();
+  const purposeParam = searchParams.get("purpose");
+
+  const [form, setForm] = useState<ABNFormData>({
+    ...initialForm,
+    abnPurpose: purposeParam === "renew" ? "reactivate" : "",
+  });
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const navigate = useNavigate();
 

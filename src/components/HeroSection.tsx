@@ -38,11 +38,16 @@ const HeroSection = () => {
             Official documentation from the Australian Business Register
           </p>
 
-          {/* Primary CTA */}
-          <div className="mb-8">
+          {/* Primary CTAs */}
+          <div className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link to="/abn-registration">
               <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/20">
-                Start my ABN Application now
+                Apply for a new ABN
+              </Button>
+            </Link>
+            <Link to="/abn-registration?purpose=renew">
+              <Button variant="hero-outline" size="lg" className="h-14 px-10 text-base">
+                Renew my ABN
               </Button>
             </Link>
           </div>
