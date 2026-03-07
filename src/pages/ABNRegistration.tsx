@@ -295,7 +295,7 @@ const ABNRegistration = () => {
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <div className="bg-muted/30 px-6 py-8 md:px-10">
+                <div className="bg-[#F7F9FE] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
                       What happens after you submit your application
