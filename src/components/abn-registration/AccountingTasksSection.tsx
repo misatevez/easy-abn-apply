@@ -1,7 +1,7 @@
 import { SectionWrapper } from "./FormField";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ClipboardCheck, Globe, Mail, ArrowRight, ShieldCheck } from "lucide-react";
+import { ClipboardCheck, Send, Mail, ShieldCheck } from "lucide-react";
 import type { SectionProps } from "./types";
 
 const accountingOptions = [
@@ -18,21 +18,19 @@ const steps = [
   {
     icon: ClipboardCheck,
     title: "Application Review",
-    text: "Our accredited tax professionals review your application to ensure the information is accurate and compliant before submission.",
+    text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement.",
   },
   {
-    icon: Globe,
-    title: "ABN Issued",
-    text: "Once approved, your Australian Business Number (ABN) will appear on screen confirming your registration.",
+    icon: Send,
+    title: "Secure Lodgement",
+    text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing.",
   },
   {
     icon: Mail,
     title: "Email Confirmation",
-    text: "A confirmation email containing your ABN and registration details will be sent to the email address you provided.",
+    text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed.",
   },
 ];
-
-const flowSteps = ["Submit Application", "Review", "ABN Issued", "Confirmation Email"];
 
 const AccountingTasksSection = ({ form, updateArray }: SectionProps) => {
   const toggleTask = (task: string) => {
@@ -69,18 +67,8 @@ const AccountingTasksSection = ({ form, updateArray }: SectionProps) => {
             What happens after you submit your application
           </h3>
           <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
-            Once you lodge your application, our team reviews your details and securely processes your ABN registration.
+            After submitting your application, our team reviews your details and securely processes your ABN registration.
           </p>
-        </div>
-
-        {/* Flow indicator */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
-          {flowSteps.map((step, i) => (
-            <span key={step} className="flex items-center gap-1.5">
-              <span className="rounded-full bg-primary/10 px-2.5 py-1 font-medium text-primary">{step}</span>
-              {i < flowSteps.length - 1 && <ArrowRight className="h-3 w-3 text-muted-foreground/50" />}
-            </span>
-          ))}
         </div>
 
         {/* 3-step cards */}
