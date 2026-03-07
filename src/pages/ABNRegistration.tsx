@@ -330,7 +330,7 @@ const ABNRegistration = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8">
+              <div className="border-t border-border p-6 md:p-8 [&>*]:mx-auto [&>*]:max-w-[570px]">
                 <Button
                   variant="hero"
                   size="lg"
