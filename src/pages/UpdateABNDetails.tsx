@@ -482,7 +482,7 @@ const UpdateABNDetails = () => {
 
               {/* Accounting Tasks */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Accounting tasks we can help you with</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
                     We also offer support across a variety of other accounting functions and tasks. Our highly trained professionals are CPA and CA accredited, so they can help you in whatever capacity you require.
