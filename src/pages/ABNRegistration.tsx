@@ -293,6 +293,41 @@ const ABNRegistration = () => {
                 <AccountingTasksSection {...sectionProps} />
               </div>
 
+              {/* What happens next */}
+              <div className="border-t border-border">
+                <div className="bg-muted/30 px-6 py-8 md:px-10">
+                  <div className="text-center">
+                    <h3 className="text-base font-bold text-foreground">
+                      What happens after you submit your application
+                    </h3>
+                    <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
+                      After submitting your application, our team reviews your details and securely processes your ABN registration.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                    {[
+                      { icon: ClipboardCheck, title: "Application Review", text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement." },
+                      { icon: Send, title: "Secure Lodgement", text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing." },
+                      { icon: Mail, title: "Email Confirmation", text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed." },
+                    ].map(({ icon: Icon, title, text }, i) => (
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                        <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+                          <Icon className="h-4.5 w-4.5 text-primary" />
+                        </div>
+                        <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
+                        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-foreground">Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
+                  </div>
+                </div>
+              </div>
+
 
               {/* Final Confirmation */}
               <div className="border-t border-border">
