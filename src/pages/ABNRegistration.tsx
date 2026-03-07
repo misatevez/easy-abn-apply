@@ -1,11 +1,9 @@
 import { useState, useCallback, useMemo } from "react";
 import Layout from "@/components/Layout";
 import ABNRegistrationBanner from "@/components/abn-registration/ABNRegistrationBanner";
-import ABNRegistrationProgress from "@/components/abn-registration/ABNRegistrationProgress";
 import ApplicantNameSection from "@/components/abn-registration/ApplicantNameSection";
 import EmailSection from "@/components/abn-registration/EmailSection";
 import PhoneSection from "@/components/abn-registration/PhoneSection";
-import DateOfBirthSection from "@/components/abn-registration/DateOfBirthSection";
 import TFNSection from "@/components/abn-registration/TFNSection";
 import ABNPurposeSection from "@/components/abn-registration/ABNPurposeSection";
 import BusinessActivitySection from "@/components/abn-registration/BusinessActivitySection";
@@ -18,7 +16,7 @@ import GSTSection from "@/components/abn-registration/GSTSection";
 import AccountingTasksSection from "@/components/abn-registration/AccountingTasksSection";
 import FinalConfirmationSection from "@/components/abn-registration/FinalConfirmationSection";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Lock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Shield, Lock, CheckCircle2, ClipboardCheck, Send, Mail, ShieldCheck } from "lucide-react";
 import type { ABNFormData } from "@/components/abn-registration/types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -67,6 +65,24 @@ const initialForm: ABNFormData = {
   authoriseASICAgent: false,
 };
 
+const nextSteps = [
+  {
+    icon: ClipboardCheck,
+    title: "Application Review",
+    text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement.",
+  },
+  {
+    icon: Send,
+    title: "Secure Lodgement",
+    text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing.",
+  },
+  {
+    icon: Mail,
+    title: "Email Confirmation",
+    text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed.",
+  },
+];
+
 const ABNRegistration = () => {
   const [searchParams] = useSearchParams();
   const purposeParam = searchParams.get("purpose");
@@ -105,14 +121,14 @@ const ABNRegistration = () => {
     if (form.applyingReason) count++;
     if (form.tradeUnderBusinessName) count++;
     if (form.tradeUnderBusinessName === "yes" && form.registrationPeriod) count++;
-    if (form.tradeUnderBusinessName === "no") count++; // skip registration period
+    if (form.tradeUnderBusinessName === "no") count++;
     if (form.countryOfBirth && form.cityOfBirth) count++;
     if (form.registerForGST) count++;
     if (form.registerForGST === "yes" && form.annualTurnover) count++;
     if (form.registerForGST === "yes" && form.gstLodgeFrequency) count++;
     if (form.registerForGST === "yes" && form.gstResultTiming && form.importGoods) count++;
-    if (form.authoriseTaxAgent && form.confirmTrueInfo && form.authoriseASICAgent) count++;
-    if (form.registerForGST === "no") count += 3; // skip GST sub-fields
+    if (form.acceptTerms && form.authoriseTaxAgent && form.confirmTrueInfo && form.authoriseASICAgent) count++;
+    if (form.registerForGST === "no") count += 3;
     return Math.min(count, TOTAL_SECTIONS);
   }, [form]);
 
@@ -145,7 +161,6 @@ const ABNRegistration = () => {
       e.tfn = "Invalid TFN format (e.g. 123 456 789)";
     }
 
-    // Business Name
     if (!form.tradeUnderBusinessName) e.tradeUnderBusinessName = "Please select an option";
     if (form.tradeUnderBusinessName === "yes") {
       if (!form.businessNameOption) e.businessNameOption = "Please select an option";
@@ -154,11 +169,9 @@ const ABNRegistration = () => {
       if (!form.registrationPeriod) e.registrationPeriod = "Please select a registration period";
     }
 
-    // Birth details
     if (!form.countryOfBirth) e.countryOfBirth = "Country of birth is required";
     if (!form.cityOfBirth.trim()) e.cityOfBirth = "City of birth is required";
 
-    // GST
     if (!form.registerForGST) e.registerForGST = "Please select an option";
     if (form.registerForGST === "yes") {
       if (!form.annualTurnover) e.annualTurnover = "Please select turnover range";
@@ -168,7 +181,7 @@ const ABNRegistration = () => {
       if (!form.gstStartDay || !form.gstStartMonth || !form.gstStartYear) e.gstStartDay = "GST start date is required";
     }
 
-    // Final confirmation
+    if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
     if (!form.authoriseASICAgent) e.authoriseASICAgent = "This authorisation is required";
@@ -197,7 +210,7 @@ const ABNRegistration = () => {
 
       <section className="relative bg-muted/30 pb-12 md:pb-16">
         <div className="container px-4">
-          <div className="mx-auto max-w-[800px] -mt-36 md:-mt-44">
+          <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header inside card */}
               <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
@@ -210,10 +223,14 @@ const ABNRegistration = () => {
                 <p className="mt-2 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground">
                   Simply use the registration form to provide the necessary information for locating your ABN. The whole process will only take about a minute.
                 </p>
-              </div>
 
-              {/* Progress bar */}
-              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
+                {/* Trust Labels */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
+                </div>
+              </div>
 
               {/* Separator before form fields */}
               <div className="mx-6 md:mx-10 border-t border-border" />
@@ -223,7 +240,6 @@ const ABNRegistration = () => {
                 <ApplicantNameSection {...sectionProps} />
                 <EmailSection {...sectionProps} />
                 <PhoneSection {...sectionProps} />
-                <DateOfBirthSection {...sectionProps} />
                 <TFNSection {...sectionProps} />
               </div>
 
@@ -277,6 +293,37 @@ const ABNRegistration = () => {
                 <AccountingTasksSection {...sectionProps} />
               </div>
 
+              {/* What happens next */}
+              <div className="border-t border-border">
+                <div className="rounded-b-none rounded-t-none bg-primary/[0.04] px-6 py-8 md:px-10">
+                  <div className="text-center">
+                    <h3 className="text-base font-bold text-foreground">
+                      What happens after you submit your application
+                    </h3>
+                    <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
+                      After submitting your application, our team reviews your details and securely processes your ABN registration.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                    {nextSteps.map(({ icon: Icon, title, text }, i) => (
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                        <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
+                          <Icon className="h-4.5 w-4.5 text-primary" />
+                        </div>
+                        <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
+                        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-foreground">Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Final Confirmation */}
               <div className="border-t border-border">
                 <FinalConfirmationSection {...sectionProps} />
@@ -293,10 +340,10 @@ const ABNRegistration = () => {
                   Lodge my ABN application
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-primary" /> Secure & Encrypted</span>
-                  <span className="flex items-center gap-1"><Lock className="h-3.5 w-3.5 text-primary" /> SSL Protected</span>
-                  <span className="flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Expert Reviewed</span>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
                 </div>
               </div>
             </div>
