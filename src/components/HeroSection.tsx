@@ -11,35 +11,37 @@ const trustBadges = [
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-[hsl(215_25%_12%)]">
-      {/* Subtle radial glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(217_91%_50%/0.15),transparent)]" />
+    <section className="relative overflow-hidden bg-background">
+      {/* Subtle decorative shapes */}
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-primary/[0.04]" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-primary/[0.03]" />
+      <div className="pointer-events-none absolute right-1/4 top-1/3 h-[200px] w-[200px] rounded-full bg-primary/[0.02]" />
 
       <div className="container relative py-20 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           {/* Accreditation badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
             <Shield className="h-4 w-4" />
             Accredited Tax Agent – Licence No. 24666831
           </div>
 
-          <h1 className="mb-4 text-4xl font-extrabold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
+          <h1 className="mb-4 text-4xl font-extrabold leading-tight text-foreground md:text-5xl lg:text-6xl">
             ABN Registration{" "}
             <span className="text-primary">Online</span>
           </h1>
 
-          <p className="mb-3 text-lg text-primary-foreground/70 md:text-xl">
+          <p className="mb-3 text-lg text-muted-foreground md:text-xl">
             Apply for your Australian Business Number (ABN) in 5 minutes
           </p>
 
-          <p className="mb-8 text-sm text-primary-foreground/50">
+          <p className="mb-8 text-sm text-muted-foreground/70">
             Official documentation from the Australian Business Register
           </p>
 
           {/* Primary CTA */}
           <div className="mb-8">
             <Link to="/apply">
-              <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/30">
+              <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/20">
                 Start my ABN Application now
               </Button>
             </Link>
@@ -66,7 +68,7 @@ const HeroSection = () => {
             {trustBadges.map((badge) => (
               <div
                 key={badge.label}
-                className="flex items-center gap-2.5 text-sm text-primary-foreground/60"
+                className="flex items-center gap-2.5 text-sm text-muted-foreground"
               >
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
                   <badge.icon className="h-4 w-4 text-primary" />
@@ -77,6 +79,9 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom subtle divider */}
+      <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
     </section>
   );
 };
