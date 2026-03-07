@@ -106,8 +106,8 @@ const ServicesSection = () => {
 
               {/* Bottom content — always aligned */}
               <div className="mt-auto flex flex-col">
-                {/* Price / Options */}
-                <div className="mb-5 min-h-[3.5rem] flex items-end">
+                {/* Price / Options — fixed height zone for cross-card alignment */}
+                <div className="mb-5 min-h-[5rem] flex items-end">
                   {service.price && (
                     <p className="text-3xl font-bold text-foreground">{service.price}</p>
                   )}
