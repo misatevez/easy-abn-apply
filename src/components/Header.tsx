@@ -132,7 +132,7 @@ const Header = () => {
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <Link to="/apply">
+          <Link to="/abn-registration">
             <Button variant="hero" size="lg">
               Start ABN Application
             </Button>
@@ -193,7 +193,7 @@ const Header = () => {
                 </a>
               )
             )}
-            <Link to="/apply" onClick={() => setMobileOpen(false)} className="mt-2">
+            <Link to="/abn-registration" onClick={() => setMobileOpen(false)} className="mt-2">
               <Button variant="hero" className="w-full">
                 Start ABN Application
               </Button>
