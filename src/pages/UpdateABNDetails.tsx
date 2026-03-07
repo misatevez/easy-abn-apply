@@ -56,49 +56,49 @@ const initialForm: UpdateFormData = {
   accountingTasks: [],
   authoriseTaxAgent: false,
   confirmTrueInfo: false,
-  acceptTerms: false,
+  acceptTerms: false
 };
 
 const months = [
-  "January","February","March","April","May","June",
-  "July","August","September","October","November","December",
-];
+"January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+
 
 const updateOptions = [
-  "Personal Address",
-  "Business Address",
-  "Phone Number",
-  "Email Address",
-  "Business Activity",
-];
+"Personal Address",
+"Business Address",
+"Phone Number",
+"Email Address",
+"Business Activity"];
+
 
 const accountingOptions = [
-  "Pre-order for a Xero Set up Account",
-  "Pre-order for a Submission of the BAS (Business Activity Statements)",
-  "Pre-order for a Tax Return",
-  "Payroll solutions",
-  "Affordable Bookkeeping Service",
-  "Superannuation Services",
-  "Consultation with a Tax Accountant",
-];
+"Pre-order for a Xero Set up Account",
+"Pre-order for a Submission of the BAS (Business Activity Statements)",
+"Pre-order for a Tax Return",
+"Payroll solutions",
+"Affordable Bookkeeping Service",
+"Superannuation Services",
+"Consultation with a Tax Accountant"];
+
 
 const steps = [
-  {
-    icon: ClipboardCheck,
-    title: "Application Review",
-    text: "Our accredited tax professionals review your request to ensure the information is accurate and compliant before lodgement.",
-  },
-  {
-    icon: Send,
-    title: "Secure Lodgement",
-    text: "Once reviewed, your updated details are securely lodged with the Australian Business Register for processing.",
-  },
-  {
-    icon: Mail,
-    title: "Email Confirmation",
-    text: "A confirmation email will be sent to your nominated email address once your ABN update has been processed.",
-  },
-];
+{
+  icon: ClipboardCheck,
+  title: "Application Review",
+  text: "Our accredited tax professionals review your request to ensure the information is accurate and compliant before lodgement."
+},
+{
+  icon: Send,
+  title: "Secure Lodgement",
+  text: "Once reviewed, your updated details are securely lodged with the Australian Business Register for processing."
+},
+{
+  icon: Mail,
+  title: "Email Confirmation",
+  text: "A confirmation email will be sent to your nominated email address once your ABN update has been processed."
+}];
+
 
 const TOTAL_SECTIONS = 10;
 
@@ -114,10 +114,10 @@ const UpdateABNDetails = () => {
 
   const toggleArrayField = useCallback((field: keyof UpdateFormData, value: string) => {
     setForm((prev) => {
-      const current = (prev[field] as string[]) || [];
-      const updated = current.includes(value)
-        ? current.filter((v) => v !== value)
-        : [...current, value];
+      const current = prev[field] as string[] || [];
+      const updated = current.includes(value) ?
+      current.filter((v) => v !== value) :
+      [...current, value];
       return { ...prev, [field]: updated };
     });
   }, []);
@@ -155,22 +155,22 @@ const UpdateABNDetails = () => {
     const e: Partial<Record<string, string>> = {};
 
     if (!form.lastName.trim()) e.lastName = "Last name is required";
-    if (!form.email.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
-    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";
-    else if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
-    if (!form.phone.trim()) e.phone = "Phone number is required";
-    else if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
-    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";
-    else {
-      const d = parseInt(form.dobDay), m = parseInt(form.dobMonth), y = parseInt(form.dobYear);
+    if (!form.email.trim()) e.email = "Email is required";else
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
+    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";else
+    if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
+    if (!form.phone.trim()) e.phone = "Phone number is required";else
+    if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
+    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";else
+    {
+      const d = parseInt(form.dobDay),m = parseInt(form.dobMonth),y = parseInt(form.dobYear);
       const date = new Date(y, m - 1, d);
       if (date.getDate() !== d || date.getMonth() !== m - 1 || date.getFullYear() !== y || y < 1900 || y > new Date().getFullYear()) {
         e.dobDay = "Invalid date of birth";
       }
     }
-    if (!form.abn.trim()) e.abn = "ABN is required";
-    else if (!/^\d{2}\s?\d{3}\s?\d{3}\s?\d{3}$/.test(form.abn.trim())) e.abn = "Invalid ABN format (e.g. 51 824 753 556)";
+    if (!form.abn.trim()) e.abn = "ABN is required";else
+    if (!/^\d{2}\s?\d{3}\s?\d{3}\s?\d{3}$/.test(form.abn.trim())) e.abn = "Invalid ABN format (e.g. 51 824 753 556)";
     if (form.updateFields.length === 0) e.updateFields = "Please select at least one field to update";
     if (form.tfnOption === "now" && form.tfn && !/^\d{3}\s?\d{3}\s?\d{3}$/.test(form.tfn.trim())) {
       e.tfn = "Invalid TFN format (e.g. 123 456 789)";
@@ -210,23 +210,23 @@ const UpdateABNDetails = () => {
                 <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
                   Update your ABN Details in 5 minutes
                 </h1>
-                <p className="mt-2 text-primary my-[13px] text-lg font-medium">
-                  Please use this form to update any personal details related to your Australian Business Number (ABN) registration.
+                <p className="mt-2 text-primary text-lg font-medium my-[20px] px-0 pt-[10px] text-center mx-[50px]">Use this form to update any personal details related to your Australian Business Number (ABN) registration.
+
                 </p>
-                <div className="mt-3 mx-auto max-w-lg text-left text-sm leading-relaxed text-muted-foreground">
-                  <p>This includes changes to your:</p>
+                <div className="mt-3 max-w-lg text-left text-sm leading-relaxed text-muted-foreground mx-[50px]">
+                  <p className="text-sm">This includes changes to your:</p>
                   <ul className="mt-1.5 space-y-1 ml-4">
-                    <li className="flex gap-2"><span className="text-primary">•</span>Personal and Business Address</li>
-                    <li className="flex gap-2"><span className="text-primary">•</span>Email address and phone number</li>
-                    <li className="flex gap-2"><span className="text-primary">•</span>Any other relevant personal details</li>
+                    <li className="flex gap-2 text-sm"><span className="text-primary">•</span>Personal and Business Address</li>
+                    <li className="flex gap-2 text-sm"><span className="text-primary">•</span>Email address and phone number</li>
+                    <li className="flex gap-2 text-sm"><span className="text-primary">•</span>Any other relevant personal details</li>
                   </ul>
-                  <p className="mt-2">
+                  <p className="mt-2 text-sm mx-0 my-[10px] px-0 py-[2px]">
                     Providing accurate and up-to-date information ensures that your ABN records remain current and compliant with ATO requirements. If you have any questions or need assistance, please contact our support team.
                   </p>
                 </div>
 
                 {/* Trust Labels */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground my-[20px] py-[10px]">
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground my-[20px] py-[10px] pb-[20px]">
                   <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
                   <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
                   <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
@@ -237,20 +237,20 @@ const UpdateABNDetails = () => {
               <div className="mx-6 md:mx-10 border-t border-border" />
 
               {/* Process summary */}
-              <div className="px-6 pb-4 md:px-10">
+              <div className="px-6 md:px-10 pb-[40px]">
                 <div className="grid gap-3 sm:grid-cols-3">
                   {[
-                    { num: "1", text: "Fill in the form below to update your personal information." },
-                    { num: "2", text: "Complete payment. You can pay by credit card. SSL Certified & Secure Transaction." },
-                    { num: "3", text: "Once your application is approved, your updated ABN details will be emailed directly to your nominated email address." },
-                  ].map((step) => (
-                    <div key={step.num} className="rounded-xl border border-border/60 bg-muted/30 p-4">
+                  { num: "1", text: "Fill in the form below to update your personal information." },
+                  { num: "2", text: "Complete payment. You can pay by credit card. SSL Certified & Secure Transaction." },
+                  { num: "3", text: "Once your application is approved, your updated ABN details will be emailed directly to your nominated email address." }].
+                  map((step) =>
+                  <div key={step.num} className="rounded-xl border border-border/60 bg-muted/30 p-4 mx-[22px]">
                       <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                         {step.num}
                       </div>
-                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{step.text}</p>
+                      <p className="mt-2 leading-relaxed text-muted-foreground text-sm">{step.text}</p>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
 
@@ -309,9 +309,9 @@ const UpdateABNDetails = () => {
                           <SelectValue placeholder="Month" />
                         </SelectTrigger>
                         <SelectContent>
-                          {months.map((m, i) => (
-                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
-                          ))}
+                          {months.map((m, i) =>
+                          <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
+                          )}
                         </SelectContent>
                       </Select>
                       <StyledInput value={form.dobYear} onChange={(v) => update("dobYear", v)} placeholder="YYYY" error={errors.dobDay} />
@@ -335,8 +335,8 @@ const UpdateABNDetails = () => {
                   </label>
                 </div>
 
-                {form.tfnOption === "now" && (
-                  <div className="mt-4 max-w-sm">
+                {form.tfnOption === "now" &&
+                <div className="mt-4 max-w-sm">
                     <Label>Tax File Number (123 456 789)</Label>
                     <StyledInput value={form.tfn} onChange={(v) => update("tfn", v)} placeholder="123 456 789" error={errors.tfn} />
                     <FieldError error={errors.tfn} />
@@ -352,7 +352,7 @@ const UpdateABNDetails = () => {
                       </ul>
                     </div>
                   </div>
-                )}
+                }
               </SectionWrapper>
 
               {/* ABN */}
@@ -378,18 +378,18 @@ const UpdateABNDetails = () => {
                         <Checkbox checked={form.updateFields.includes("Personal Address")} onCheckedChange={() => toggleArrayField("updateFields", "Personal Address")} />
                         <span className="text-sm text-foreground">Personal Address</span>
                       </label>
-                      {form.updateFields.includes("Personal Address") && (
-                        <div className="ml-7 mt-2">
+                      {form.updateFields.includes("Personal Address") &&
+                      <div className="ml-7 mt-2">
                           <div className="flex items-end gap-3">
                             <div className="flex-1">
                               <Label>New Personal Address <span className="text-destructive">*</span></Label>
                               <StyledInput value={form.newPersonalAddress} onChange={(v) => update("newPersonalAddress", v)} placeholder="Start typing your address..." error={errors.newPersonalAddress} />
                             </div>
-                            {form.newPersonalAddress && (
-                              <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newPersonalAddress", "")}>
+                            {form.newPersonalAddress &&
+                          <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newPersonalAddress", "")}>
                                 <X className="h-3 w-3" /> Clear address
                               </Button>
-                            )}
+                          }
                           </div>
                           <FieldError error={errors.newPersonalAddress} />
                           <div className="mt-2 space-y-1">
@@ -398,7 +398,7 @@ const UpdateABNDetails = () => {
                             <HelperText>Please check the address above and edit the fields if required</HelperText>
                           </div>
                         </div>
-                      )}
+                      }
                     </div>
 
                     {/* Business Address */}
@@ -407,18 +407,18 @@ const UpdateABNDetails = () => {
                         <Checkbox checked={form.updateFields.includes("Business Address")} onCheckedChange={() => toggleArrayField("updateFields", "Business Address")} />
                         <span className="text-sm text-foreground">Business Address</span>
                       </label>
-                      {form.updateFields.includes("Business Address") && (
-                        <div className="ml-7 mt-2">
+                      {form.updateFields.includes("Business Address") &&
+                      <div className="ml-7 mt-2">
                           <div className="flex items-end gap-3">
                             <div className="flex-1">
                               <Label>New Business Address <span className="text-destructive">*</span></Label>
                               <StyledInput value={form.newBusinessAddress} onChange={(v) => update("newBusinessAddress", v)} placeholder="Start typing your address..." error={errors.newBusinessAddress} />
                             </div>
-                            {form.newBusinessAddress && (
-                              <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newBusinessAddress", "")}>
+                            {form.newBusinessAddress &&
+                          <Button type="button" variant="outline" size="sm" className="mb-0.5 gap-1 text-xs" onClick={() => update("newBusinessAddress", "")}>
                                 <X className="h-3 w-3" /> Clear address
                               </Button>
-                            )}
+                          }
                           </div>
                           <FieldError error={errors.newBusinessAddress} />
                           <div className="mt-2 space-y-1">
@@ -427,7 +427,7 @@ const UpdateABNDetails = () => {
                             <HelperText>Please check the address above and edit the fields if required</HelperText>
                           </div>
                         </div>
-                      )}
+                      }
                     </div>
 
                     {/* Phone Number */}
@@ -436,13 +436,13 @@ const UpdateABNDetails = () => {
                         <Checkbox checked={form.updateFields.includes("Phone Number")} onCheckedChange={() => toggleArrayField("updateFields", "Phone Number")} />
                         <span className="text-sm text-foreground">Phone Number</span>
                       </label>
-                      {form.updateFields.includes("Phone Number") && (
-                        <div className="ml-7 mt-2 max-w-sm">
+                      {form.updateFields.includes("Phone Number") &&
+                      <div className="ml-7 mt-2 max-w-sm">
                           <Label>New Phone Number <span className="text-destructive">*</span></Label>
                           <StyledInput value={form.newPhone} onChange={(v) => update("newPhone", v)} placeholder="04XX XXX XXX" error={errors.newPhone} />
                           <FieldError error={errors.newPhone} />
                         </div>
-                      )}
+                      }
                     </div>
 
                     {/* Email Address */}
@@ -451,13 +451,13 @@ const UpdateABNDetails = () => {
                         <Checkbox checked={form.updateFields.includes("Email Address")} onCheckedChange={() => toggleArrayField("updateFields", "Email Address")} />
                         <span className="text-sm text-foreground">Email Address</span>
                       </label>
-                      {form.updateFields.includes("Email Address") && (
-                        <div className="ml-7 mt-2 max-w-sm">
+                      {form.updateFields.includes("Email Address") &&
+                      <div className="ml-7 mt-2 max-w-sm">
                           <Label>New Email Address <span className="text-destructive">*</span></Label>
                           <StyledInput value={form.newEmail} onChange={(v) => update("newEmail", v)} placeholder="new@email.com" type="email" error={errors.newEmail} />
                           <FieldError error={errors.newEmail} />
                         </div>
-                      )}
+                      }
                     </div>
 
                     {/* Business Activity */}
@@ -466,14 +466,14 @@ const UpdateABNDetails = () => {
                         <Checkbox checked={form.updateFields.includes("Business Activity")} onCheckedChange={() => toggleArrayField("updateFields", "Business Activity")} />
                         <span className="text-sm text-foreground">Business Activity</span>
                       </label>
-                      {form.updateFields.includes("Business Activity") && (
-                        <div className="ml-7 mt-2 max-w-md">
+                      {form.updateFields.includes("Business Activity") &&
+                      <div className="ml-7 mt-2 max-w-md">
                           <Label>New Business Activity <span className="text-destructive">*</span></Label>
                           <StyledInput value={form.newBusinessActivity} onChange={(v) => update("newBusinessActivity", v)} placeholder="e.g. driver, cleaner, beauty, plumber" error={errors.newBusinessActivity} />
                           <FieldError error={errors.newBusinessActivity} />
                           <HelperText>Example: driver, cleaner, beauty, plumber, babysitting services</HelperText>
                         </div>
-                      )}
+                      }
                     </div>
                   </div>
                   <FieldError error={errors.updateFields} />
@@ -493,15 +493,15 @@ const UpdateABNDetails = () => {
                     Please select any Accounting task you may need ($49 pack)
                   </Label>
                   <div className="mt-3 space-y-2.5">
-                    {accountingOptions.map((task) => (
-                      <label key={task} className="flex cursor-pointer items-center gap-2.5">
+                    {accountingOptions.map((task) =>
+                    <label key={task} className="flex cursor-pointer items-center gap-2.5">
                         <Checkbox
-                          checked={form.accountingTasks.includes(task)}
-                          onCheckedChange={() => toggleArrayField("accountingTasks", task)}
-                        />
+                        checked={form.accountingTasks.includes(task)}
+                        onCheckedChange={() => toggleArrayField("accountingTasks", task)} />
+                      
                         <span className="text-sm text-foreground">{task}</span>
                       </label>
-                    ))}
+                    )}
                   </div>
                 </SectionWrapper>
               </div>
@@ -519,15 +519,15 @@ const UpdateABNDetails = () => {
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                    {steps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                    {steps.map(({ icon: Icon, title, text }, i) =>
+                    <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
                         <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
                         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
                       </div>
-                    ))}
+                    )}
                   </div>
 
                   <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
@@ -548,8 +548,8 @@ const UpdateABNDetails = () => {
                       <Checkbox
                         checked={form.acceptTerms}
                         onCheckedChange={(checked) => updateBoolean("acceptTerms", !!checked)}
-                        className="mt-0.5"
-                      />
+                        className="mt-0.5" />
+                      
                       <span className="text-sm text-foreground">
                         I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
                       </span>
@@ -560,8 +560,8 @@ const UpdateABNDetails = () => {
                       <Checkbox
                         checked={form.authoriseTaxAgent}
                         onCheckedChange={(checked) => updateBoolean("authoriseTaxAgent", !!checked)}
-                        className="mt-0.5"
-                      />
+                        className="mt-0.5" />
+                      
                       <span className="text-sm text-foreground">
                         I authorise an Accredited Tax Agent, under licence number 24666831, to add me (if required) to their tax agent portal in order to proceed with this request. <span className="text-destructive">*</span>
                       </span>
@@ -572,8 +572,8 @@ const UpdateABNDetails = () => {
                       <Checkbox
                         checked={form.confirmTrueInfo}
                         onCheckedChange={(checked) => updateBoolean("confirmTrueInfo", !!checked)}
-                        className="mt-0.5"
-                      />
+                        className="mt-0.5" />
+                      
                       <span className="text-sm text-foreground">
                         The information provided in this application (including attachments if applicable) is true and correct. <span className="text-destructive">*</span>
                       </span>
@@ -589,8 +589,8 @@ const UpdateABNDetails = () => {
                   variant="hero"
                   size="lg"
                   className="mx-auto gap-2 h-14 text-base px-12"
-                  onClick={handleSubmit}
-                >
+                  onClick={handleSubmit}>
+                  
                   Update your ABN details
                   <ArrowRight className="h-5 w-5" />
                 </Button>
@@ -604,8 +604,8 @@ const UpdateABNDetails = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>);
+
 };
 
 export default UpdateABNDetails;
