@@ -93,7 +93,7 @@ const TrustSection = () => {
                   <img
                     src={logo.src}
                     alt={logo.alt}
-                    className="h-16 w-auto max-w-[130px] object-contain"
+                    className="h-20 w-auto max-w-[150px] object-contain"
                     loading="lazy"
                   />
                 </div>
