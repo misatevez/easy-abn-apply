@@ -27,6 +27,7 @@ export const FormSubmitArea = ({ children }: { children: ReactNode }) => (
   </div>
 );
 
+export const FieldError = ({ error }: { error?: string }) =>
   error ? <p className="mt-1 text-sm text-destructive">{error}</p> : null;
 
 export const HelperText = ({ children }: { children: ReactNode }) => (
