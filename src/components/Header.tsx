@@ -38,7 +38,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: "GST Registration", href: "/apply" },
       { label: "GST Status", href: "/#gst-status" },
-      { label: "GST Cancellation", href: "/#gst-cancellation" },
+      { label: "GST Cancellation", href: "/gst-cancellation" },
     ],
   },
   {
