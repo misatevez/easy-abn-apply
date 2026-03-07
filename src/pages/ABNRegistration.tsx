@@ -214,18 +214,18 @@ const ABNRegistration = () => {
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header inside card */}
               <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center ml-0 border-0 rounded-none">
-                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
                   ABN & GST direct to your inbox in just 5 minutes
                 </h1>
-                <p className="mt-2 text-sm font-medium text-primary my-[13px]">
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium">
                   Business Name & other services available in the same form.
                 </p>
-                <p className="mt-2 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground my-[10px]">
+                <p className="mt-2 mx-auto max-w-lg leading-relaxed text-muted-foreground my-[10px] text-base px-0 py-0">
                   Simply use the registration form to provide the necessary information for locating your ABN. The whole process will only take about a minute.
                 </p>
 
                 {/* Trust Labels */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground my-[20px]">
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground my-[20px] mx-0 py-[10px]">
                   <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
                   <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
                   <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
