@@ -1,7 +1,7 @@
 import { Shield, Clock, CheckCircle2 } from "lucide-react";
 
 const ABNRegistrationBanner = () => (
-  <section className="relative overflow-hidden bg-primary py-14 md:py-20">
+  <section className="relative overflow-hidden bg-primary pb-32 pt-14 md:pb-40 md:pt-20">
     <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary-foreground/[0.05]" />
     <div className="pointer-events-none absolute -bottom-16 -left-16 h-60 w-60 rounded-full bg-primary-foreground/[0.04]" />
 
