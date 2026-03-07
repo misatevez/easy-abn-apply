@@ -344,11 +344,6 @@ const ABNRegistration = () => {
                   Lodge my ABN application
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
-                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
-                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
-                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
-                </div>
               </div>
             </div>
           </div>
