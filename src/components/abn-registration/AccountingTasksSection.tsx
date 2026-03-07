@@ -1,4 +1,4 @@
-import { SectionWrapper, FieldError } from "./FormField";
+import { SectionWrapper } from "./FormField";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { FileText, Zap, Mail } from "lucide-react";
@@ -14,7 +14,7 @@ const accountingOptions = [
   "Consultation with a Tax Accountant",
 ];
 
-const AccountingTasksSection = ({ form, errors, updateArray }: SectionProps) => {
+const AccountingTasksSection = ({ form, updateArray }: SectionProps) => {
   const toggleTask = (task: string) => {
     const current = form.accountingTasks || [];
     const updated = current.includes(task)
@@ -29,14 +29,9 @@ const AccountingTasksSection = ({ form, errors, updateArray }: SectionProps) => 
         <Label className="text-sm font-medium">
           Please select any accounting task you may need ($49 pack)
         </Label>
-        <div className="mt-3 space-y-3">
+        <div className="mt-3 space-y-2.5">
           {accountingOptions.map((task) => (
-            <label
-              key={task}
-              className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${
-                form.accountingTasks?.includes(task) ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"
-              }`}
-            >
+            <label key={task} className="flex cursor-pointer items-center gap-2.5">
               <Checkbox
                 checked={form.accountingTasks?.includes(task)}
                 onCheckedChange={() => toggleTask(task)}
@@ -47,56 +42,39 @@ const AccountingTasksSection = ({ form, errors, updateArray }: SectionProps) => 
         </div>
       </SectionWrapper>
 
-      {/* What is next? */}
+      {/* What happens next? */}
       <SectionWrapper>
-        <h3 className="text-base font-semibold text-foreground">What is next?</h3>
-        <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            Checked services will be charged at the end of this application.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            After completing payment one of our team members will contact you within 48 hours for a free consultation.
-          </li>
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            You will be informed about the process and final price which may vary depending on your needs.
-          </li>
-        </ul>
-      </SectionWrapper>
-
-      {/* What's next info blocks */}
-      <div className="border-t border-border" />
-      <SectionWrapper>
-        <h3 className="text-base font-semibold text-foreground">What's next?</h3>
-        <div className="mt-4 grid gap-4 sm:grid-cols-3">
-          <div className="rounded-lg border border-border p-4 text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <FileText className="h-5 w-5 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">What happens next?</h3>
+        <p className="mt-1.5 text-sm text-muted-foreground">
+          After submitting your application, our team will review your details and process your ABN registration.
+        </p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <div className="flex items-start gap-2.5 rounded-lg bg-muted/40 p-3">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
+              <FileText className="h-3.5 w-3.5 text-primary" />
             </div>
-            <h4 className="text-sm font-semibold text-foreground">ABN Display</h4>
-            <p className="mt-1 text-xs text-muted-foreground">
-              The assigned Australian Business Number (ABN) will immediately appear on your screen confirming its status.
-            </p>
+            <div>
+              <h4 className="text-xs font-semibold text-foreground">Instant ABN Display</h4>
+              <p className="mt-0.5 text-xs text-muted-foreground">Your ABN will appear on screen once issued.</p>
+            </div>
           </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <Zap className="h-5 w-5 text-primary" />
+          <div className="flex items-start gap-2.5 rounded-lg bg-muted/40 p-3">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
+              <Zap className="h-3.5 w-3.5 text-primary" />
             </div>
-            <h4 className="text-sm font-semibold text-foreground">Fast and Easy Process</h4>
-            <p className="mt-1 text-xs text-muted-foreground">
-              We simplified the ABN application process into a single smart online form.
-            </p>
+            <div>
+              <h4 className="text-xs font-semibold text-foreground">Fast Processing</h4>
+              <p className="mt-0.5 text-xs text-muted-foreground">Your application is securely submitted to the Australian Business Register.</p>
+            </div>
           </div>
-          <div className="rounded-lg border border-border p-4 text-center">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-              <Mail className="h-5 w-5 text-primary" />
+          <div className="flex items-start gap-2.5 rounded-lg bg-muted/40 p-3">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
+              <Mail className="h-3.5 w-3.5 text-primary" />
             </div>
-            <h4 className="text-sm font-semibold text-foreground">Email Confirmation</h4>
-            <p className="mt-1 text-xs text-muted-foreground">
-              A copy of your ABN will also be sent to the email address you provided during registration.
-            </p>
+            <div>
+              <h4 className="text-xs font-semibold text-foreground">Email Confirmation</h4>
+              <p className="mt-0.5 text-xs text-muted-foreground">A copy of your ABN will also be sent to your email address.</p>
+            </div>
           </div>
         </div>
       </SectionWrapper>

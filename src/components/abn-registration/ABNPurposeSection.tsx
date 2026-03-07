@@ -25,26 +25,26 @@ const ABNPurposeSection = ({ form, errors, update }: SectionProps) => {
 
   return (
     <SectionWrapper title="Individual ABN Registration Purpose">
-      <p className="mb-4 text-sm text-muted-foreground">
+      <p className="mb-3 text-sm text-muted-foreground">
         Select the type of registration <span className="text-destructive">*</span>
       </p>
 
-      <div className="space-y-3">
-        <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.abnPurpose === "new" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+      <div className="space-y-2">
+        <label className="flex cursor-pointer items-center gap-2.5">
           <input type="radio" name="abnPurpose" checked={form.abnPurpose === "new"} onChange={() => handlePurposeChange("new")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-          <span className="text-sm font-medium text-foreground">NEW ABN Registration (Sole trader)</span>
+          <span className="text-sm text-foreground">NEW ABN Registration (Sole trader)</span>
         </label>
 
-        <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.abnPurpose === "reactivate" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+        <label className="flex cursor-pointer items-center gap-2.5">
           <input type="radio" name="abnPurpose" checked={form.abnPurpose === "reactivate"} onChange={() => handlePurposeChange("reactivate")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-          <span className="text-sm font-medium text-foreground">Reactivate my Previous Individual ABN</span>
+          <span className="text-sm text-foreground">Reactivate my Previous Individual ABN</span>
         </label>
       </div>
 
       <FieldError error={errors.abnPurpose} />
 
       {form.abnPurpose === "new" && (
-        <div className="mt-5">
+        <div className="mt-4">
           <Label>From what date does the Individual / Sole Trader require its ABN? <span className="text-destructive">*</span></Label>
           <div className="mt-1 grid max-w-md grid-cols-3 gap-3">
             <StyledInput value={form.abnStartDay || defaultDay} onChange={(v) => update("abnStartDay", v)} placeholder="DD" error={errors.abnStartDay} />
@@ -65,7 +65,7 @@ const ABNPurposeSection = ({ form, errors, update }: SectionProps) => {
       )}
 
       {form.abnPurpose === "reactivate" && (
-        <div className="mt-5">
+        <div className="mt-4">
           <Label>If you previously had an ABN, please enter it here in order to renew it <span className="text-muted-foreground text-xs">(not mandatory)</span></Label>
           <StyledInput value={form.previousABN} onChange={(v) => update("previousABN", v)} placeholder="Enter your previous ABN" className="max-w-xs" />
           <HelperText>
