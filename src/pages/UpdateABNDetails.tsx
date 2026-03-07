@@ -543,6 +543,7 @@ const UpdateABNDetails = () => {
                   <h2 className="text-lg font-bold text-foreground">Terms and Conditions of Service</h2>
                 </div>
                 <SectionWrapper>
+                  <div className="space-y-4">
                     <label className="flex cursor-pointer items-start gap-3">
                       <Checkbox
                         checked={form.acceptTerms}
