@@ -229,6 +229,9 @@ const UpdateABNDetails = () => {
               {/* Progress */}
               <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
 
+              {/* Separator before form fields */}
+              <div className="mx-6 md:mx-10 border-t border-border" />
+
               {/* Process summary */}
               <div className="px-6 pb-4 md:px-10">
                 <div className="grid gap-3 sm:grid-cols-3">
