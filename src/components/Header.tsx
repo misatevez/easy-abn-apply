@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
     label: "Business Name Services",
     dropdown: [
       { label: "Business Name Registration", href: "/apply" },
-      { label: "Business Name Cancellation", href: "/#bn-cancellation" },
+      { label: "Business Name Cancellation", href: "/business-name-cancellation" },
     ],
   },
   {
