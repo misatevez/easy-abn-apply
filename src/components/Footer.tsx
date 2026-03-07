@@ -22,7 +22,7 @@ const footerNav = [
   {
     title: "Cancellation Services",
     links: [
-      { label: "ABN Cancellation", href: "#" },
+      { label: "ABN Cancellation", href: "/abn-cancellation" },
       { label: "GST Cancellation", href: "#" },
       { label: "Business Name Cancellation", href: "#" },
     ],
