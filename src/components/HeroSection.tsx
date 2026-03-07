@@ -11,11 +11,13 @@ const trustBadges = [
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-background">
-      {/* Subtle decorative shapes */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-primary/[0.04]" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-primary/[0.03]" />
-      <div className="pointer-events-none absolute right-1/4 top-1/3 h-[200px] w-[200px] rounded-full bg-primary/[0.02]" />
+    <section
+      className="relative overflow-hidden"
+      style={{ background: "var(--hero-gradient)" }}
+    >
+      {/* Very subtle decorative shapes */}
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-primary/[0.03]" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-primary/[0.02]" />
 
       <div className="container relative py-20 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
@@ -41,12 +43,12 @@ const HeroSection = () => {
           {/* Primary CTAs */}
           <div className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link to="/abn-registration">
-              <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/20">
+              <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/25">
                 Apply for a new ABN
               </Button>
             </Link>
             <Link to="/abn-registration?purpose=renew">
-              <Button variant="hero-outline" size="lg" className="h-14 px-10 text-base">
+              <Button variant="hero-outline" size="lg" className="h-14 px-10 text-base shadow-sm">
                 Renew my ABN
               </Button>
             </Link>
@@ -55,13 +57,13 @@ const HeroSection = () => {
           {/* Free tools */}
           <div className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a href="#abn-finder">
-              <Button variant="hero-outline" size="lg" className="h-12 gap-2 px-6">
+              <Button variant="hero-outline" size="lg" className="h-12 gap-2 px-6 shadow-sm">
                 <Search className="h-4 w-4" />
                 ABN Finder
               </Button>
             </a>
             <a href="#abn-lookup">
-              <Button variant="hero-outline" size="lg" className="h-12 gap-2 px-6">
+              <Button variant="hero-outline" size="lg" className="h-12 gap-2 px-6 shadow-sm">
                 <Hash className="h-4 w-4" />
                 ABN Lookup
               </Button>
