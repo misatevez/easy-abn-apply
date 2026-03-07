@@ -189,12 +189,12 @@ const ABNRegistration = () => {
     <Layout>
       <ABNRegistrationBanner />
 
-      <section className="bg-background py-12 md:py-16">
+      <section className="relative bg-muted/30 pb-12 md:pb-16">
         <div className="container">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-3xl -mt-20 md:-mt-28">
             <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
 
-            <div className="rounded-2xl border border-border bg-card shadow-sm">
+            <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Personal Details */}
               <div>
                 <ApplicantNameSection {...sectionProps} />
