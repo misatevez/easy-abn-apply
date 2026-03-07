@@ -71,7 +71,7 @@ const TrustSection = () => {
               ))}
             </div>
 
-            <Link to="/apply">
+            <Link to="/abn-registration">
               <Button variant="hero" size="lg" className="px-10">
                 Start my ABN Application
                 <ArrowRight className="ml-2 h-4 w-4" />

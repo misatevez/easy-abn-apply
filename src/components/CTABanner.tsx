@@ -12,7 +12,7 @@ const CTABanner = () => {
         <p className="mb-8 text-lg text-primary-foreground/80">
           Join thousands of businesses who registered their ABN with us.
         </p>
-        <Link to="/apply">
+        <Link to="/abn-registration">
           <Button
             variant="secondary"
             size="lg"

@@ -124,7 +124,7 @@ const ServicesSection = () => {
                 </div>
 
                 {/* CTA */}
-                <Link to="/apply">
+                <Link to="/abn-registration">
                   <Button variant="hero" className="w-full">
                     {service.cta}
                   </Button>

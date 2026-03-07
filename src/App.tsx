@@ -19,6 +19,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/abn-registration" element={<ABNRegistration />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
