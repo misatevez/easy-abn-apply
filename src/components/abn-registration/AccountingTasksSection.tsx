@@ -1,7 +1,7 @@
 import { SectionWrapper } from "./FormField";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ClipboardCheck, Globe, Mail, ArrowRight, ShieldCheck } from "lucide-react";
+import { ClipboardCheck, Send, Mail, ShieldCheck } from "lucide-react";
 import type { SectionProps } from "./types";
 
 const accountingOptions = [
