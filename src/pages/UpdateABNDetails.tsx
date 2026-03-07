@@ -207,10 +207,10 @@ const UpdateABNDetails = () => {
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center">
-                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
                   Update your ABN Details in 5 minutes
                 </h1>
-                <p className="mt-2 text-sm font-medium text-primary">
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium">
                   Please use this form to update any personal details related to your Australian Business Number (ABN) registration.
                 </p>
                 <div className="mt-3 mx-auto max-w-lg text-left text-sm leading-relaxed text-muted-foreground">
@@ -226,7 +226,7 @@ const UpdateABNDetails = () => {
                 </div>
 
                 {/* Trust Labels */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground my-[20px] py-[10px]">
                   <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
                   <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
                   <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
