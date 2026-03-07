@@ -16,7 +16,7 @@ const WhyChooseUs = () => {
     <section className="bg-card py-20">
       <div className="container">
         <div className="mb-14 text-center">
-          <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Why Choose Us</h2>
+          <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Why Australian businesses trust our ABN service</h2>
           <p className="text-muted-foreground">Trusted by thousands of Australian businesses</p>
         </div>
 
