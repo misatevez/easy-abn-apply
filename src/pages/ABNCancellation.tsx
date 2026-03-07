@@ -142,6 +142,7 @@ const ABNCancellation = () => {
     if (form.cancelBusinessName === "yes" && !form.requestASICKey) e.requestASICKey = "Please select an option";
     if (!form.cancelGST) e.cancelGST = "Please select an option";
     if (form.cancelGST === "yes" && !form.gstCancellationReason) e.gstCancellationReason = "Please select a reason";
+    if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
 
