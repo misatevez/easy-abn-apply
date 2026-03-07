@@ -268,7 +268,7 @@ const ABNRegistration = () => {
 
               {/* GST Details */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Goods and Services Tax (GST) Details</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
                     As a business owner it is your responsibility to register for GST:
