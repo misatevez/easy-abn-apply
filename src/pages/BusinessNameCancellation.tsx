@@ -521,7 +521,7 @@ const BusinessNameCancellation = () => {
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <div className="bg-primary/[0.04] px-6 py-8 md:px-10">
+                <div className="bg-[#F7F9FE] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
                       What happens after you submit your application
@@ -597,11 +597,11 @@ const BusinessNameCancellation = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8 [&>*]:mx-auto [&>*]:max-w-[570px]">
+              <div className="border-t border-border p-6 md:p-8 text-center">
                 <Button
                   variant="hero"
                   size="lg"
-                  className="w-full gap-2 h-14 text-base"
+                  className="mx-auto gap-2 h-14 text-base px-12"
                   onClick={handleSubmit}
                 >
                   Submit your Cancellation

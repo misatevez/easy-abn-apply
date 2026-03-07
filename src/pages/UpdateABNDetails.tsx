@@ -508,7 +508,7 @@ const UpdateABNDetails = () => {
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <div className="bg-primary/[0.04] px-6 py-8 md:px-10">
+                <div className="bg-[#F7F9FE] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
                       What happens after you submit your application
@@ -539,6 +539,9 @@ const UpdateABNDetails = () => {
 
               {/* Final Confirmation */}
               <div className="border-t border-border">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
+                  <h2 className="text-lg font-bold text-foreground">Terms and Conditions of Service</h2>
+                </div>
                 <SectionWrapper>
                   <div className="space-y-4">
                     <label className="flex cursor-pointer items-start gap-3">
@@ -581,11 +584,11 @@ const UpdateABNDetails = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8 [&>*]:mx-auto [&>*]:max-w-[570px]">
+              <div className="border-t border-border p-6 md:p-8 text-center">
                 <Button
                   variant="hero"
                   size="lg"
-                  className="w-full gap-2 h-14 text-base"
+                  className="mx-auto gap-2 h-14 text-base px-12"
                   onClick={handleSubmit}
                 >
                   Update your ABN details
