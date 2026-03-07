@@ -622,11 +622,11 @@ const GSTCancellation = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8 [&>*]:mx-auto [&>*]:max-w-[570px]">
+              <div className="border-t border-border p-6 md:p-8 text-center">
                 <Button
                   variant="hero"
                   size="lg"
-                  className="w-full gap-2 h-14 text-base"
+                  className="mx-auto gap-2 h-14 text-base px-12"
                   onClick={handleSubmit}
                 >
                   Submit your Cancellation
