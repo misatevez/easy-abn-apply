@@ -111,34 +111,6 @@ const ABNCancellation = () => {
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const navigate = useNavigate();
 
-  const update = useCallback((field: keyof CancellationFormData, value: string) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: undefined }));
-  }, []);
-
-  const updateBoolean = useCallback((field: keyof CancellationFormData, value: boolean) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: undefined }));
-  }, []);
-
-  const completedSections = useMemo(() => {
-    let count = 0;
-    if (form.lastName) count++;
-    if (form.email && form.confirmEmail && form.email === form.confirmEmail) count++;
-    if (form.phone) count++;
-    if (form.dobDay && form.dobMonth && form.dobYear) count++;
-    if (form.tfnOption) count++;
-    if (form.abn) count++;
-    if (form.abnCancellationReason) count++;
-    if (form.abnCancelDay && form.abnCancelMonth && form.abnCancelYear) count++;
-    if (form.cancelBusinessName) count++;
-    if (form.cancelGST) count++;
-    if (form.cancelGST === "yes" && form.gstCancellationReason) count++;
-    if (form.cancelGST === "no") count++;
-    if (form.authoriseTaxAgent && form.confirmTrueInfo) count++;
-    return Math.min(count, TOTAL_SECTIONS);
-  }, [form]);
-
   const validate = (): boolean => {
     const e: Partial<Record<string, string>> = {};
 
