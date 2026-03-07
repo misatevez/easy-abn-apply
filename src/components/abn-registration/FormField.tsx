@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export const SectionWrapper = ({ children, title }: { children: ReactNode; title?: string }) => (
   <div className="px-6 py-4 md:px-8 md:py-5">
