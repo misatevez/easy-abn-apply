@@ -190,11 +190,24 @@ const ABNRegistration = () => {
       <ABNRegistrationBanner />
 
       <section className="relative bg-muted/30 pb-12 md:pb-16">
-        <div className="container">
-          <div className="mx-auto max-w-3xl -mt-20 md:-mt-28">
-            <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
-
+        <div className="container px-4">
+          <div className="mx-auto max-w-[800px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
+              {/* Header inside card */}
+              <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
+                  ABN & GST direct to your inbox in just 5 minutes
+                </h1>
+                <p className="mt-2 text-sm font-medium text-primary">
+                  Business Name & other services available in the same form.
+                </p>
+                <p className="mt-2 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground">
+                  Simply use the registration form to provide the necessary information for locating your ABN. The whole process will only take about a minute.
+                </p>
+                <div className="mt-6 mb-2">
+                  <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
+                </div>
+              </div>
               {/* Personal Details */}
               <div>
                 <ApplicantNameSection {...sectionProps} />
