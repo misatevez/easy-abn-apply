@@ -198,9 +198,9 @@ const ABNCancellation = () => {
               <div className="px-6 md:px-10 mx-[50px] py-0 pb-[30px]">
                 <div className="grid gap-3 sm:grid-cols-3">
                   {[
-                  { num: "1", text: "Fill in the form below to cancel your personal ABN / GST / Business Name." },
-                  { num: "2", text: "Complete payment. You can pay by credit card. SSL Certified & Secure Transaction." },
-                  { num: "3", text: "Once your application is cancelled, your application status will be sent directly to your nominated email address." }].
+                  { num: "1", text: "Provide the required information below to request the cancellation of your ABN, GST, or Business Name." },
+                  { num: "2", text: "Submit your request using our SSL-protected secure payment system." },
+                  { num: "3", text: "Once your request has been processed, a confirmation email will be sent to your nominated email address." }].
                   map((step) =>
                   <div key={step.num} className="rounded-xl border border-border/60 bg-muted/30 p-4">
                       <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
