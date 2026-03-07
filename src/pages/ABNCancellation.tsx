@@ -162,7 +162,7 @@ const ABNCancellation = () => {
 
       <section className="relative bg-muted/30 pb-12 md:pb-16">
         <div className="container px-4">
-          <div className="mx-auto max-w-[800px] -mt-36 md:-mt-44">
+          <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
@@ -172,10 +172,14 @@ const ABNCancellation = () => {
                 <p className="mt-2 text-sm font-medium text-primary">
                   3 EASY STEPS TO CANCEL YOUR OFFICIAL ABN / GST / BUSINESS NAME
                 </p>
-              </div>
 
-              {/* Progress */}
-              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
+                {/* Trust Labels */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
+                </div>
+              </div>
 
               {/* Separator */}
               <div className="mx-6 md:mx-10 border-t border-border" />
