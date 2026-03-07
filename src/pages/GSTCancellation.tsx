@@ -1,7 +1,6 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
 import ABNRegistrationBanner from "@/components/abn-registration/ABNRegistrationBanner";
-import ABNRegistrationProgress from "@/components/abn-registration/ABNRegistrationProgress";
 import { SectionWrapper, StyledInput, FieldError, HelperText } from "@/components/abn-registration/FormField";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -24,14 +23,17 @@ type CancellationFormData = {
   tfn: string;
   abn: string;
   // GST Cancellation
-  cancelGST: string;
   gstCancellationReason: string;
+  gstCancelDay: string;
+  gstCancelMonth: string;
+  gstCancelYear: string;
   // Business Name Cancellation
   cancelBusinessName: string;
   businessNameToCancel: string;
   requestASICKey: string;
   asicKey: string;
   // ABN Cancellation
+  cancelABN: string;
   abnCancellationReason: string;
   abnCancellationReasonOther: string;
   abnCancelDay: string;
@@ -56,12 +58,15 @@ const initialForm: CancellationFormData = {
   tfnOption: "",
   tfn: "",
   abn: "",
-  cancelGST: "",
   gstCancellationReason: "",
+  gstCancelDay: String(new Date().getDate()).padStart(2, "0"),
+  gstCancelMonth: String(new Date().getMonth() + 1).padStart(2, "0"),
+  gstCancelYear: String(new Date().getFullYear()),
   cancelBusinessName: "",
   businessNameToCancel: "",
   requestASICKey: "",
   asicKey: "",
+  cancelABN: "",
   abnCancellationReason: "",
   abnCancellationReasonOther: "",
   abnCancelDay: String(new Date().getDate()).padStart(2, "0"),
@@ -109,8 +114,6 @@ const nextSteps = [
   },
 ];
 
-const TOTAL_SECTIONS = 12;
-
 const GSTCancellation = () => {
   const [form, setForm] = useState<CancellationFormData>(initialForm);
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
@@ -125,24 +128,6 @@ const GSTCancellation = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
-
-  const completedSections = useMemo(() => {
-    let count = 0;
-    if (form.lastName) count++;
-    if (form.email && form.confirmEmail && form.email === form.confirmEmail) count++;
-    if (form.phone) count++;
-    if (form.dobDay && form.dobMonth && form.dobYear) count++;
-    if (form.tfnOption) count++;
-    if (form.abn) count++;
-    if (form.cancelGST) count++;
-    if (form.cancelGST === "yes" && form.gstCancellationReason) count++;
-    if (form.cancelGST === "no") count++;
-    if (form.cancelBusinessName) count++;
-    if (form.abnCancellationReason) count++;
-    if (form.abnCancelDay && form.abnCancelMonth && form.abnCancelYear) count++;
-    if (form.authoriseTaxAgent && form.confirmTrueInfo) count++;
-    return Math.min(count, TOTAL_SECTIONS);
-  }, [form]);
 
   const validate = (): boolean => {
     const e: Partial<Record<string, string>> = {};
@@ -167,18 +152,21 @@ const GSTCancellation = () => {
     if (form.tfnOption === "now" && form.tfn && !/^\d{3}\s?\d{3}\s?\d{3}$/.test(form.tfn.trim())) {
       e.tfn = "Invalid TFN format (e.g. 123 456 789)";
     }
-    // GST
-    if (!form.cancelGST) e.cancelGST = "Please select an option";
-    if (form.cancelGST === "yes" && !form.gstCancellationReason) e.gstCancellationReason = "Please select a reason";
+    // GST - always shown
+    if (!form.gstCancellationReason) e.gstCancellationReason = "Please select a reason";
+    if (!form.gstCancelDay || !form.gstCancelMonth || !form.gstCancelYear) e.gstCancelDay = "Cancellation date is required";
     // Business Name
     if (!form.cancelBusinessName) e.cancelBusinessName = "Please select an option";
     if (form.cancelBusinessName === "yes" && !form.businessNameToCancel.trim()) e.businessNameToCancel = "Business name is required";
     if (form.cancelBusinessName === "yes" && !form.requestASICKey) e.requestASICKey = "Please select an option";
-    // ABN
-    if (!form.abnCancellationReason) e.abnCancellationReason = "Please select a reason";
-    if (form.abnCancellationReason === "Other" && !form.abnCancellationReasonOther.trim()) e.abnCancellationReasonOther = "Please specify the reason";
-    if (!form.abnCancelDay || !form.abnCancelMonth || !form.abnCancelYear) e.abnCancelDay = "Cancellation date is required";
+    // ABN - conditional
+    if (form.cancelABN === "yes") {
+      if (!form.abnCancellationReason) e.abnCancellationReason = "Please select a reason";
+      if (form.abnCancellationReason === "Other" && !form.abnCancellationReasonOther.trim()) e.abnCancellationReasonOther = "Please specify the reason";
+      if (!form.abnCancelDay || !form.abnCancelMonth || !form.abnCancelYear) e.abnCancelDay = "Cancellation date is required";
+    }
     // Terms
+    if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
 
@@ -198,20 +186,24 @@ const GSTCancellation = () => {
 
       <section className="relative bg-muted/30 pb-12 md:pb-16">
         <div className="container px-4">
-          <div className="mx-auto max-w-[800px] -mt-36 md:-mt-44">
+          <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
                 <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
-                  Cancel your ABN / GST / Business Name in 5 minutes
+                  Cancel your GST / ABN / Business Name in 5 minutes
                 </h1>
                 <p className="mt-2 text-sm font-medium text-primary">
-                  3 EASY STEPS TO CANCEL YOUR OFFICIAL ABN / GST / BUSINESS NAME
+                  3 EASY STEPS TO CANCEL YOUR OFFICIAL GST / ABN / BUSINESS NAME
                 </p>
-              </div>
 
-              {/* Progress */}
-              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
+                {/* Trust Labels */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
+                </div>
+              </div>
 
               {/* Separator */}
               <div className="mx-6 md:mx-10 border-t border-border" />
@@ -321,7 +313,7 @@ const GSTCancellation = () => {
                     <StyledInput value={form.tfn} onChange={(v) => update("tfn", v)} placeholder="123 456 789" error={errors.tfn} />
                     <FieldError error={errors.tfn} />
                     <HelperText>
-                      The TFN itself has 9 digits, with a check digit. Individuals receive a 9-digit TFN. Your Tax File Number (TFN) can be found on official Tax Office documents. We may contact you to provide your TFN if the ATO cannot verify your information with the details you have provided, as a TFN number is required for an ABN number to be issued.
+                      The TFN itself has 9 digits, with a check digit. Individuals receive a 9-digit TFN. Your Tax File Number (TFN) can be found on official Tax Office documents.
                     </HelperText>
                     <div className="mt-3 rounded-lg border border-border/60 bg-muted/30 p-3">
                       <p className="text-xs font-semibold text-foreground">Can't find your TFN?</p>
@@ -354,41 +346,46 @@ const GSTCancellation = () => {
                     <p className="mt-2">You can choose to cancel your GST registration if your GST turnover is below the threshold for compulsory registration, unless you:</p>
                     <ul className="mt-1.5 space-y-1 ml-4">
                       <li className="flex gap-2"><span className="text-primary">•</span>Are a taxi driver, including ride-sourcing or chauffeur services</li>
-                      <li className="flex gap-2"><span className="text-primary">•</span>Represent an incapacitated entity who is registered or required to be registered for GST, for example an individual who is bankrupt or a company in liquidation</li>
+                      <li className="flex gap-2"><span className="text-primary">•</span>Represent an incapacitated entity who is registered or required to be registered for GST</li>
                       <li className="flex gap-2"><span className="text-primary">•</span>Are an Australian resident who acts as an agent for a non-resident that is registered or required to be registered for GST</li>
                     </ul>
                   </div>
                 </div>
                 <SectionWrapper>
-                  <Label>Would you like to cancel your GST? <span className="text-destructive">*</span></Label>
-                  <div className="mt-2 space-y-2">
-                    <label className="flex cursor-pointer items-center gap-2.5">
-                      <input type="radio" name="cancelGST" checked={form.cancelGST === "yes"} onChange={() => update("cancelGST", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                      <span className="text-sm text-foreground">Yes</span>
-                    </label>
-                    <label className="flex cursor-pointer items-center gap-2.5">
-                      <input type="radio" name="cancelGST" checked={form.cancelGST === "no"} onChange={() => update("cancelGST", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                      <span className="text-sm text-foreground">No</span>
-                    </label>
+                  {/* GST reason shown directly */}
+                  <div className="max-w-md">
+                    <Label>Please select a reason for your GST cancellation: <span className="text-destructive">*</span></Label>
+                    <Select value={form.gstCancellationReason} onValueChange={(v) => update("gstCancellationReason", v)}>
+                      <SelectTrigger className="h-11 rounded-lg mt-1">
+                        <SelectValue placeholder="Select a reason" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {gstCancellationReasons.map((r) => (
+                          <SelectItem key={r} value={r}>{r}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FieldError error={errors.gstCancellationReason} />
                   </div>
-                  <FieldError error={errors.cancelGST} />
 
-                  {form.cancelGST === "yes" && (
-                    <div className="mt-4 max-w-md">
-                      <Label>Please select a reason for your GST cancellation: <span className="text-destructive">*</span></Label>
-                      <Select value={form.gstCancellationReason} onValueChange={(v) => update("gstCancellationReason", v)}>
-                        <SelectTrigger className="h-11 rounded-lg mt-1">
-                          <SelectValue placeholder="Select a reason" />
+                  <div className="mt-5">
+                    <Label>Day for the GST Cancellation to take effect <span className="text-destructive">*</span></Label>
+                    <div className="mt-1 grid max-w-sm grid-cols-3 gap-3">
+                      <StyledInput value={form.gstCancelDay} onChange={(v) => update("gstCancelDay", v)} placeholder="DD" error={errors.gstCancelDay} />
+                      <Select value={form.gstCancelMonth} onValueChange={(v) => update("gstCancelMonth", v)}>
+                        <SelectTrigger className="h-11 rounded-lg">
+                          <SelectValue placeholder="Month" />
                         </SelectTrigger>
                         <SelectContent>
-                          {gstCancellationReasons.map((r) => (
-                            <SelectItem key={r} value={r}>{r}</SelectItem>
+                          {months.map((m, i) => (
+                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
-                      <FieldError error={errors.gstCancellationReason} />
+                      <StyledInput value={form.gstCancelYear} onChange={(v) => update("gstCancelYear", v)} placeholder="YYYY" error={errors.gstCancelDay} />
                     </div>
-                  )}
+                    <FieldError error={errors.gstCancelDay} />
+                  </div>
                 </SectionWrapper>
               </div>
 
@@ -404,7 +401,7 @@ const GSTCancellation = () => {
                       <li className="flex gap-2"><span className="text-primary">•</span>The business name holder is a company that has been deregistered.</li>
                       <li className="flex gap-2"><span className="text-primary">•</span>We become aware of a matter after registration that would have affected our initial decision to register the business name.</li>
                       <li className="flex gap-2"><span className="text-primary">•</span>We become aware that the entity is disqualified from holding a business name.</li>
-                      <li className="flex gap-2"><span className="text-primary">•</span>We are satisfied the entity is not carrying on a business under the business name, for example if the Australian Business Number (ABN) has been cancelled, and has not been carrying on a business for the last three months.</li>
+                      <li className="flex gap-2"><span className="text-primary">•</span>We are satisfied the entity is not carrying on a business under the business name.</li>
                       <li className="flex gap-2"><span className="text-primary">•</span>The entity fails to notify us of a change in information within the required time.</li>
                       <li className="flex gap-2"><span className="text-primary">•</span>The entity fails to respond to an ASIC request for information.</li>
                     </ul>
@@ -455,7 +452,6 @@ const GSTCancellation = () => {
                         </div>
                       )}
 
-                      {/* ASIC Key help block */}
                       <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
                         <p className="text-xs font-semibold text-foreground">Cannot find your ASIC Key?</p>
                         <ul className="mt-2 space-y-1.5 text-xs text-muted-foreground">
@@ -488,65 +484,81 @@ const GSTCancellation = () => {
                   </div>
                 </div>
                 <SectionWrapper>
-                  <div className="max-w-md">
-                    <Label>Reason for the ABN cancellation? <span className="text-destructive">*</span></Label>
-                    <Select value={form.abnCancellationReason} onValueChange={(v) => update("abnCancellationReason", v)}>
-                      <SelectTrigger className="h-11 rounded-lg mt-1">
-                        <SelectValue placeholder="Select a reason" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {abnCancellationReasons.map((r) => (
-                          <SelectItem key={r} value={r}>{r}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FieldError error={errors.abnCancellationReason} />
+                  <Label>Would you like to cancel your ABN? <span className="text-destructive">*</span></Label>
+                  <div className="mt-2 space-y-2">
+                    <label className="flex cursor-pointer items-center gap-2.5">
+                      <input type="radio" name="cancelABN" checked={form.cancelABN === "yes"} onChange={() => update("cancelABN", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                      <span className="text-sm text-foreground">Yes</span>
+                    </label>
+                    <label className="flex cursor-pointer items-center gap-2.5">
+                      <input type="radio" name="cancelABN" checked={form.cancelABN === "no"} onChange={() => update("cancelABN", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                      <span className="text-sm text-foreground">No</span>
+                    </label>
                   </div>
 
-                  {form.abnCancellationReason === "Other" && (
-                    <div className="mt-4 max-w-md">
-                      <Label>Please specify the reason <span className="text-destructive">*</span></Label>
-                      <StyledInput value={form.abnCancellationReasonOther} onChange={(v) => update("abnCancellationReasonOther", v)} placeholder="Please specify..." error={errors.abnCancellationReasonOther} />
-                      <FieldError error={errors.abnCancellationReasonOther} />
-                    </div>
+                  {form.cancelABN === "yes" && (
+                    <>
+                      <div className="mt-4 max-w-md">
+                        <Label>Reason for the ABN cancellation? <span className="text-destructive">*</span></Label>
+                        <Select value={form.abnCancellationReason} onValueChange={(v) => update("abnCancellationReason", v)}>
+                          <SelectTrigger className="h-11 rounded-lg mt-1">
+                            <SelectValue placeholder="Select a reason" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {abnCancellationReasons.map((r) => (
+                              <SelectItem key={r} value={r}>{r}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FieldError error={errors.abnCancellationReason} />
+                      </div>
+
+                      {form.abnCancellationReason === "Other" && (
+                        <div className="mt-4 max-w-md">
+                          <Label>Please specify the reason <span className="text-destructive">*</span></Label>
+                          <StyledInput value={form.abnCancellationReasonOther} onChange={(v) => update("abnCancellationReasonOther", v)} placeholder="Please specify..." error={errors.abnCancellationReasonOther} />
+                          <FieldError error={errors.abnCancellationReasonOther} />
+                        </div>
+                      )}
+
+                      <div className="mt-5">
+                        <Label>From what date does the Individual / Sole Trader require its ABN cancelled? <span className="text-destructive">*</span></Label>
+                        <div className="mt-1 grid max-w-sm grid-cols-3 gap-3">
+                          <StyledInput value={form.abnCancelDay} onChange={(v) => update("abnCancelDay", v)} placeholder="DD" error={errors.abnCancelDay} />
+                          <Select value={form.abnCancelMonth} onValueChange={(v) => update("abnCancelMonth", v)}>
+                            <SelectTrigger className="h-11 rounded-lg">
+                              <SelectValue placeholder="Month" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {months.map((m, i) => (
+                                <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <StyledInput value={form.abnCancelYear} onChange={(v) => update("abnCancelYear", v)} placeholder="YYYY" error={errors.abnCancelDay} />
+                        </div>
+                        <FieldError error={errors.abnCancelDay} />
+                      </div>
+                    </>
                   )}
-
-                  <div className="mt-5">
-                    <Label>From what date does the Individual / Sole Trader require its ABN cancelled? <span className="text-destructive">*</span></Label>
-                    <div className="mt-1 grid max-w-sm grid-cols-3 gap-3">
-                      <StyledInput value={form.abnCancelDay} onChange={(v) => update("abnCancelDay", v)} placeholder="DD" error={errors.abnCancelDay} />
-                      <Select value={form.abnCancelMonth} onValueChange={(v) => update("abnCancelMonth", v)}>
-                        <SelectTrigger className="h-11 rounded-lg">
-                          <SelectValue placeholder="Month" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {months.map((m, i) => (
-                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <StyledInput value={form.abnCancelYear} onChange={(v) => update("abnCancelYear", v)} placeholder="YYYY" error={errors.abnCancelDay} />
-                    </div>
-                    <FieldError error={errors.abnCancelDay} />
-                  </div>
                 </SectionWrapper>
               </div>
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <SectionWrapper>
+                <div className="bg-primary/[0.04] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
-                      What happens after you submit your cancellation request
+                      What happens after you submit your application
                     </h3>
                     <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
-                      Once you submit your request, our team reviews your details and securely processes the cancellation with the relevant authority.
+                      After submitting your application, our team reviews your details and securely processes your ABN registration.
                     </p>
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {nextSteps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-muted/30 p-4 text-center">
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
@@ -556,11 +568,11 @@ const GSTCancellation = () => {
                     ))}
                   </div>
 
-                  <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                    <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-                    <span>Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
+                  <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-foreground">Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
                   </div>
-                </SectionWrapper>
+                </div>
               </div>
 
               {/* Terms & Declarations */}
@@ -577,9 +589,10 @@ const GSTCancellation = () => {
                         className="mt-0.5"
                       />
                       <span className="text-sm text-foreground">
-                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use.
+                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
                       </span>
                     </label>
+                    <FieldError error={errors.acceptTerms} />
 
                     <label className="flex cursor-pointer items-start gap-3">
                       <Checkbox
@@ -619,10 +632,10 @@ const GSTCancellation = () => {
                   Submit your Cancellation
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-primary" /> Secure & Encrypted</span>
-                  <span className="flex items-center gap-1"><Lock className="h-3.5 w-3.5 text-primary" /> SSL Protected</span>
-                  <span className="flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Expert Reviewed</span>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
                 </div>
               </div>
             </div>

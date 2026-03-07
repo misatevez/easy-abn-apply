@@ -1,8 +1,8 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
 import ABNRegistrationBanner from "@/components/abn-registration/ABNRegistrationBanner";
-import ABNRegistrationProgress from "@/components/abn-registration/ABNRegistrationProgress";
 import { SectionWrapper, StyledInput, FieldError, HelperText } from "@/components/abn-registration/FormField";
+import { Label } from "@/components/ui/label";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -184,6 +184,7 @@ const UpdateABNDetails = () => {
     if (form.updateFields.includes("Email Address") && !form.newEmail.trim()) e.newEmail = "New email address is required";
     if (form.updateFields.includes("Business Activity") && !form.newBusinessActivity.trim()) e.newBusinessActivity = "New business activity is required";
 
+    if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
 
@@ -203,7 +204,7 @@ const UpdateABNDetails = () => {
 
       <section className="relative bg-muted/30 pb-12 md:pb-16">
         <div className="container px-4">
-          <div className="mx-auto max-w-[800px] -mt-36 md:-mt-44">
+          <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
@@ -224,10 +225,14 @@ const UpdateABNDetails = () => {
                     Providing accurate and up-to-date information ensures that your ABN records remain current and compliant with ATO requirements. If you have any questions or need assistance, please contact our support team.
                   </p>
                 </div>
-              </div>
 
-              {/* Progress */}
-              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
+                {/* Trust Labels */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
+                </div>
+              </div>
 
               {/* Separator before form fields */}
               <div className="mx-6 md:mx-10 border-t border-border" />
@@ -504,19 +509,19 @@ const UpdateABNDetails = () => {
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <SectionWrapper>
+                <div className="bg-primary/[0.04] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
-                      What happens after you submit your update request
+                      What happens after you submit your application
                     </h3>
                     <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
-                      Once you submit your request, our team reviews your details and securely processes your ABN update.
+                      After submitting your application, our team reviews your details and securely processes your ABN registration.
                     </p>
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {steps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-muted/30 p-4 text-center">
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
@@ -526,11 +531,11 @@ const UpdateABNDetails = () => {
                     ))}
                   </div>
 
-                  <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                    <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-                    <span>Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
+                  <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-foreground">Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
                   </div>
-                </SectionWrapper>
+                </div>
               </div>
 
               {/* Final Confirmation */}
@@ -544,9 +549,10 @@ const UpdateABNDetails = () => {
                         className="mt-0.5"
                       />
                       <span className="text-sm text-foreground">
-                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use.
+                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
                       </span>
                     </label>
+                    <FieldError error={errors.acceptTerms} />
 
                     <label className="flex cursor-pointer items-start gap-3">
                       <Checkbox
@@ -586,10 +592,10 @@ const UpdateABNDetails = () => {
                   Update your ABN details
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-primary" /> Secure & Encrypted</span>
-                  <span className="flex items-center gap-1"><Lock className="h-3.5 w-3.5 text-primary" /> SSL Protected</span>
-                  <span className="flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Expert Reviewed</span>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
                 </div>
               </div>
             </div>
