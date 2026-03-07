@@ -213,7 +213,7 @@ const ABNRegistration = () => {
           <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header inside card */}
-              <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
+              <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center">
                 <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
                   ABN & GST direct to your inbox in just 5 minutes
                 </h1>
