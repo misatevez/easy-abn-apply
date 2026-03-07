@@ -37,6 +37,6 @@ export const StyledInput = ({
     value={value}
     onChange={(e) => onChange(e.target.value)}
     placeholder={placeholder}
-    className={`h-11 rounded-lg ${error ? "border-destructive" : ""} ${className}`}
+    className={`h-11 max-w-[500px] rounded-lg ${error ? "border-destructive" : ""} ${className}`}
   />
 );
