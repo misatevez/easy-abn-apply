@@ -12,9 +12,10 @@ const FinalConfirmationSection = ({ form, errors, updateBoolean }: SectionProps)
           className="mt-0.5"
         />
         <span className="text-sm text-foreground">
-          I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use.
+          I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
         </span>
       </label>
+      <FieldError error={errors.acceptTerms} />
 
       <label className="flex cursor-pointer items-start gap-3">
         <Checkbox
