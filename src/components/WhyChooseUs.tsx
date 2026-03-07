@@ -20,8 +20,8 @@ const WhyChooseUs = () => {
         <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((b) => (
             <div key={b.title} className="flex gap-4 rounded-xl border border-border bg-background p-5">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
-                <b.icon className="h-5 w-5 text-accent" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <b.icon className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <h3 className="mb-1 font-semibold text-foreground">{b.title}</h3>
