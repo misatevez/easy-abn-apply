@@ -33,7 +33,7 @@ const HowItWorks = () => {
               <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
                 <step.icon className="h-7 w-7 text-primary" />
               </div>
-              <div className="mb-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
+              <div className="mb-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                 {i + 1}
               </div>
               <h3 className="mb-2 text-lg font-semibold text-foreground">{step.title}</h3>
