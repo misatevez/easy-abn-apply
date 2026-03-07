@@ -209,6 +209,9 @@ const ABNRegistration = () => {
               {/* Progress bar */}
               <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
 
+              {/* Separator before form fields */}
+              <div className="mx-6 md:mx-10 border-t border-border" />
+
               {/* Personal Details */}
               <div>
                 <ApplicantNameSection {...sectionProps} />
