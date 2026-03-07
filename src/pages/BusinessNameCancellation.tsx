@@ -397,7 +397,7 @@ const BusinessNameCancellation = () => {
 
               {/* ===== ABN Cancellation Details ===== */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">ABN Cancellation Details</h2>
                   <p className="mt-1 text-sm font-medium text-muted-foreground">Cancel an Australian Business Number (ABN)</p>
                   <div className="mt-3 text-sm text-muted-foreground">
