@@ -103,6 +103,42 @@ const TrustSection = () => {
         </div>
       </section>
 
+      {/* PART 3 — Conversion Bridge */}
+      <section className="bg-background py-20">
+        <div className="container">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
+              Why Australian businesses trust our ABN service
+            </h2>
+            <p className="mb-12 text-muted-foreground">
+              Trusted by thousands of Australian businesses
+            </p>
+
+            <div className="mb-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {conversionBenefits.map((benefit) => (
+                <div key={benefit.title} className="flex flex-col items-center text-center">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+                    <benefit.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="mb-2 text-base font-semibold text-foreground">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <Link to="/apply">
+              <Button variant="hero" size="lg" className="px-10">
+                Start my ABN Application
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
