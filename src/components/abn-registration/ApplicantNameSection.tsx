@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import type { SectionProps } from "./types";
 
 const ApplicantNameSection = ({ form, errors, update }: SectionProps) => (
-  <SectionWrapper title="Applicant Name">
+  <SectionWrapper>
     <div className="grid gap-4 sm:grid-cols-3">
       <div>
         <Label htmlFor="firstName">First Name</Label>
