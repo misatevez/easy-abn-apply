@@ -8,8 +8,9 @@ const services = [
     title: "ABN Registration",
     price: "$69",
     description:
-      "Apply for your Australian Business Number through our streamlined online application. Our experts review your submission to ensure compliance before lodging it with the Australian Business Register.",
-    cta: "Start ABN Application",
+      "Apply for a new ABN or renew an existing one through our streamlined online application. Our experts review your submission to ensure compliance before lodging it with the Australian Business Register.",
+    cta: "Apply for ABN",
+    renewLink: "/abn-registration?purpose=renew",
     note: "You can also add Business Name or GST registration during the application.",
     options: null,
     includes: null,
@@ -129,6 +130,15 @@ const ServicesSection = () => {
                     {service.cta}
                   </Button>
                 </Link>
+
+                {/* Renew link */}
+                {service.renewLink && (
+                  <Link to={service.renewLink} className="mt-2">
+                    <Button variant="outline" className="w-full text-sm">
+                      Renew my ABN
+                    </Button>
+                  </Link>
+                )}
 
                 {/* Note */}
                 <p className="mt-3 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground/80">

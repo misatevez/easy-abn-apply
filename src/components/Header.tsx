@@ -19,7 +19,8 @@ const navItems: NavItem[] = [
   {
     label: "ABN Services",
     dropdown: [
-      { label: "ABN Registration", href: "/apply" },
+      { label: "ABN Registration", href: "/abn-registration" },
+      { label: "Renew my ABN", href: "/abn-registration?purpose=renew" },
       { label: "ABN Finder", href: "/#abn-finder" },
       { label: "ABN Lookup", href: "/#abn-lookup" },
       { label: "Update ABN Details", href: "/update-abn-details" },
