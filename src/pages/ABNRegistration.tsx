@@ -11,12 +11,18 @@ import ABNPurposeSection from "@/components/abn-registration/ABNPurposeSection";
 import BusinessActivitySection from "@/components/abn-registration/BusinessActivitySection";
 import AddressSection from "@/components/abn-registration/AddressSection";
 import ReasonSection from "@/components/abn-registration/ReasonSection";
+import BusinessNameSection from "@/components/abn-registration/BusinessNameSection";
+import RegistrationPeriodSection from "@/components/abn-registration/RegistrationPeriodSection";
+import BirthDetailsSection from "@/components/abn-registration/BirthDetailsSection";
+import GSTSection from "@/components/abn-registration/GSTSection";
+import AccountingTasksSection from "@/components/abn-registration/AccountingTasksSection";
+import FinalConfirmationSection from "@/components/abn-registration/FinalConfirmationSection";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield, Lock, CheckCircle2 } from "lucide-react";
 import type { ABNFormData } from "@/components/abn-registration/types";
 import { useNavigate } from "react-router-dom";
 
-const TOTAL_SECTIONS = 9;
+const TOTAL_SECTIONS = 18;
 
 const initialForm: ABNFormData = {
   firstName: "",
@@ -38,15 +44,44 @@ const initialForm: ABNFormData = {
   businessActivity: "",
   personalAddress: "",
   applyingReason: "",
+  tradeUnderBusinessName: "",
+  businessNameOption: "",
+  newBusinessName: "",
+  existingBusinessName: "",
+  registrationPeriod: "",
+  countryOfBirth: "",
+  stateOfBirth: "",
+  cityOfBirth: "",
+  registerForGST: "",
+  annualTurnover: "",
+  gstLodgeFrequency: "",
+  gstResultTiming: "",
+  importGoods: "",
+  gstStartDay: "",
+  gstStartMonth: "",
+  gstStartYear: "",
+  accountingTasks: [],
+  acceptTerms: false,
+  authoriseTaxAgent: false,
+  confirmTrueInfo: false,
+  authoriseASICAgent: false,
 };
 
 const ABNRegistration = () => {
   const [form, setForm] = useState<ABNFormData>(initialForm);
-  const [errors, setErrors] = useState<Partial<Record<keyof ABNFormData, string>>>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const navigate = useNavigate();
 
   const update = useCallback((field: keyof ABNFormData, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
+  }, []);
+
+  const updateArray = useCallback((field: keyof ABNFormData, value: string[]) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  }, []);
+
+  const updateBoolean = useCallback((field: keyof ABNFormData, value: boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
@@ -62,49 +97,93 @@ const ABNRegistration = () => {
     if (form.businessActivity) count++;
     if (form.personalAddress) count++;
     if (form.applyingReason) count++;
-    return count;
+    if (form.tradeUnderBusinessName) count++;
+    if (form.registrationPeriod) count++;
+    if (form.countryOfBirth && form.cityOfBirth) count++;
+    if (form.registerForGST) count++;
+    if (form.registerForGST === "yes" && form.annualTurnover) count++;
+    if (form.registerForGST === "yes" && form.gstLodgeFrequency) count++;
+    if (form.registerForGST === "yes" && form.gstResultTiming && form.importGoods) count++;
+    if (form.authoriseTaxAgent && form.confirmTrueInfo && form.authoriseASICAgent) count++;
+    if (form.registerForGST === "no") count += 3; // skip GST sub-fields
+    return Math.min(count, TOTAL_SECTIONS);
   }, [form]);
 
   const validate = (): boolean => {
-    const newErrors: Partial<Record<keyof ABNFormData, string>> = {};
+    const e: Partial<Record<string, string>> = {};
 
-    if (!form.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!form.email.trim()) newErrors.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = "Invalid email format";
-    if (!form.confirmEmail.trim()) newErrors.confirmEmail = "Please confirm your email";
-    else if (form.email !== form.confirmEmail) newErrors.confirmEmail = "Emails do not match";
-    if (!form.phone.trim()) newErrors.phone = "Phone number is required";
-    else if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) newErrors.phone = "Invalid phone number";
-    if (!form.dobDay || !form.dobMonth || !form.dobYear) newErrors.dobDay = "Date of birth is required";
+    if (!form.lastName.trim()) e.lastName = "Last name is required";
+    if (!form.email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
+    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";
+    else if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
+    if (!form.phone.trim()) e.phone = "Phone number is required";
+    else if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
+    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";
     else {
       const d = parseInt(form.dobDay), m = parseInt(form.dobMonth), y = parseInt(form.dobYear);
       const date = new Date(y, m - 1, d);
       if (date.getDate() !== d || date.getMonth() !== m - 1 || date.getFullYear() !== y || y < 1900 || y > new Date().getFullYear()) {
-        newErrors.dobDay = "Invalid date of birth";
+        e.dobDay = "Invalid date of birth";
       }
     }
-    if (!form.abnPurpose) newErrors.abnPurpose = "Please select a registration purpose";
+    if (!form.abnPurpose) e.abnPurpose = "Please select a registration purpose";
     if (form.abnPurpose === "new" && (!form.abnStartDay || !form.abnStartMonth || !form.abnStartYear)) {
-      newErrors.abnStartDay = "Start date is required";
+      e.abnStartDay = "Start date is required";
     }
-    if (!form.businessActivity.trim()) newErrors.businessActivity = "Business activity is required";
-    if (!form.personalAddress.trim()) newErrors.personalAddress = "Personal address is required";
-    if (!form.applyingReason) newErrors.applyingReason = "Please select a reason";
-
+    if (!form.businessActivity.trim()) e.businessActivity = "Business activity is required";
+    if (!form.personalAddress.trim()) e.personalAddress = "Personal address is required";
+    if (!form.applyingReason) e.applyingReason = "Please select a reason";
     if (form.tfnOption === "now" && form.tfn && !/^\d{3}\s?\d{3}\s?\d{3}$/.test(form.tfn.trim())) {
-      newErrors.tfn = "Invalid TFN format (e.g. 123 456 789)";
+      e.tfn = "Invalid TFN format (e.g. 123 456 789)";
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    // Business Name
+    if (!form.tradeUnderBusinessName) e.tradeUnderBusinessName = "Please select an option";
+    if (form.tradeUnderBusinessName === "yes") {
+      if (!form.businessNameOption) e.businessNameOption = "Please select an option";
+      if (form.businessNameOption === "new" && !form.newBusinessName.trim()) e.newBusinessName = "Business name is required";
+      if (form.businessNameOption === "renew" && !form.existingBusinessName.trim()) e.existingBusinessName = "Business name is required";
+    }
+    if (!form.registrationPeriod) e.registrationPeriod = "Please select a registration period";
+
+    // Birth details
+    if (!form.countryOfBirth) e.countryOfBirth = "Country of birth is required";
+    if (!form.cityOfBirth.trim()) e.cityOfBirth = "City of birth is required";
+
+    // GST
+    if (!form.registerForGST) e.registerForGST = "Please select an option";
+    if (form.registerForGST === "yes") {
+      if (!form.annualTurnover) e.annualTurnover = "Please select turnover range";
+      if (!form.gstLodgeFrequency) e.gstLodgeFrequency = "Please select lodge frequency";
+      if (!form.gstResultTiming) e.gstResultTiming = "Please select an option";
+      if (!form.importGoods) e.importGoods = "Please select an option";
+      if (!form.gstStartDay || !form.gstStartMonth || !form.gstStartYear) e.gstStartDay = "GST start date is required";
+    }
+
+    // Final confirmation
+    if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
+    if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
+    if (!form.authoriseASICAgent) e.authoriseASICAgent = "This authorisation is required";
+
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
   const handleSubmit = () => {
-    setSubmitted(true);
     if (validate()) {
       navigate("/apply", { state: { service: "ABN Registration", formData: form } });
+    } else {
+      // Scroll to first error
+      const firstErrorKey = Object.keys(errors)[0];
+      if (firstErrorKey) {
+        const el = document.querySelector(`[name="${firstErrorKey}"]`);
+        el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
   };
+
+  const sectionProps = { form, errors, update, updateArray, updateBoolean };
 
   return (
     <Layout>
@@ -118,11 +197,11 @@ const ABNRegistration = () => {
             <div className="rounded-2xl border border-border bg-card shadow-sm">
               {/* Personal Details */}
               <div>
-                <ApplicantNameSection form={form} errors={errors} update={update} />
-                <EmailSection form={form} errors={errors} update={update} />
-                <PhoneSection form={form} errors={errors} update={update} />
-                <DateOfBirthSection form={form} errors={errors} update={update} />
-                <TFNSection form={form} errors={errors} update={update} />
+                <ApplicantNameSection {...sectionProps} />
+                <EmailSection {...sectionProps} />
+                <PhoneSection {...sectionProps} />
+                <DateOfBirthSection {...sectionProps} />
+                <TFNSection {...sectionProps} />
               </div>
 
               {/* Business Details */}
@@ -131,10 +210,55 @@ const ABNRegistration = () => {
                   <h2 className="text-lg font-bold text-foreground">Business Details</h2>
                   <p className="mt-0.5 text-sm text-muted-foreground">Tell us about your business activity and registration needs.</p>
                 </div>
-                <ABNPurposeSection form={form} errors={errors} update={update} />
-                <BusinessActivitySection form={form} errors={errors} update={update} />
-                <AddressSection form={form} errors={errors} update={update} />
-                <ReasonSection form={form} errors={errors} update={update} />
+                <ABNPurposeSection {...sectionProps} />
+                <BusinessActivitySection {...sectionProps} />
+                <AddressSection {...sectionProps} />
+                <ReasonSection {...sectionProps} />
+              </div>
+
+              {/* Business Name Details */}
+              <div className="border-t border-border">
+                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                  <h2 className="text-lg font-bold text-foreground">Business Name Details</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    A business name is a name or title under which a person or other legal entity trades. It identifies you to your customers and allows you to differentiate yourself from your competitors. Individuals can trade either under their personal name (for example John Smith), or choose and register a Business Name, subject to availability (for example Smiths Delivery).
+                  </p>
+                </div>
+                <BusinessNameSection {...sectionProps} />
+                <RegistrationPeriodSection {...sectionProps} />
+                <BirthDetailsSection {...sectionProps} />
+              </div>
+
+              {/* GST Details */}
+              <div className="border-t border-border">
+                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                  <h2 className="text-lg font-bold text-foreground">Goods and Services Tax (GST) Details</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    As a business owner it is your responsibility to register for GST:
+                  </p>
+                  <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+                    <li className="flex gap-2"><span className="text-primary">•</span>if you want to claim fuel tax credits for your business</li>
+                    <li className="flex gap-2"><span className="text-primary">•</span>if your turnover exceeds the $75,000 threshold</li>
+                    <li className="flex gap-2"><span className="text-primary">•</span>if you provide taxi travel or ridesharing services such as Uber, Didi, Ola or Taxify.</li>
+                  </ul>
+                </div>
+                <GSTSection {...sectionProps} />
+              </div>
+
+              {/* Accounting Tasks */}
+              <div className="border-t border-border">
+                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                  <h2 className="text-lg font-bold text-foreground">Accounting tasks we can help you with</h2>
+                  <p className="mt-0.5 text-sm text-muted-foreground">
+                    We also offer support across a variety of accounting functions and tasks. Our professionals are CPA and CA accredited and can assist you in whatever capacity you require.
+                  </p>
+                </div>
+                <AccountingTasksSection {...sectionProps} />
+              </div>
+
+              {/* Final Confirmation */}
+              <div className="border-t border-border">
+                <FinalConfirmationSection {...sectionProps} />
               </div>
 
               {/* Submit */}
@@ -145,7 +269,7 @@ const ABNRegistration = () => {
                   className="w-full gap-2 h-14 text-base"
                   onClick={handleSubmit}
                 >
-                  Continue to Checkout
+                  Lodge my ABN application
                   <ArrowRight className="h-5 w-5" />
                 </Button>
                 <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
