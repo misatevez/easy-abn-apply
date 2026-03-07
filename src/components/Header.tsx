@@ -132,7 +132,7 @@ const Header = () => {
 
         {/* Desktop CTA */}
         <div className="hidden lg:block">
-          <Link to="/apply">
+          <Link to="/abn-registration">
             <Button variant="hero" size="lg">
               Start ABN Application
             </Button>
