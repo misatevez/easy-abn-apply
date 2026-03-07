@@ -104,7 +104,7 @@ const steps = [
   },
 ];
 
-const TOTAL_SECTIONS = 12;
+
 
 const ABNCancellation = () => {
   const [form, setForm] = useState<CancellationFormData>(initialForm);
