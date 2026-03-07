@@ -214,14 +214,14 @@ const ABNRegistration = () => {
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header inside card */}
               <div className="px-6 pt-28 pb-2 md:pt-28 text-center ml-0 border-0 rounded-none md:px-[40px]">
-                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
-                  ABN & GST direct to your inbox in just 5 minutes
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">Register your ABN online in minutes
+
                 </h1>
-                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 mx-0 font-sans pr-[20px] pt-[20px] pb-0">
-                  Business Name & other services available in the same form.
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 font-sans pr-[20px] pt-[20px] pb-0 mx-[96px]">You can also add GST registration or apply for a Business Name within the same application.
+
                 </p>
-                <p className="mt-2 mx-auto max-w-lg leading-relaxed text-muted-foreground my-[10px] text-base px-0 py-0">
-                  Simply use the registration form to provide the necessary information for locating your ABN. The whole process will only take about a minute.
+                <p className="mt-2 max-w-lg leading-relaxed text-muted-foreground text-base px-0 py-0 mx-[100px] my-[10px] mb-[11px] mr-[100px]">Simply complete the form below with your details and our team will securely process your request. The application only takes a few minutes to complete.
+
                 </p>
 
                 {/* Trust Labels */}
@@ -307,18 +307,18 @@ const ABNRegistration = () => {
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {[
-                      { icon: ClipboardCheck, title: "Application Review", text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement." },
-                      { icon: Send, title: "Secure Lodgement", text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing." },
-                      { icon: Mail, title: "Email Confirmation", text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed." },
-                    ].map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                    { icon: ClipboardCheck, title: "Application Review", text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement." },
+                    { icon: Send, title: "Secure Lodgement", text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing." },
+                    { icon: Mail, title: "Email Confirmation", text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed." }].
+                    map(({ icon: Icon, title, text }, i) =>
+                    <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
                         <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
                         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
                       </div>
-                    ))}
+                    )}
                   </div>
 
                   <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
