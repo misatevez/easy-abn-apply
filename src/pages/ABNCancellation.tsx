@@ -111,7 +111,16 @@ const ABNCancellation = () => {
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const navigate = useNavigate();
 
-  const validate = (): boolean => {
+  const update = useCallback((field: keyof CancellationFormData, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
+  }, []);
+
+  const updateBoolean = useCallback((field: keyof CancellationFormData, value: boolean) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: undefined }));
+  }, []);
+
     const e: Partial<Record<string, string>> = {};
 
     if (!form.lastName.trim()) e.lastName = "Last name is required";
