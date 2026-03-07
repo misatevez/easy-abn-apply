@@ -25,6 +25,7 @@ const App = () => (
           <Route path="/abn-registration" element={<ABNRegistration />} />
           <Route path="/update-abn-details" element={<UpdateABNDetails />} />
           <Route path="/abn-cancellation" element={<ABNCancellation />} />
+          <Route path="/business-name-cancellation" element={<BusinessNameCancellation />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
