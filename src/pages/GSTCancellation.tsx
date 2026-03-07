@@ -391,7 +391,7 @@ const GSTCancellation = () => {
 
               {/* ===== Business Name Cancellation Details ===== */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Business Name Cancellation Details</h2>
                   <div className="mt-2 text-sm text-muted-foreground">
                     <p className="font-medium text-foreground">Reasons why we may initiate the cancellation of a Business Name</p>
