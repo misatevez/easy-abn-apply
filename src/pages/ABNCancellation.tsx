@@ -176,11 +176,11 @@ const ABNCancellation = () => {
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-28 md:px-10 md:pt-28 text-center mx-[62px] pb-[20px]">
-                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
-                  Cancel your ABN / GST / Business Name in 5 minutes
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">Cancel your ABN, GST or Business Name in minutes
+
                 </h1>
-                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 py-[10px]">
-                  3 EASY STEPS TO CANCEL YOUR OFFICIAL ABN / GST / BUSINESS NAME
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 py-[10px]">Follow the simple steps below to submit your cancellation request securely.
+
                 </p>
 
                 {/* Trust Labels */}
