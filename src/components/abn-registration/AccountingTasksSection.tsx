@@ -18,21 +18,19 @@ const steps = [
   {
     icon: ClipboardCheck,
     title: "Application Review",
-    text: "Our accredited tax professionals review your application to ensure the information is accurate and compliant before submission.",
+    text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement.",
   },
   {
-    icon: Globe,
-    title: "ABN Issued",
-    text: "Once approved, your Australian Business Number (ABN) will appear on screen confirming your registration.",
+    icon: Send,
+    title: "Secure Lodgement",
+    text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing.",
   },
   {
     icon: Mail,
     title: "Email Confirmation",
-    text: "A confirmation email containing your ABN and registration details will be sent to the email address you provided.",
+    text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed.",
   },
 ];
-
-const flowSteps = ["Submit Application", "Review", "ABN Issued", "Confirmation Email"];
 
 const AccountingTasksSection = ({ form, updateArray }: SectionProps) => {
   const toggleTask = (task: string) => {
