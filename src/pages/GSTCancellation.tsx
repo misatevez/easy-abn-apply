@@ -74,45 +74,45 @@ const initialForm: CancellationFormData = {
   abnCancelYear: String(new Date().getFullYear()),
   acceptTerms: false,
   authoriseTaxAgent: false,
-  confirmTrueInfo: false,
+  confirmTrueInfo: false
 };
 
 const months = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
-];
+"January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December"];
+
 
 const abnCancellationReasons = [
-  "Business/Enterprise has closed down",
-  "Business/Enterprise has never operated",
-  "Business/Enterprise has been sold",
-  "Business/Enterprise is no longer carried on in Australia",
-  "Change in Business Structure",
-  "Other",
-];
+"Business/Enterprise has closed down",
+"Business/Enterprise has never operated",
+"Business/Enterprise has been sold",
+"Business/Enterprise is no longer carried on in Australia",
+"Change in Business Structure",
+"Other"];
+
 
 const gstCancellationReasons = [
-  "The entity has never operated on a GST-registered basis",
-  "The entity has stopped operating on a GST-registered basis",
-];
+"The entity has never operated on a GST-registered basis",
+"The entity has stopped operating on a GST-registered basis"];
+
 
 const nextSteps = [
-  {
-    icon: ClipboardCheck,
-    title: "Application Review",
-    text: "Our accredited tax professionals review your cancellation request to ensure the information is accurate and compliant before lodgement.",
-  },
-  {
-    icon: Send,
-    title: "Secure Lodgement",
-    text: "Once reviewed, your cancellation request is securely lodged with the relevant authority for processing.",
-  },
-  {
-    icon: Mail,
-    title: "Email Confirmation",
-    text: "A confirmation email will be sent to your nominated email address once your cancellation request has been processed.",
-  },
-];
+{
+  icon: ClipboardCheck,
+  title: "Application Review",
+  text: "Our accredited tax professionals review your cancellation request to ensure the information is accurate and compliant before lodgement."
+},
+{
+  icon: Send,
+  title: "Secure Lodgement",
+  text: "Once reviewed, your cancellation request is securely lodged with the relevant authority for processing."
+},
+{
+  icon: Mail,
+  title: "Email Confirmation",
+  text: "A confirmation email will be sent to your nominated email address once your cancellation request has been processed."
+}];
+
 
 const GSTCancellation = () => {
   const [form, setForm] = useState<CancellationFormData>(initialForm);
@@ -133,22 +133,22 @@ const GSTCancellation = () => {
     const e: Partial<Record<string, string>> = {};
 
     if (!form.lastName.trim()) e.lastName = "Last name is required";
-    if (!form.email.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
-    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";
-    else if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
-    if (!form.phone.trim()) e.phone = "Phone number is required";
-    else if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
-    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";
-    else {
-      const d = parseInt(form.dobDay), m = parseInt(form.dobMonth), y = parseInt(form.dobYear);
+    if (!form.email.trim()) e.email = "Email is required";else
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
+    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";else
+    if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
+    if (!form.phone.trim()) e.phone = "Phone number is required";else
+    if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
+    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";else
+    {
+      const d = parseInt(form.dobDay),m = parseInt(form.dobMonth),y = parseInt(form.dobYear);
       const date = new Date(y, m - 1, d);
       if (date.getDate() !== d || date.getMonth() !== m - 1 || date.getFullYear() !== y || y < 1900 || y > new Date().getFullYear()) {
         e.dobDay = "Invalid date of birth";
       }
     }
-    if (!form.abn.trim()) e.abn = "ABN is required";
-    else if (!/^\d{2}\s?\d{3}\s?\d{3}\s?\d{3}$/.test(form.abn.trim())) e.abn = "Invalid ABN format (e.g. 51 824 753 556)";
+    if (!form.abn.trim()) e.abn = "ABN is required";else
+    if (!/^\d{2}\s?\d{3}\s?\d{3}\s?\d{3}$/.test(form.abn.trim())) e.abn = "Invalid ABN format (e.g. 51 824 753 556)";
     if (form.tfnOption === "now" && form.tfn && !/^\d{3}\s?\d{3}\s?\d{3}$/.test(form.tfn.trim())) {
       e.tfn = "Invalid TFN format (e.g. 123 456 789)";
     }
@@ -184,17 +184,17 @@ const GSTCancellation = () => {
     <Layout>
       <ABNRegistrationBanner />
 
-      <section className="relative bg-muted/30 pb-12 md:pb-16">
+      <section className="relative bg-muted/30 pb-12 md:pb-16 pt-0">
         <div className="container px-4">
           <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center">
-                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
-                  Cancel your GST / ABN / Business Name in 5 minutes
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">Cancel your GST,ABN or Business Name in minutes
+
                 </h1>
-                <p className="mt-2 text-primary my-[13px] text-lg font-medium">
-                  3 EASY STEPS TO CANCEL YOUR OFFICIAL GST / ABN / BUSINESS NAME
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 pr-0 pt-[5px] py-[10px]">Follow the simple steps below to submit your cancellation request securely.
+
                 </p>
 
                 {/* Trust Labels */}
@@ -209,20 +209,20 @@ const GSTCancellation = () => {
               <div className="mx-6 md:mx-10 border-t border-border" />
 
               {/* Process summary */}
-              <div className="px-6 pb-4 md:px-10">
+              <div className="px-6 md:px-10 mx-[40px] pb-[40px]">
                 <div className="grid gap-3 sm:grid-cols-3">
                   {[
-                    { num: "1", text: "Provide the required information below to request the cancellation of your ABN, GST, or Business Name." },
-                    { num: "2", text: "Submit your request using our SSL-protected secure payment system." },
-                    { num: "3", text: "Once your request has been processed, a confirmation email will be sent to your nominated email address." },
-                  ].map((step) => (
-                    <div key={step.num} className="rounded-xl border border-border/60 bg-muted/30 p-4">
+                  { num: "1", text: "Provide the required information below to request the cancellation of your ABN, GST, or Business Name." },
+                  { num: "2", text: "Submit your request using our SSL-protected secure payment system." },
+                  { num: "3", text: "Once your request has been processed, a confirmation email will be sent to your nominated email address." }].
+                  map((step) =>
+                  <div key={step.num} className="rounded-xl border border-border/60 bg-muted/30 p-4">
                       <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                         {step.num}
                       </div>
-                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{step.text}</p>
+                      <p className="mt-2 leading-relaxed text-muted-foreground text-sm">{step.text}</p>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
 
@@ -281,9 +281,9 @@ const GSTCancellation = () => {
                           <SelectValue placeholder="Month" />
                         </SelectTrigger>
                         <SelectContent>
-                          {months.map((m, i) => (
-                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
-                          ))}
+                          {months.map((m, i) =>
+                          <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
+                          )}
                         </SelectContent>
                       </Select>
                       <StyledInput value={form.dobYear} onChange={(v) => update("dobYear", v)} placeholder="YYYY" error={errors.dobDay} />
@@ -307,8 +307,8 @@ const GSTCancellation = () => {
                   </label>
                 </div>
 
-                {form.tfnOption === "now" && (
-                  <div className="mt-4 max-w-sm">
+                {form.tfnOption === "now" &&
+                <div className="mt-4 max-w-sm">
                     <Label>Tax File Number (123 456 789)</Label>
                     <StyledInput value={form.tfn} onChange={(v) => update("tfn", v)} placeholder="123 456 789" error={errors.tfn} />
                     <FieldError error={errors.tfn} />
@@ -324,7 +324,7 @@ const GSTCancellation = () => {
                       </ul>
                     </div>
                   </div>
-                )}
+                }
               </SectionWrapper>
 
               {/* ABN */}
@@ -360,9 +360,9 @@ const GSTCancellation = () => {
                         <SelectValue placeholder="Select a reason" />
                       </SelectTrigger>
                       <SelectContent>
-                        {gstCancellationReasons.map((r) => (
-                          <SelectItem key={r} value={r}>{r}</SelectItem>
-                        ))}
+                        {gstCancellationReasons.map((r) =>
+                        <SelectItem key={r} value={r}>{r}</SelectItem>
+                        )}
                       </SelectContent>
                     </Select>
                     <FieldError error={errors.gstCancellationReason} />
@@ -377,9 +377,9 @@ const GSTCancellation = () => {
                           <SelectValue placeholder="Month" />
                         </SelectTrigger>
                         <SelectContent>
-                          {months.map((m, i) => (
-                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
-                          ))}
+                          {months.map((m, i) =>
+                          <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
+                          )}
                         </SelectContent>
                       </Select>
                       <StyledInput value={form.gstCancelYear} onChange={(v) => update("gstCancelYear", v)} placeholder="YYYY" error={errors.gstCancelDay} />
@@ -421,8 +421,8 @@ const GSTCancellation = () => {
                   </div>
                   <FieldError error={errors.cancelBusinessName} />
 
-                  {form.cancelBusinessName === "yes" && (
-                    <div className="mt-4 space-y-4">
+                  {form.cancelBusinessName === "yes" &&
+                  <div className="mt-4 space-y-4">
                       <div className="max-w-md">
                         <Label>Please specify the Business Name you would like to cancel <span className="text-destructive">*</span></Label>
                         <StyledInput value={form.businessNameToCancel} onChange={(v) => update("businessNameToCancel", v)} placeholder="Your business name" error={errors.businessNameToCancel} />
@@ -444,13 +444,13 @@ const GSTCancellation = () => {
                         <FieldError error={errors.requestASICKey} />
                       </div>
 
-                      {form.requestASICKey === "no" && (
-                        <div className="max-w-md">
+                      {form.requestASICKey === "no" &&
+                    <div className="max-w-md">
                           <Label>Enter your ASIC Key if you have it</Label>
                           <StyledInput value={form.asicKey} onChange={(v) => update("asicKey", v)} placeholder="e.g. 1-12345678901" />
                           <HelperText>If not, we can request it on your behalf.</HelperText>
                         </div>
-                      )}
+                    }
 
                       <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
                         <p className="text-xs font-semibold text-foreground">Cannot find your ASIC Key?</p>
@@ -464,7 +464,7 @@ const GSTCancellation = () => {
                         </ul>
                       </div>
                     </div>
-                  )}
+                  }
                 </SectionWrapper>
               </div>
 
@@ -496,8 +496,8 @@ const GSTCancellation = () => {
                     </label>
                   </div>
 
-                  {form.cancelABN === "yes" && (
-                    <>
+                  {form.cancelABN === "yes" &&
+                  <>
                       <div className="mt-4 max-w-md">
                         <Label>Reason for the ABN cancellation? <span className="text-destructive">*</span></Label>
                         <Select value={form.abnCancellationReason} onValueChange={(v) => update("abnCancellationReason", v)}>
@@ -505,21 +505,21 @@ const GSTCancellation = () => {
                             <SelectValue placeholder="Select a reason" />
                           </SelectTrigger>
                           <SelectContent>
-                            {abnCancellationReasons.map((r) => (
-                              <SelectItem key={r} value={r}>{r}</SelectItem>
-                            ))}
+                            {abnCancellationReasons.map((r) =>
+                          <SelectItem key={r} value={r}>{r}</SelectItem>
+                          )}
                           </SelectContent>
                         </Select>
                         <FieldError error={errors.abnCancellationReason} />
                       </div>
 
-                      {form.abnCancellationReason === "Other" && (
-                        <div className="mt-4 max-w-md">
+                      {form.abnCancellationReason === "Other" &&
+                    <div className="mt-4 max-w-md">
                           <Label>Please specify the reason <span className="text-destructive">*</span></Label>
                           <StyledInput value={form.abnCancellationReasonOther} onChange={(v) => update("abnCancellationReasonOther", v)} placeholder="Please specify..." error={errors.abnCancellationReasonOther} />
                           <FieldError error={errors.abnCancellationReasonOther} />
                         </div>
-                      )}
+                    }
 
                       <div className="mt-5">
                         <Label>From what date does the Individual / Sole Trader require its ABN cancelled? <span className="text-destructive">*</span></Label>
@@ -530,9 +530,9 @@ const GSTCancellation = () => {
                               <SelectValue placeholder="Month" />
                             </SelectTrigger>
                             <SelectContent>
-                              {months.map((m, i) => (
-                                <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
-                              ))}
+                              {months.map((m, i) =>
+                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
+                            )}
                             </SelectContent>
                           </Select>
                           <StyledInput value={form.abnCancelYear} onChange={(v) => update("abnCancelYear", v)} placeholder="YYYY" error={errors.abnCancelDay} />
@@ -540,7 +540,7 @@ const GSTCancellation = () => {
                         <FieldError error={errors.abnCancelDay} />
                       </div>
                     </>
-                  )}
+                  }
                 </SectionWrapper>
               </div>
 
@@ -557,15 +557,15 @@ const GSTCancellation = () => {
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                    {nextSteps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                    {nextSteps.map(({ icon: Icon, title, text }, i) =>
+                    <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
                         <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
                         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
                       </div>
-                    ))}
+                    )}
                   </div>
 
                   <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
@@ -586,8 +586,8 @@ const GSTCancellation = () => {
                       <Checkbox
                         checked={form.acceptTerms}
                         onCheckedChange={(checked) => updateBoolean("acceptTerms", !!checked)}
-                        className="mt-0.5"
-                      />
+                        className="mt-0.5" />
+                      
                       <span className="text-sm text-foreground">
                         I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
                       </span>
@@ -598,8 +598,8 @@ const GSTCancellation = () => {
                       <Checkbox
                         checked={form.authoriseTaxAgent}
                         onCheckedChange={(checked) => updateBoolean("authoriseTaxAgent", !!checked)}
-                        className="mt-0.5"
-                      />
+                        className="mt-0.5" />
+                      
                       <span className="text-sm text-foreground">
                         I authorise an Accredited Tax Agent, under licence number 24666831, to add me if required to their tax agent portal in order to proceed with this request. <span className="text-destructive">*</span>
                       </span>
@@ -610,8 +610,8 @@ const GSTCancellation = () => {
                       <Checkbox
                         checked={form.confirmTrueInfo}
                         onCheckedChange={(checked) => updateBoolean("confirmTrueInfo", !!checked)}
-                        className="mt-0.5"
-                      />
+                        className="mt-0.5" />
+                      
                       <span className="text-sm text-foreground">
                         The information provided in this application, including attachments if applicable, is true and correct. <span className="text-destructive">*</span>
                       </span>
@@ -627,8 +627,8 @@ const GSTCancellation = () => {
                   variant="hero"
                   size="lg"
                   className="mx-auto gap-2 h-14 text-base px-12"
-                  onClick={handleSubmit}
-                >
+                  onClick={handleSubmit}>
+                  
                   Submit your Cancellation
                   <ArrowRight className="h-5 w-5" />
                 </Button>
@@ -642,8 +642,8 @@ const GSTCancellation = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>);
+
 };
 
 export default GSTCancellation;
