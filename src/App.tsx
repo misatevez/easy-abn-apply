@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Apply from "./pages/Apply";
 import ABNRegistration from "./pages/ABNRegistration";
 import UpdateABNDetails from "./pages/UpdateABNDetails";
+import ABNCancellation from "./pages/ABNCancellation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/apply" element={<Apply />} />
           <Route path="/abn-registration" element={<ABNRegistration />} />
           <Route path="/update-abn-details" element={<UpdateABNDetails />} />
+          <Route path="/abn-cancellation" element={<ABNCancellation />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
