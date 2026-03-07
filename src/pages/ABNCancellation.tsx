@@ -121,6 +121,7 @@ const ABNCancellation = () => {
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
 
+  const validate = () => {
     const e: Partial<Record<string, string>> = {};
 
     if (!form.lastName.trim()) e.lastName = "Last name is required";

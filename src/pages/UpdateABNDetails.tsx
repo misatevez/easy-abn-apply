@@ -1,8 +1,7 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import Layout from "@/components/Layout";
 import ABNRegistrationBanner from "@/components/abn-registration/ABNRegistrationBanner";
 import { SectionWrapper, StyledInput, FieldError, HelperText } from "@/components/abn-registration/FormField";
-import { Label } from "@/components/ui/label";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
