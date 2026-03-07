@@ -1,10 +1,29 @@
 import { ReactNode } from "react";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
 export const SectionWrapper = ({ children, title }: { children: ReactNode; title?: string }) => (
   <div className="px-6 py-4 md:px-8 md:py-5">
-    {title && <h3 className="mb-4 text-base font-semibold text-foreground">{title}</h3>}
-    {children}
+    <div className="mx-auto max-w-[570px]">
+      {title && <h3 className="mb-4 text-base font-semibold text-foreground">{title}</h3>}
+      {children}
+    </div>
+  </div>
+);
+
+export const SectionIntro = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("px-6 pt-6 md:px-8 md:pt-7", className)}>
+    <div className="mx-auto max-w-[570px]">
+      {children}
+    </div>
+  </div>
+);
+
+export const FormSubmitArea = ({ children }: { children: ReactNode }) => (
+  <div className="border-t border-border p-6 md:p-8">
+    <div className="mx-auto max-w-[570px]">
+      {children}
+    </div>
   </div>
 );
 
@@ -35,6 +54,6 @@ export const StyledInput = ({
     value={value}
     onChange={(e) => onChange(e.target.value)}
     placeholder={placeholder}
-    className={`h-11 rounded-lg ${error ? "border-destructive" : ""} ${className}`}
+    className={`h-11 max-w-[500px] rounded-lg ${error ? "border-destructive" : ""} ${className}`}
   />
 );

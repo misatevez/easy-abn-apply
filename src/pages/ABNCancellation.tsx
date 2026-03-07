@@ -324,7 +324,7 @@ const ABNCancellation = () => {
 
               {/* ABN Cancellation Details */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">ABN Cancellation Details</h2>
                   <p className="mt-1 text-sm font-medium text-muted-foreground">Cancel an Australian Business Number (ABN)</p>
                   <div className="mt-3 text-sm text-muted-foreground">
@@ -384,7 +384,7 @@ const ABNCancellation = () => {
 
               {/* Business Name Cancellation */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Business Name Cancellation Details</h2>
                   <div className="mt-2 text-sm text-muted-foreground">
                     <p className="font-medium text-foreground">Reasons why we may initiate the cancellation of a Business Name</p>
@@ -464,7 +464,7 @@ const ABNCancellation = () => {
 
               {/* GST Cancellation */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">GST Cancellation Details</h2>
                   <p className="mt-1 text-sm font-medium text-muted-foreground">Cancelling your GST registration</p>
                   <div className="mt-2 text-sm text-muted-foreground">
@@ -543,7 +543,7 @@ const ABNCancellation = () => {
 
               {/* Terms & Declarations */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Terms and Conditions of Service</h2>
                 </div>
                 <SectionWrapper>
@@ -588,7 +588,7 @@ const ABNCancellation = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8">
+              <div className="border-t border-border p-6 md:p-8 [&>*]:mx-auto [&>*]:max-w-[570px]">
                 <Button
                   variant="hero"
                   size="lg"

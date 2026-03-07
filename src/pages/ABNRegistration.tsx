@@ -253,7 +253,7 @@ const ABNRegistration = () => {
 
               {/* Business Name Details */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Business Name Details</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
                     A business name is a name or title under which a person or other legal entity trades. It identifies you to your customers and allows you to differentiate yourself from your competitors. Individuals can trade either under their personal name (for example John Smith), or choose and register a Business Name, subject to availability (for example Smiths Delivery).
@@ -268,7 +268,7 @@ const ABNRegistration = () => {
 
               {/* GST Details */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Goods and Services Tax (GST) Details</h2>
                   <p className="mt-1 text-sm text-muted-foreground">
                     As a business owner it is your responsibility to register for GST:
@@ -284,7 +284,7 @@ const ABNRegistration = () => {
 
               {/* Accounting Tasks */}
               <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                <div className="px-6 pt-6 md:px-8 md:pt-7 [&>*]:mx-auto [&>*]:max-w-[570px]">
                   <h2 className="text-lg font-bold text-foreground">Accounting tasks we can help you with</h2>
                   <p className="mt-0.5 text-sm text-muted-foreground">
                     We also offer support across a variety of accounting functions and tasks. Our professionals are CPA and CA accredited and can assist you in whatever capacity you require.
@@ -330,7 +330,7 @@ const ABNRegistration = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8">
+              <div className="border-t border-border p-6 md:p-8 [&>*]:mx-auto [&>*]:max-w-[570px]">
                 <Button
                   variant="hero"
                   size="lg"
