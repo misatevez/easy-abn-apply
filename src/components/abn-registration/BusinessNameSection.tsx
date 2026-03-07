@@ -17,35 +17,35 @@ const BusinessNameSection = ({ form, errors, update }: SectionProps) => (
       Will you trade under a business name? <span className="text-destructive">*</span>
     </Label>
 
-    <div className="mt-2 space-y-3">
-      <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.tradeUnderBusinessName === "yes" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+    <div className="mt-2 space-y-2">
+      <label className="flex cursor-pointer items-center gap-2.5">
         <input type="radio" name="tradeUnderBusinessName" checked={form.tradeUnderBusinessName === "yes"} onChange={() => update("tradeUnderBusinessName", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-        <span className="text-sm font-medium text-foreground">Yes</span>
+        <span className="text-sm text-foreground">Yes</span>
       </label>
-      <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.tradeUnderBusinessName === "no" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+      <label className="flex cursor-pointer items-center gap-2.5">
         <input type="radio" name="tradeUnderBusinessName" checked={form.tradeUnderBusinessName === "no"} onChange={() => update("tradeUnderBusinessName", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-        <span className="text-sm font-medium text-foreground">No</span>
+        <span className="text-sm text-foreground">No</span>
       </label>
     </div>
     <FieldError error={errors.tradeUnderBusinessName} />
 
     {form.tradeUnderBusinessName === "yes" && (
-      <div className="mt-5">
+      <div className="mt-4">
         <Label>Please select one of the options below: <span className="text-destructive">*</span></Label>
-        <div className="mt-2 space-y-3">
-          <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.businessNameOption === "new" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+        <div className="mt-2 space-y-2">
+          <label className="flex cursor-pointer items-center gap-2.5">
             <input type="radio" name="businessNameOption" checked={form.businessNameOption === "new"} onChange={() => update("businessNameOption", "new")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-            <span className="text-sm font-medium text-foreground">Register a NEW Business Name</span>
+            <span className="text-sm text-foreground">Register a NEW Business Name</span>
           </label>
-          <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.businessNameOption === "renew" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+          <label className="flex cursor-pointer items-center gap-2.5">
             <input type="radio" name="businessNameOption" checked={form.businessNameOption === "renew"} onChange={() => update("businessNameOption", "renew")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-            <span className="text-sm font-medium text-foreground">Renew my Business Name</span>
+            <span className="text-sm text-foreground">Renew my Business Name</span>
           </label>
         </div>
         <FieldError error={errors.businessNameOption} />
 
         {form.businessNameOption === "new" && (
-          <div className="mt-5">
+          <div className="mt-4">
             <Label>Insert your Business Name <span className="text-destructive">*</span></Label>
             <StyledInput
               value={form.newBusinessName}
@@ -59,7 +59,7 @@ const BusinessNameSection = ({ form, errors, update }: SectionProps) => (
         )}
 
         {form.businessNameOption === "renew" && (
-          <div className="mt-5">
+          <div className="mt-4">
             <Label>Existing Business Name <span className="text-destructive">*</span></Label>
             <StyledInput
               value={form.existingBusinessName}

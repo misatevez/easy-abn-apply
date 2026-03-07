@@ -37,20 +37,20 @@ const GSTSection = ({ form, errors, update }: SectionProps) => {
       <Label className="text-sm font-medium">
         Would you like to register for GST? (+$79) <span className="text-destructive">*</span>
       </Label>
-      <div className="mt-2 space-y-3">
-        <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.registerForGST === "yes" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+      <div className="mt-2 space-y-2">
+        <label className="flex cursor-pointer items-center gap-2.5">
           <input type="radio" name="registerForGST" checked={form.registerForGST === "yes"} onChange={() => handleGSTChange("yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-          <span className="text-sm font-medium text-foreground">Yes</span>
+          <span className="text-sm text-foreground">Yes</span>
         </label>
-        <label className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.registerForGST === "no" ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+        <label className="flex cursor-pointer items-center gap-2.5">
           <input type="radio" name="registerForGST" checked={form.registerForGST === "no"} onChange={() => handleGSTChange("no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-          <span className="text-sm font-medium text-foreground">No</span>
+          <span className="text-sm text-foreground">No</span>
         </label>
       </div>
       <FieldError error={errors.registerForGST} />
 
       {form.registerForGST === "yes" && (
-        <div className="mt-5 space-y-5">
+        <div className="mt-4 space-y-4">
           {/* Annual Turnover */}
           <div>
             <Label>Annual expected turnover of the company? <span className="text-destructive">*</span></Label>
@@ -70,15 +70,15 @@ const GSTSection = ({ form, errors, update }: SectionProps) => {
           {/* Lodge Frequency */}
           <div>
             <Label>How often will the company lodge GST? <span className="text-destructive">*</span></Label>
-            <div className="mt-2 space-y-3">
+            <div className="mt-2 space-y-2">
               {[
                 { value: "annually", label: "Annually – only if turnover is less than $75,000" },
                 { value: "quarterly", label: "Quarterly – if turnover is less than $20 million" },
                 { value: "monthly", label: "Monthly – if turnover is $20 million or more" },
               ].map((opt) => (
-                <label key={opt.value} className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.gstLodgeFrequency === opt.value ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+                <label key={opt.value} className="flex cursor-pointer items-center gap-2.5">
                   <input type="radio" name="gstLodgeFrequency" checked={form.gstLodgeFrequency === opt.value} onChange={() => update("gstLodgeFrequency", opt.value)} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                  <span className="text-sm font-medium text-foreground">{opt.label}</span>
+                  <span className="text-sm text-foreground">{opt.label}</span>
                 </label>
               ))}
             </div>
@@ -88,14 +88,14 @@ const GSTSection = ({ form, errors, update }: SectionProps) => {
           {/* GST Result Timing */}
           <div>
             <Label>When will you send GST results to the ATO? <span className="text-destructive">*</span></Label>
-            <div className="mt-2 space-y-3">
+            <div className="mt-2 space-y-2">
               {[
                 { value: "cash", label: "When I receive the cash" },
                 { value: "invoice", label: "When I issue the invoice" },
               ].map((opt) => (
-                <label key={opt.value} className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.gstResultTiming === opt.value ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+                <label key={opt.value} className="flex cursor-pointer items-center gap-2.5">
                   <input type="radio" name="gstResultTiming" checked={form.gstResultTiming === opt.value} onChange={() => update("gstResultTiming", opt.value)} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                  <span className="text-sm font-medium text-foreground">{opt.label}</span>
+                  <span className="text-sm text-foreground">{opt.label}</span>
                 </label>
               ))}
             </div>
@@ -105,14 +105,14 @@ const GSTSection = ({ form, errors, update }: SectionProps) => {
           {/* Import Goods */}
           <div>
             <Label>Do you import goods and services into Australia? <span className="text-destructive">*</span></Label>
-            <div className="mt-2 space-y-3">
+            <div className="mt-2 space-y-2">
               {[
                 { value: "yes", label: "Yes" },
                 { value: "no", label: "No" },
               ].map((opt) => (
-                <label key={opt.value} className={`flex cursor-pointer items-center gap-3 rounded-lg border p-4 transition-colors ${form.importGoods === opt.value ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`}>
+                <label key={opt.value} className="flex cursor-pointer items-center gap-2.5">
                   <input type="radio" name="importGoods" checked={form.importGoods === opt.value} onChange={() => update("importGoods", opt.value)} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                  <span className="text-sm font-medium text-foreground">{opt.label}</span>
+                  <span className="text-sm text-foreground">{opt.label}</span>
                 </label>
               ))}
             </div>

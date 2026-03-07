@@ -98,7 +98,8 @@ const ABNRegistration = () => {
     if (form.personalAddress) count++;
     if (form.applyingReason) count++;
     if (form.tradeUnderBusinessName) count++;
-    if (form.registrationPeriod) count++;
+    if (form.tradeUnderBusinessName === "yes" && form.registrationPeriod) count++;
+    if (form.tradeUnderBusinessName === "no") count++; // skip registration period
     if (form.countryOfBirth && form.cityOfBirth) count++;
     if (form.registerForGST) count++;
     if (form.registerForGST === "yes" && form.annualTurnover) count++;
@@ -144,8 +145,8 @@ const ABNRegistration = () => {
       if (!form.businessNameOption) e.businessNameOption = "Please select an option";
       if (form.businessNameOption === "new" && !form.newBusinessName.trim()) e.newBusinessName = "Business name is required";
       if (form.businessNameOption === "renew" && !form.existingBusinessName.trim()) e.existingBusinessName = "Business name is required";
+      if (!form.registrationPeriod) e.registrationPeriod = "Please select a registration period";
     }
-    if (!form.registrationPeriod) e.registrationPeriod = "Please select a registration period";
 
     // Birth details
     if (!form.countryOfBirth) e.countryOfBirth = "Country of birth is required";
@@ -174,7 +175,6 @@ const ABNRegistration = () => {
     if (validate()) {
       navigate("/apply", { state: { service: "ABN Registration", formData: form } });
     } else {
-      // Scroll to first error
       const firstErrorKey = Object.keys(errors)[0];
       if (firstErrorKey) {
         const el = document.querySelector(`[name="${firstErrorKey}"]`);
@@ -204,12 +204,8 @@ const ABNRegistration = () => {
                 <TFNSection {...sectionProps} />
               </div>
 
-              {/* Business Details */}
-              <div className="border-t border-border">
-                <div className="px-6 pt-6 md:px-8 md:pt-7">
-                  <h2 className="text-lg font-bold text-foreground">Business Details</h2>
-                  <p className="mt-0.5 text-sm text-muted-foreground">Tell us about your business activity and registration needs.</p>
-                </div>
+              {/* ABN Purpose & Business Activity */}
+              <div>
                 <ABNPurposeSection {...sectionProps} />
                 <BusinessActivitySection {...sectionProps} />
                 <AddressSection {...sectionProps} />
@@ -225,7 +221,9 @@ const ABNRegistration = () => {
                   </p>
                 </div>
                 <BusinessNameSection {...sectionProps} />
-                <RegistrationPeriodSection {...sectionProps} />
+                {form.tradeUnderBusinessName === "yes" && (
+                  <RegistrationPeriodSection {...sectionProps} />
+                )}
                 <BirthDetailsSection {...sectionProps} />
               </div>
 
