@@ -86,7 +86,7 @@ const HowItWorks = () => {
 
         {/* CTA */}
         <div className="mt-14 text-center">
-          <Link to="/apply">
+          <Link to="/abn-registration">
             <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/20">
               Start my ABN Application
             </Button>
