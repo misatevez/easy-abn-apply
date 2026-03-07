@@ -184,6 +184,7 @@ const UpdateABNDetails = () => {
     if (form.updateFields.includes("Email Address") && !form.newEmail.trim()) e.newEmail = "New email address is required";
     if (form.updateFields.includes("Business Activity") && !form.newBusinessActivity.trim()) e.newBusinessActivity = "New business activity is required";
 
+    if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
 
