@@ -67,18 +67,8 @@ const AccountingTasksSection = ({ form, updateArray }: SectionProps) => {
             What happens after you submit your application
           </h3>
           <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
-            Once you lodge your application, our team reviews your details and securely processes your ABN registration.
+            After submitting your application, our team reviews your details and securely processes your ABN registration.
           </p>
-        </div>
-
-        {/* Flow indicator */}
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
-          {flowSteps.map((step, i) => (
-            <span key={step} className="flex items-center gap-1.5">
-              <span className="rounded-full bg-primary/10 px-2.5 py-1 font-medium text-primary">{step}</span>
-              {i < flowSteps.length - 1 && <ArrowRight className="h-3 w-3 text-muted-foreground/50" />}
-            </span>
-          ))}
         </div>
 
         {/* 3-step cards */}
