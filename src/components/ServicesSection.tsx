@@ -72,64 +72,70 @@ const ServicesSection = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group relative flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg"
             >
-              {/* Icon */}
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                <service.icon className="h-6 w-6 text-primary" />
-              </div>
+              {/* Top content — grows to fill space */}
+              <div className="flex flex-1 flex-col">
+                {/* Icon */}
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                  <service.icon className="h-6 w-6 text-primary" />
+                </div>
 
-              {/* Title */}
-              <h3 className="mb-2 text-lg font-semibold text-foreground">
-                {service.title}
-              </h3>
+                {/* Title */}
+                <h3 className="mb-2 text-lg font-semibold text-foreground">
+                  {service.title}
+                </h3>
 
-              {/* Description */}
-              <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                {service.description}
-              </p>
+                {/* Description */}
+                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                  {service.description}
+                </p>
 
-              {/* Includes list */}
-              {service.includes && (
-                <ul className="mb-4 space-y-1.5">
-                  {service.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              {/* Price / Options */}
-              <div className="mb-5 mt-auto">
-                {service.price && (
-                  <p className="text-2xl font-bold text-foreground">{service.price}</p>
-                )}
-                {service.options && (
-                  <div className="space-y-1.5">
-                    {service.options.map((opt) => (
-                      <div key={opt.label} className="flex items-center justify-between rounded-lg bg-secondary/60 px-3 py-2">
-                        <span className="text-sm text-muted-foreground">{opt.label}</span>
-                        <span className="text-sm font-semibold text-foreground">{opt.price}</span>
-                      </div>
+                {/* Includes list */}
+                {service.includes && (
+                  <ul className="mb-4 space-y-1.5">
+                    {service.includes.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                        {item}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 )}
               </div>
 
-              {/* CTA */}
-              <Link to="/apply">
-                <Button variant="hero" className="w-full">
-                  {service.cta}
-                </Button>
-              </Link>
+              {/* Bottom content — always aligned */}
+              <div className="mt-auto flex flex-col">
+                {/* Price / Options */}
+                <div className="mb-5 min-h-[3.5rem] flex items-end">
+                  {service.price && (
+                    <p className="text-3xl font-bold text-foreground">{service.price}</p>
+                  )}
+                  {service.options && (
+                    <div className="w-full space-y-1.5 rounded-xl bg-secondary/50 p-3">
+                      {service.options.map((opt) => (
+                        <div key={opt.label} className="flex items-center justify-between">
+                          <span className="text-sm text-muted-foreground">{opt.label}</span>
+                          <span className="text-sm font-bold text-foreground">{opt.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              {/* Note */}
-              <p className="mt-3 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground/80">
-                <Info className="mt-0.5 h-3 w-3 shrink-0 text-primary/50" />
-                {service.note}
-              </p>
+                {/* CTA */}
+                <Link to="/apply">
+                  <Button variant="hero" className="w-full">
+                    {service.cta}
+                  </Button>
+                </Link>
+
+                {/* Note */}
+                <p className="mt-3 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground/80">
+                  <Info className="mt-0.5 h-3 w-3 shrink-0 text-primary/50" />
+                  {service.note}
+                </p>
+              </div>
             </div>
           ))}
         </div>
