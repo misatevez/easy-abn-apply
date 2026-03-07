@@ -116,12 +116,21 @@ const ABNRegistration = () => {
             <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
 
             <div className="rounded-2xl border border-border bg-card shadow-sm">
-              <div className="space-y-0 divide-y divide-border">
+              {/* Personal Details */}
+              <div>
                 <ApplicantNameSection form={form} errors={errors} update={update} />
                 <EmailSection form={form} errors={errors} update={update} />
                 <PhoneSection form={form} errors={errors} update={update} />
                 <DateOfBirthSection form={form} errors={errors} update={update} />
                 <TFNSection form={form} errors={errors} update={update} />
+              </div>
+
+              {/* Business Details */}
+              <div className="border-t border-border">
+                <div className="px-6 pt-6 md:px-8 md:pt-7">
+                  <h2 className="text-lg font-bold text-foreground">Business Details</h2>
+                  <p className="mt-0.5 text-sm text-muted-foreground">Tell us about your business activity and registration needs.</p>
+                </div>
                 <ABNPurposeSection form={form} errors={errors} update={update} />
                 <BusinessActivitySection form={form} errors={errors} update={update} />
                 <AddressSection form={form} errors={errors} update={update} />

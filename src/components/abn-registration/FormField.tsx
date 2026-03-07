@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import { Input } from "@/components/ui/input";
 
 export const SectionWrapper = ({ children, title }: { children: ReactNode; title?: string }) => (
-  <div className="p-6 md:p-8">
-    {title && <h3 className="mb-5 text-lg font-semibold text-foreground">{title}</h3>}
+  <div className="px-6 py-4 md:px-8 md:py-5">
+    {title && <h3 className="mb-4 text-base font-semibold text-foreground">{title}</h3>}
     {children}
   </div>
 );
