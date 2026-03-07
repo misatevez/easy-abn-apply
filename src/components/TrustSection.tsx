@@ -75,15 +75,11 @@ const TrustSection = () => {
               <h2 className="mb-5 text-3xl font-bold leading-tight text-foreground md:text-4xl">
                 Our professional network and industry associations
               </h2>
-              <p className="mb-4 text-base leading-relaxed text-muted-foreground">
-                We work with recognised accounting platforms and operate within
-                established professional and regulatory frameworks to deliver
-                accurate and compliant business registration services across
-                Australia.
-              </p>
-              <p className="text-sm font-medium text-foreground/80">
-                Supporting Australian businesses with compliant registration
-                services.
+              <p className="text-base leading-relaxed text-muted-foreground">
+                We operate within recognised accounting platforms and
+                professional regulatory frameworks to deliver compliant
+                business registration services across Australia. Supporting
+                Australian businesses with secure and accurate registrations.
               </p>
             </div>
 
