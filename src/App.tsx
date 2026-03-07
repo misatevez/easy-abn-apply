@@ -29,6 +29,7 @@ const App = () => (
           <Route path="/abn-cancellation" element={<ABNCancellation />} />
           <Route path="/business-name-cancellation" element={<BusinessNameCancellation />} />
           <Route path="/gst-cancellation" element={<GSTCancellation />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

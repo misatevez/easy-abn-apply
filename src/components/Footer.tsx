@@ -98,7 +98,7 @@ const Footer = () => {
         <div className="container flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-5 text-sm">
           <a href="#" className="transition-colors hover:text-[hsl(0,0%,95%)]">Terms and Conditions</a>
           <a href="#" className="transition-colors hover:text-[hsl(0,0%,95%)]">Privacy Policy</a>
-          <a href="/#faq" className="transition-colors hover:text-[hsl(0,0%,95%)]">FAQ</a>
+          <a href="/faq" className="transition-colors hover:text-[hsl(0,0%,95%)]">FAQ</a>
           <a href="mailto:info@yourdomain.com" className="flex items-center gap-1.5 transition-colors hover:text-[hsl(0,0%,95%)]">
             <Mail className="h-3.5 w-3.5" />
             info@yourdomain.com
