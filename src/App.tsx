@@ -9,6 +9,7 @@ import ABNRegistration from "./pages/ABNRegistration";
 import UpdateABNDetails from "./pages/UpdateABNDetails";
 import ABNCancellation from "./pages/ABNCancellation";
 import BusinessNameCancellation from "./pages/BusinessNameCancellation";
+import GSTCancellation from "./pages/GSTCancellation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
