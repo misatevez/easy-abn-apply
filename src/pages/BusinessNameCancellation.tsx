@@ -1,7 +1,6 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
 import ABNRegistrationBanner from "@/components/abn-registration/ABNRegistrationBanner";
-import ABNRegistrationProgress from "@/components/abn-registration/ABNRegistrationProgress";
 import { SectionWrapper, StyledInput, FieldError, HelperText } from "@/components/abn-registration/FormField";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -24,11 +23,11 @@ type CancellationFormData = {
   tfn: string;
   abn: string;
   // Business Name Cancellation
-  cancelBusinessName: string;
   businessNameToCancel: string;
   requestASICKey: string;
   asicKey: string;
   // ABN Cancellation
+  cancelABN: string;
   abnCancellationReason: string;
   abnCancellationReasonOther: string;
   abnCancelDay: string;
@@ -56,10 +55,10 @@ const initialForm: CancellationFormData = {
   tfnOption: "",
   tfn: "",
   abn: "",
-  cancelBusinessName: "",
   businessNameToCancel: "",
   requestASICKey: "",
   asicKey: "",
+  cancelABN: "",
   abnCancellationReason: "",
   abnCancellationReasonOther: "",
   abnCancelDay: String(new Date().getDate()).padStart(2, "0"),
@@ -109,8 +108,6 @@ const nextSteps = [
   },
 ];
 
-const TOTAL_SECTIONS = 12;
-
 const BusinessNameCancellation = () => {
   const [form, setForm] = useState<CancellationFormData>(initialForm);
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
@@ -125,24 +122,6 @@ const BusinessNameCancellation = () => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
-
-  const completedSections = useMemo(() => {
-    let count = 0;
-    if (form.lastName) count++;
-    if (form.email && form.confirmEmail && form.email === form.confirmEmail) count++;
-    if (form.phone) count++;
-    if (form.dobDay && form.dobMonth && form.dobYear) count++;
-    if (form.tfnOption) count++;
-    if (form.abn) count++;
-    if (form.cancelBusinessName) count++;
-    if (form.cancelBusinessName === "yes" && form.businessNameToCancel) count++;
-    if (form.cancelBusinessName === "no") count++;
-    if (form.abnCancellationReason) count++;
-    if (form.abnCancelDay && form.abnCancelMonth && form.abnCancelYear) count++;
-    if (form.cancelGST) count++;
-    if (form.authoriseTaxAgent && form.confirmTrueInfo) count++;
-    return Math.min(count, TOTAL_SECTIONS);
-  }, [form]);
 
   const validate = (): boolean => {
     const e: Partial<Record<string, string>> = {};
@@ -167,18 +146,20 @@ const BusinessNameCancellation = () => {
     if (form.tfnOption === "now" && form.tfn && !/^\d{3}\s?\d{3}\s?\d{3}$/.test(form.tfn.trim())) {
       e.tfn = "Invalid TFN format (e.g. 123 456 789)";
     }
-    // Business Name
-    if (!form.cancelBusinessName) e.cancelBusinessName = "Please select an option";
-    if (form.cancelBusinessName === "yes" && !form.businessNameToCancel.trim()) e.businessNameToCancel = "Business name is required";
-    if (form.cancelBusinessName === "yes" && !form.requestASICKey) e.requestASICKey = "Please select an option";
-    // ABN
-    if (!form.abnCancellationReason) e.abnCancellationReason = "Please select a reason";
-    if (form.abnCancellationReason === "Other" && !form.abnCancellationReasonOther.trim()) e.abnCancellationReasonOther = "Please specify the reason";
-    if (!form.abnCancelDay || !form.abnCancelMonth || !form.abnCancelYear) e.abnCancelDay = "Cancellation date is required";
+    // Business Name - always shown
+    if (!form.businessNameToCancel.trim()) e.businessNameToCancel = "Business name is required";
+    if (!form.requestASICKey) e.requestASICKey = "Please select an option";
+    // ABN - conditional
+    if (form.cancelABN === "yes") {
+      if (!form.abnCancellationReason) e.abnCancellationReason = "Please select a reason";
+      if (form.abnCancellationReason === "Other" && !form.abnCancellationReasonOther.trim()) e.abnCancellationReasonOther = "Please specify the reason";
+      if (!form.abnCancelDay || !form.abnCancelMonth || !form.abnCancelYear) e.abnCancelDay = "Cancellation date is required";
+    }
     // GST
     if (!form.cancelGST) e.cancelGST = "Please select an option";
     if (form.cancelGST === "yes" && !form.gstCancellationReason) e.gstCancellationReason = "Please select a reason";
     // Terms
+    if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
 
@@ -198,20 +179,24 @@ const BusinessNameCancellation = () => {
 
       <section className="relative bg-muted/30 pb-12 md:pb-16">
         <div className="container px-4">
-          <div className="mx-auto max-w-[800px] -mt-36 md:-mt-44">
+          <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header */}
               <div className="px-6 pt-8 pb-2 md:px-10 md:pt-10 text-center">
                 <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
-                  Cancel your ABN / GST / Business Name in 5 minutes
+                  Cancel your Business Name / ABN / GST in 5 minutes
                 </h1>
                 <p className="mt-2 text-sm font-medium text-primary">
-                  3 EASY STEPS TO CANCEL YOUR OFFICIAL ABN / GST / BUSINESS NAME
+                  3 EASY STEPS TO CANCEL YOUR OFFICIAL BUSINESS NAME / ABN / GST
                 </p>
-              </div>
 
-              {/* Progress */}
-              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
+                {/* Trust Labels */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
+                </div>
+              </div>
 
               {/* Separator */}
               <div className="mx-6 md:mx-10 border-t border-border" />
@@ -363,64 +348,50 @@ const BusinessNameCancellation = () => {
                   </div>
                 </div>
                 <SectionWrapper>
-                  <Label>Would you like to cancel your Business Name? <span className="text-destructive">*</span></Label>
-                  <div className="mt-2 space-y-2">
-                    <label className="flex cursor-pointer items-center gap-2.5">
-                      <input type="radio" name="cancelBusinessName" checked={form.cancelBusinessName === "yes"} onChange={() => update("cancelBusinessName", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                      <span className="text-sm text-foreground">Yes</span>
-                    </label>
-                    <label className="flex cursor-pointer items-center gap-2.5">
-                      <input type="radio" name="cancelBusinessName" checked={form.cancelBusinessName === "no"} onChange={() => update("cancelBusinessName", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                      <span className="text-sm text-foreground">No</span>
-                    </label>
-                  </div>
-                  <FieldError error={errors.cancelBusinessName} />
-
-                  {form.cancelBusinessName === "yes" && (
-                    <div className="mt-4 space-y-4">
-                      <div className="max-w-md">
-                        <Label>Please specify the Business Name you would like to cancel <span className="text-destructive">*</span></Label>
-                        <StyledInput value={form.businessNameToCancel} onChange={(v) => update("businessNameToCancel", v)} placeholder="Your business name" error={errors.businessNameToCancel} />
-                        <FieldError error={errors.businessNameToCancel} />
-                      </div>
-
-                      <div>
-                        <Label>Request the ASIC Key on my behalf? <span className="text-destructive">*</span></Label>
-                        <div className="mt-2 space-y-2">
-                          <label className="flex cursor-pointer items-center gap-2.5">
-                            <input type="radio" name="requestASICKey" checked={form.requestASICKey === "yes"} onChange={() => update("requestASICKey", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                            <span className="text-sm text-foreground">Yes</span>
-                          </label>
-                          <label className="flex cursor-pointer items-center gap-2.5">
-                            <input type="radio" name="requestASICKey" checked={form.requestASICKey === "no"} onChange={() => update("requestASICKey", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
-                            <span className="text-sm text-foreground">No</span>
-                          </label>
-                        </div>
-                        <FieldError error={errors.requestASICKey} />
-                      </div>
-
-                      {form.requestASICKey === "no" && (
-                        <div className="max-w-md">
-                          <Label>Enter your ASIC Key if you have it</Label>
-                          <StyledInput value={form.asicKey} onChange={(v) => update("asicKey", v)} placeholder="e.g. 1-12345678901" />
-                          <HelperText>If not, we can request it on your behalf.</HelperText>
-                        </div>
-                      )}
-
-                      {/* ASIC Key help block */}
-                      <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
-                        <p className="text-xs font-semibold text-foreground">Cannot find your ASIC Key?</p>
-                        <ul className="mt-2 space-y-1.5 text-xs text-muted-foreground">
-                          <li className="flex gap-2"><span className="text-primary">•</span>You can request it online at no cost via: <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Request ASIC Key</a></li>
-                          <li className="flex gap-2"><span className="text-primary">•</span>After request, your ASIC key will be delivered to your business email address within 24 hours</li>
-                          <li className="flex gap-2"><span className="text-primary">•</span>An ASIC Key mostly looks like: 1-12345678901</li>
-                          <li className="flex gap-2"><span className="text-primary">•</span>You can search your inbox for: ASIC.Transaction.No-reply@asic.gov.au and open the Welcome Letter PDF</li>
-                          <li className="flex gap-2"><span className="text-primary">•</span>We can attempt to obtain this ASIC key to be emailed to your email address if all your details are correct and up to date with ASIC</li>
-                          <li className="flex gap-2"><span className="text-primary">•</span>Please contact us at <a href="mailto:info@abn-number.com" className="text-primary hover:underline">info@abn-number.com</a></li>
-                        </ul>
-                      </div>
+                  {/* Business name field shown directly */}
+                  <div className="space-y-4">
+                    <div className="max-w-md">
+                      <Label>Please specify the Business Name you would like to cancel <span className="text-destructive">*</span></Label>
+                      <StyledInput value={form.businessNameToCancel} onChange={(v) => update("businessNameToCancel", v)} placeholder="Your business name" error={errors.businessNameToCancel} />
+                      <FieldError error={errors.businessNameToCancel} />
                     </div>
-                  )}
+
+                    <div>
+                      <Label>Request the ASIC Key on my behalf? <span className="text-destructive">*</span></Label>
+                      <div className="mt-2 space-y-2">
+                        <label className="flex cursor-pointer items-center gap-2.5">
+                          <input type="radio" name="requestASICKey" checked={form.requestASICKey === "yes"} onChange={() => update("requestASICKey", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                          <span className="text-sm text-foreground">Yes</span>
+                        </label>
+                        <label className="flex cursor-pointer items-center gap-2.5">
+                          <input type="radio" name="requestASICKey" checked={form.requestASICKey === "no"} onChange={() => update("requestASICKey", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                          <span className="text-sm text-foreground">No</span>
+                        </label>
+                      </div>
+                      <FieldError error={errors.requestASICKey} />
+                    </div>
+
+                    {form.requestASICKey === "no" && (
+                      <div className="max-w-md">
+                        <Label>Enter your ASIC Key if you have it</Label>
+                        <StyledInput value={form.asicKey} onChange={(v) => update("asicKey", v)} placeholder="e.g. 1-12345678901" />
+                        <HelperText>If not, we can request it on your behalf.</HelperText>
+                      </div>
+                    )}
+
+                    {/* ASIC Key help block */}
+                    <div className="rounded-lg border border-border/60 bg-muted/30 p-4">
+                      <p className="text-xs font-semibold text-foreground">Cannot find your ASIC Key?</p>
+                      <ul className="mt-2 space-y-1.5 text-xs text-muted-foreground">
+                        <li className="flex gap-2"><span className="text-primary">•</span>You can request it online at no cost via: <a href="https://asic.gov.au" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Request ASIC Key</a></li>
+                        <li className="flex gap-2"><span className="text-primary">•</span>After request, your ASIC key will be delivered to your business email address within 24 hours</li>
+                        <li className="flex gap-2"><span className="text-primary">•</span>An ASIC Key mostly looks like: 1-12345678901</li>
+                        <li className="flex gap-2"><span className="text-primary">•</span>You can search your inbox for: ASIC.Transaction.No-reply@asic.gov.au and open the Welcome Letter PDF</li>
+                        <li className="flex gap-2"><span className="text-primary">•</span>We can attempt to obtain this ASIC key to be emailed to your email address if all your details are correct and up to date with ASIC</li>
+                        <li className="flex gap-2"><span className="text-primary">•</span>Please contact us at <a href="mailto:info@abn-number.com" className="text-primary hover:underline">info@abn-number.com</a></li>
+                      </ul>
+                    </div>
+                  </div>
                 </SectionWrapper>
               </div>
 
@@ -440,47 +411,63 @@ const BusinessNameCancellation = () => {
                   </div>
                 </div>
                 <SectionWrapper>
-                  <div className="max-w-md">
-                    <Label>Reason for the ABN cancellation? <span className="text-destructive">*</span></Label>
-                    <Select value={form.abnCancellationReason} onValueChange={(v) => update("abnCancellationReason", v)}>
-                      <SelectTrigger className="h-11 rounded-lg mt-1">
-                        <SelectValue placeholder="Select a reason" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {abnCancellationReasons.map((r) => (
-                          <SelectItem key={r} value={r}>{r}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FieldError error={errors.abnCancellationReason} />
+                  <Label>Would you like to cancel your ABN? <span className="text-destructive">*</span></Label>
+                  <div className="mt-2 space-y-2">
+                    <label className="flex cursor-pointer items-center gap-2.5">
+                      <input type="radio" name="cancelABN" checked={form.cancelABN === "yes"} onChange={() => update("cancelABN", "yes")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                      <span className="text-sm text-foreground">Yes</span>
+                    </label>
+                    <label className="flex cursor-pointer items-center gap-2.5">
+                      <input type="radio" name="cancelABN" checked={form.cancelABN === "no"} onChange={() => update("cancelABN", "no")} className="h-4 w-4 accent-[hsl(var(--primary))]" />
+                      <span className="text-sm text-foreground">No</span>
+                    </label>
                   </div>
 
-                  {form.abnCancellationReason === "Other" && (
-                    <div className="mt-4 max-w-md">
-                      <Label>Please specify the reason <span className="text-destructive">*</span></Label>
-                      <StyledInput value={form.abnCancellationReasonOther} onChange={(v) => update("abnCancellationReasonOther", v)} placeholder="Please specify..." error={errors.abnCancellationReasonOther} />
-                      <FieldError error={errors.abnCancellationReasonOther} />
-                    </div>
+                  {form.cancelABN === "yes" && (
+                    <>
+                      <div className="mt-4 max-w-md">
+                        <Label>Reason for the ABN cancellation? <span className="text-destructive">*</span></Label>
+                        <Select value={form.abnCancellationReason} onValueChange={(v) => update("abnCancellationReason", v)}>
+                          <SelectTrigger className="h-11 rounded-lg mt-1">
+                            <SelectValue placeholder="Select a reason" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {abnCancellationReasons.map((r) => (
+                              <SelectItem key={r} value={r}>{r}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FieldError error={errors.abnCancellationReason} />
+                      </div>
+
+                      {form.abnCancellationReason === "Other" && (
+                        <div className="mt-4 max-w-md">
+                          <Label>Please specify the reason <span className="text-destructive">*</span></Label>
+                          <StyledInput value={form.abnCancellationReasonOther} onChange={(v) => update("abnCancellationReasonOther", v)} placeholder="Please specify..." error={errors.abnCancellationReasonOther} />
+                          <FieldError error={errors.abnCancellationReasonOther} />
+                        </div>
+                      )}
+
+                      <div className="mt-5">
+                        <Label>From what date does the Individual / Sole Trader require its ABN cancelled? <span className="text-destructive">*</span></Label>
+                        <div className="mt-1 grid max-w-sm grid-cols-3 gap-3">
+                          <StyledInput value={form.abnCancelDay} onChange={(v) => update("abnCancelDay", v)} placeholder="DD" error={errors.abnCancelDay} />
+                          <Select value={form.abnCancelMonth} onValueChange={(v) => update("abnCancelMonth", v)}>
+                            <SelectTrigger className="h-11 rounded-lg">
+                              <SelectValue placeholder="Month" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {months.map((m, i) => (
+                                <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <StyledInput value={form.abnCancelYear} onChange={(v) => update("abnCancelYear", v)} placeholder="YYYY" error={errors.abnCancelDay} />
+                        </div>
+                        <FieldError error={errors.abnCancelDay} />
+                      </div>
+                    </>
                   )}
-
-                  <div className="mt-5">
-                    <Label>From what date does the Individual / Sole Trader require its ABN cancelled? <span className="text-destructive">*</span></Label>
-                    <div className="mt-1 grid max-w-sm grid-cols-3 gap-3">
-                      <StyledInput value={form.abnCancelDay} onChange={(v) => update("abnCancelDay", v)} placeholder="DD" error={errors.abnCancelDay} />
-                      <Select value={form.abnCancelMonth} onValueChange={(v) => update("abnCancelMonth", v)}>
-                        <SelectTrigger className="h-11 rounded-lg">
-                          <SelectValue placeholder="Month" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {months.map((m, i) => (
-                            <SelectItem key={m} value={String(i + 1).padStart(2, "0")}>{m}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <StyledInput value={form.abnCancelYear} onChange={(v) => update("abnCancelYear", v)} placeholder="YYYY" error={errors.abnCancelDay} />
-                    </div>
-                    <FieldError error={errors.abnCancelDay} />
-                  </div>
                 </SectionWrapper>
               </div>
 
@@ -534,19 +521,19 @@ const BusinessNameCancellation = () => {
 
               {/* What happens next */}
               <div className="border-t border-border">
-                <SectionWrapper>
+                <div className="bg-primary/[0.04] px-6 py-8 md:px-10">
                   <div className="text-center">
                     <h3 className="text-base font-bold text-foreground">
-                      What happens after you submit your cancellation request
+                      What happens after you submit your application
                     </h3>
                     <p className="mt-1.5 mx-auto max-w-md text-sm text-muted-foreground">
-                      Once you submit your request, our team reviews your details and securely processes the cancellation with the relevant authority.
+                      After submitting your application, our team reviews your details and securely processes your ABN registration.
                     </p>
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {nextSteps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-muted/30 p-4 text-center">
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
@@ -556,11 +543,11 @@ const BusinessNameCancellation = () => {
                     ))}
                   </div>
 
-                  <div className="mt-5 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-                    <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-                    <span>Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
+                  <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
+                    <ShieldCheck className="h-4 w-4 text-primary" />
+                    <span className="font-bold text-foreground">Your application is securely processed and reviewed by an Accredited Tax Agent.</span>
                   </div>
-                </SectionWrapper>
+                </div>
               </div>
 
               {/* Terms & Declarations */}
@@ -577,9 +564,10 @@ const BusinessNameCancellation = () => {
                         className="mt-0.5"
                       />
                       <span className="text-sm text-foreground">
-                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use.
+                        I have read and accept the <a href="#" className="text-primary hover:underline">Terms & Service</a> of use. <span className="text-destructive">*</span>
                       </span>
                     </label>
+                    <FieldError error={errors.acceptTerms} />
 
                     <label className="flex cursor-pointer items-start gap-3">
                       <Checkbox
@@ -619,10 +607,10 @@ const BusinessNameCancellation = () => {
                   Submit your Cancellation
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-primary" /> Secure & Encrypted</span>
-                  <span className="flex items-center gap-1"><Lock className="h-3.5 w-3.5 text-primary" /> SSL Protected</span>
-                  <span className="flex items-center gap-1"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Expert Reviewed</span>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                  <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
+                  <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
+                  <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
                 </div>
               </div>
             </div>
