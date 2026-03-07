@@ -1,0 +1,40 @@
+import { ReactNode } from "react";
+import { Input } from "@/components/ui/input";
+
+export const SectionWrapper = ({ children, title }: { children: ReactNode; title?: string }) => (
+  <div className="p-6 md:p-8">
+    {title && <h3 className="mb-5 text-lg font-semibold text-foreground">{title}</h3>}
+    {children}
+  </div>
+);
+
+export const FieldError = ({ error }: { error?: string }) =>
+  error ? <p className="mt-1 text-sm text-destructive">{error}</p> : null;
+
+export const HelperText = ({ children }: { children: ReactNode }) => (
+  <p className="mt-1 text-xs text-muted-foreground">{children}</p>
+);
+
+export const StyledInput = ({
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+  error,
+  className = "",
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+  error?: string;
+  className?: string;
+}) => (
+  <Input
+    type={type}
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+    placeholder={placeholder}
+    className={`h-11 rounded-lg ${error ? "border-destructive" : ""} ${className}`}
+  />
+);
