@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle2, Clock, FileCheck } from "lucide-react";
+import { Shield, CheckCircle2, Clock, FileCheck, Search, Hash } from "lucide-react";
 
 const trustBadges = [
   { icon: Shield, label: "Secure & Encrypted" },
@@ -11,56 +11,66 @@ const trustBadges = [
 
 const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary/[0.03] via-background to-accent/[0.03]">
-      <div className="container py-20 md:py-28">
+    <section className="relative overflow-hidden bg-[hsl(215_25%_12%)]">
+      {/* Subtle radial glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,hsl(217_91%_50%/0.15),transparent)]" />
+
+      <div className="container relative py-20 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
+          {/* Accreditation badge */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Shield className="h-4 w-4" />
-            Trusted ABN Registration Service
+            Accredited Tax Agent – Licence No. 24666831
           </div>
 
-          <h1 className="mb-6 text-4xl font-extrabold leading-tight text-foreground md:text-5xl lg:text-6xl">
-            Register Your ABN{" "}
-            <span className="text-primary">in Minutes</span>
+          <h1 className="mb-4 text-4xl font-extrabold leading-tight text-primary-foreground md:text-5xl lg:text-6xl">
+            ABN Registration{" "}
+            <span className="text-primary">Online</span>
           </h1>
 
-          <p className="mb-8 text-lg text-muted-foreground md:text-xl">
-            Fast online registration for ABN, Business Name, and GST.
-            <br className="hidden md:block" />
-            We handle the paperwork so you can focus on your business.
+          <p className="mb-3 text-lg text-primary-foreground/70 md:text-xl">
+            Apply for your Australian Business Number (ABN) in 5 minutes
           </p>
 
-          <div className="mb-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <p className="mb-8 text-sm text-primary-foreground/50">
+            Official documentation from the Australian Business Register
+          </p>
+
+          {/* Primary CTA */}
+          <div className="mb-8">
             <Link to="/apply">
-              <Button variant="hero" size="lg" className="h-13 px-8 text-base">
-                Start Your Application
+              <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/30">
+                Start my ABN Application now
               </Button>
             </Link>
-            <a href="#eligibility">
-              <Button variant="hero-outline" size="lg" className="h-13 px-8">
-                Check Eligibility
+          </div>
+
+          {/* Free tools */}
+          <div className="mb-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="#abn-finder">
+              <Button variant="hero-outline" size="lg" className="h-12 gap-2 px-6">
+                <Search className="h-4 w-4" />
+                ABN Finder
+              </Button>
+            </a>
+            <a href="#abn-lookup">
+              <Button variant="hero-outline" size="lg" className="h-12 gap-2 px-6">
+                <Hash className="h-4 w-4" />
+                ABN Lookup
               </Button>
             </a>
           </div>
 
-          {/* Step Progress Visual */}
-          <div className="mx-auto mb-10 flex max-w-md items-center justify-center gap-2">
-            {["Fill Form", "We Review", "Get ABN"].map((step, i) => (
-              <div key={step} className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                  {i + 1}
-                </div>
-                <span className="text-sm font-medium text-foreground">{step}</span>
-                {i < 2 && <div className="h-px w-8 bg-border" />}
-              </div>
-            ))}
-          </div>
-
           {/* Trust Badges */}
-          <div className="flex flex-wrap items-center justify-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
             {trustBadges.map((badge) => (
-              <div key={badge.label} className="flex items-center gap-2 text-sm text-muted-foreground">
-                <badge.icon className="h-4 w-4 text-accent" />
+              <div
+                key={badge.label}
+                className="flex items-center gap-2.5 text-sm text-primary-foreground/60"
+              >
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                  <badge.icon className="h-4 w-4 text-primary" />
+                </div>
                 {badge.label}
               </div>
             ))}
