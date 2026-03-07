@@ -11,7 +11,22 @@ export const SectionWrapper = ({ children, title }: { children: ReactNode; title
   </div>
 );
 
-export const FieldError = ({ error }: { error?: string }) =>
+export const SectionIntro = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <div className={cn("px-6 pt-6 md:px-8 md:pt-7", className)}>
+    <div className="mx-auto max-w-[570px]">
+      {children}
+    </div>
+  </div>
+);
+
+export const FormSubmitArea = ({ children }: { children: ReactNode }) => (
+  <div className="border-t border-border p-6 md:p-8">
+    <div className="mx-auto max-w-[570px]">
+      {children}
+    </div>
+  </div>
+);
+
   error ? <p className="mt-1 text-sm text-destructive">{error}</p> : null;
 
 export const HelperText = ({ children }: { children: ReactNode }) => (
