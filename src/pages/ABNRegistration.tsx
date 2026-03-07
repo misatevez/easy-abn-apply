@@ -206,8 +206,8 @@ const ABNRegistration = () => {
                 </p>
               </div>
 
-              {/* Sticky progress bar */}
-              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} sticky />
+              {/* Progress bar */}
+              <ABNRegistrationProgress completed={completedSections} total={TOTAL_SECTIONS} />
 
               {/* Personal Details */}
               <div>
