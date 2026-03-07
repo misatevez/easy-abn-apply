@@ -62,26 +62,26 @@ const initialForm: ABNFormData = {
   acceptTerms: false,
   authoriseTaxAgent: false,
   confirmTrueInfo: false,
-  authoriseASICAgent: false,
+  authoriseASICAgent: false
 };
 
 const nextSteps = [
-  {
-    icon: ClipboardCheck,
-    title: "Application Review",
-    text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement.",
-  },
-  {
-    icon: Send,
-    title: "Secure Lodgement",
-    text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing.",
-  },
-  {
-    icon: Mail,
-    title: "Email Confirmation",
-    text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed.",
-  },
-];
+{
+  icon: ClipboardCheck,
+  title: "Application Review",
+  text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement."
+},
+{
+  icon: Send,
+  title: "Secure Lodgement",
+  text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing."
+},
+{
+  icon: Mail,
+  title: "Email Confirmation",
+  text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed."
+}];
+
 
 const ABNRegistration = () => {
   const [searchParams] = useSearchParams();
@@ -89,7 +89,7 @@ const ABNRegistration = () => {
 
   const [form, setForm] = useState<ABNFormData>({
     ...initialForm,
-    abnPurpose: purposeParam === "renew" ? "reactivate" : "",
+    abnPurpose: purposeParam === "renew" ? "reactivate" : ""
   });
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const navigate = useNavigate();
@@ -136,15 +136,15 @@ const ABNRegistration = () => {
     const e: Partial<Record<string, string>> = {};
 
     if (!form.lastName.trim()) e.lastName = "Last name is required";
-    if (!form.email.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
-    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";
-    else if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
-    if (!form.phone.trim()) e.phone = "Phone number is required";
-    else if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
-    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";
-    else {
-      const d = parseInt(form.dobDay), m = parseInt(form.dobMonth), y = parseInt(form.dobYear);
+    if (!form.email.trim()) e.email = "Email is required";else
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
+    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";else
+    if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
+    if (!form.phone.trim()) e.phone = "Phone number is required";else
+    if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
+    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";else
+    {
+      const d = parseInt(form.dobDay),m = parseInt(form.dobMonth),y = parseInt(form.dobYear);
       const date = new Date(y, m - 1, d);
       if (date.getDate() !== d || date.getMonth() !== m - 1 || date.getFullYear() !== y || y < 1900 || y > new Date().getFullYear()) {
         e.dobDay = "Invalid date of birth";
@@ -208,24 +208,24 @@ const ABNRegistration = () => {
     <Layout>
       <ABNRegistrationBanner />
 
-      <section className="relative bg-muted/30 pb-12 md:pb-16">
-        <div className="container px-4">
+      <section className="relative bg-muted/30 pb-12 md:pb-16 rounded-none border-0">
+        <div className="container px-4 border-secondary border-solid rounded-none">
           <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
               {/* Header inside card */}
-              <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center">
+              <div className="px-6 pt-28 pb-2 md:px-10 md:pt-28 text-center ml-0 border-0 rounded-none">
                 <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-3xl">
                   ABN & GST direct to your inbox in just 5 minutes
                 </h1>
-                <p className="mt-2 text-sm font-medium text-primary">
+                <p className="mt-2 text-sm font-medium text-primary my-[13px]">
                   Business Name & other services available in the same form.
                 </p>
-                <p className="mt-2 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 mx-auto max-w-lg text-sm leading-relaxed text-muted-foreground my-[10px]">
                   Simply use the registration form to provide the necessary information for locating your ABN. The whole process will only take about a minute.
                 </p>
 
                 {/* Trust Labels */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground my-[20px] border-2">
                   <span className="flex items-center gap-1.5"><Shield className="h-4 w-4 text-primary" /> Secure & Encrypted</span>
                   <span className="flex items-center gap-1.5"><Lock className="h-4 w-4 text-primary" /> SSL Protected</span>
                   <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed</span>
@@ -233,7 +233,7 @@ const ABNRegistration = () => {
               </div>
 
               {/* Separator before form fields */}
-              <div className="mx-6 md:mx-10 border-t border-border" />
+              <div className="mx-6 md:mx-10 border-t border-border my-[30px]" />
 
               {/* Personal Details */}
               <div>
@@ -260,9 +260,9 @@ const ABNRegistration = () => {
                   </p>
                 </div>
                 <BusinessNameSection {...sectionProps} />
-                {form.tradeUnderBusinessName === "yes" && (
-                  <RegistrationPeriodSection {...sectionProps} />
-                )}
+                {form.tradeUnderBusinessName === "yes" &&
+                <RegistrationPeriodSection {...sectionProps} />
+                }
                 <BirthDetailsSection {...sectionProps} />
               </div>
 
@@ -306,15 +306,15 @@ const ABNRegistration = () => {
                   </div>
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                    {nextSteps.map(({ icon: Icon, title, text }, i) => (
-                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                    {nextSteps.map(({ icon: Icon, title, text }, i) =>
+                    <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
                         <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
                         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
                       </div>
-                    ))}
+                    )}
                   </div>
 
                   <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
@@ -335,8 +335,8 @@ const ABNRegistration = () => {
                   variant="hero"
                   size="lg"
                   className="w-full gap-2 h-14 text-base"
-                  onClick={handleSubmit}
-                >
+                  onClick={handleSubmit}>
+                  
                   Lodge my ABN application
                   <ArrowRight className="h-5 w-5" />
                 </Button>
@@ -350,8 +350,8 @@ const ABNRegistration = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>);
+
 };
 
 export default ABNRegistration;
