@@ -597,7 +597,7 @@ const BusinessNameCancellation = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8 text-center">
+              <div className="border-t border-border p-6 md:p-8 pb-[3cm] text-center">
                 <Button
                   variant="hero"
                   size="lg"
