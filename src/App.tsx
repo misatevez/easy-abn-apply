@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Apply from "./pages/Apply";
 import ABNRegistration from "./pages/ABNRegistration";
+import UpdateABNDetails from "./pages/UpdateABNDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/apply" element={<Apply />} />
           <Route path="/abn-registration" element={<ABNRegistration />} />
+          <Route path="/update-abn-details" element={<UpdateABNDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

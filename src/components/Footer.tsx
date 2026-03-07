@@ -30,7 +30,7 @@ const footerNav = [
   {
     title: "Other Services",
     links: [
-      { label: "Update ABN Details", href: "#" },
+      { label: "Update ABN Details", href: "/update-abn-details" },
       { label: "Backdate ABN / GST", href: "#" },
       { label: "Xero Set Up", href: "#" },
     ],

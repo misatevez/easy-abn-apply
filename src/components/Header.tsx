@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
       { label: "ABN Registration", href: "/apply" },
       { label: "ABN Finder", href: "/#abn-finder" },
       { label: "ABN Lookup", href: "/#abn-lookup" },
-      { label: "Update ABN Details", href: "/#update-abn" },
+      { label: "Update ABN Details", href: "/update-abn-details" },
       { label: "ABN Cancellation", href: "/#abn-cancellation" },
     ],
   },
