@@ -24,8 +24,8 @@ const WhoNeedsABN = () => {
               Who Needs an ABN?
             </h2>
             <p className="mb-8 max-w-lg text-base leading-relaxed text-muted-foreground">
-              An Australian Business Number (ABN) is required if you operate a
-              business or invoice clients in Australia.
+              If you operate a business or invoice clients in Australia, you
+              will usually need an ABN.
             </p>
 
             <div className="mb-8 flex flex-col gap-3">
