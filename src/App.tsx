@@ -12,6 +12,7 @@ import BusinessNameCancellation from "./pages/BusinessNameCancellation";
 import GSTCancellation from "./pages/GSTCancellation";
 import BusinessNameRegistration from "./pages/BusinessNameRegistration";
 import FAQ from "./pages/FAQ";
+import ContactUs from "./pages/ContactUs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
