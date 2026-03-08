@@ -109,9 +109,10 @@ const HowItWorks = () => {
                         Start Your ABN Registration
                       </Button>
                     </Link>
-                    <div className="mt-3 space-y-1 text-xs text-muted-foreground">
+                    <div className="mt-3 space-y-1 text-sm text-muted-foreground">
                       <p>✓ Takes about 5 minutes</p>
                       <p>✓ Reviewed by accredited tax professionals</p>
+                      <p>✓ Secure & encrypted submission</p>
                     </div>
                   </div>
                 )}
