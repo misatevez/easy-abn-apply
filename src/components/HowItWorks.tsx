@@ -126,7 +126,7 @@ const HowItWorks = () => {
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">
-                      <Button variant="hero" size="lg" className="h-12 px-8 text-sm shadow-lg shadow-primary/20">
+                      <Button variant="hero" size="lg" className="h-12 w-full px-4 text-sm shadow-lg shadow-primary/20 whitespace-normal">
                         Start Your ABN Registration
                       </Button>
                     </Link>
