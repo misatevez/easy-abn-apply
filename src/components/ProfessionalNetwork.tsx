@@ -22,7 +22,7 @@ const ProfessionalNetwork = () => {
           {/* Left column - Text */}
           <div>
             <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">
-              Trusted by Leading Accounting & Financial Institutions
+              Trusted by Australian Businesses and Accounting Professionals
             </p>
             <h2 className="text-3xl font-bold leading-tight text-foreground md:text-4xl">
                Our Professional Partners & Industry Associations
