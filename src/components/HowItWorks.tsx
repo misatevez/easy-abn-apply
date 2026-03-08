@@ -68,10 +68,10 @@ const HowItWorks = () => {
               >
                 {/* Circle */}
                 <div
-                  className={`flex h-[28px] w-[28px] items-center justify-center rounded-full text-xs font-bold transition-all duration-200 ${
+                  className={`flex h-[28px] w-[28px] items-center justify-center rounded-full text-xs font-bold transition-all duration-200 border-2 ${
                     hoveredIndex === i
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted text-muted-foreground"
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-muted text-muted-foreground"
                   }`}
                 >
                   {i + 1}
