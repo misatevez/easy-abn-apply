@@ -1,29 +1,38 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ClipboardList, ShieldCheck, Mail } from "lucide-react";
+import { ClipboardList, ShieldCheck, Mail, Check } from "lucide-react";
 
 const steps = [
   {
     icon: ClipboardList,
-    step: "Registration",
-    title: "Complete the Online Registration Form.",
+    label: "REGISTRATION",
+    title: "Complete the Online Form",
     description:
-      "Provide the necessary details to generate your ABN with ease. Our experienced tax professionals are available to assist you with any questions. Additionally, you can register a business name and/or GST within the same form.",
+      "Provide your details to generate your ABN. You can also register a business name and GST in the same form.",
+    stepperLabel: "Submit your details",
   },
   {
     icon: ShieldCheck,
-    step: "Review",
-    title: "Experts verify compliance and accuracy before submission.",
+    label: "REVIEW",
+    title: "Expert Compliance Check",
     description:
-      "Once we receive your details, our team will conduct a thorough assessment to ensure everything meets ATO requirements. If any issues arise, we will address them before proceeding with your application.",
+      "Our team verifies your application meets ATO requirements and resolves any issues before submission.",
+    stepperLabel: "Expert compliance review",
   },
   {
     icon: Mail,
-    step: "Delivery",
-    title: "Receive your ABN quickly and conveniently.",
+    label: "DELIVERY",
+    title: "Receive Your ABN Fast",
     description:
-      "Once processed, your ABN will be sent to you via email and SMS—typically within 5 minutes and always within 2 hours—ensuring a seamless experience.",
+      "Your ABN is sent via email typically within 5 minutes, always within 2 hours.",
+    stepperLabel: "Receive your ABN",
   },
+];
+
+const highlights = [
+  "Takes about 5 minutes",
+  "Reviewed by accredited tax professionals",
+  "Secure & encrypted submission",
 ];
 
 const HowItWorks = () => {
@@ -44,16 +53,36 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* Steps */}
-        <div className="relative mx-auto max-w-5xl">
-          {/* Connecting line (desktop) */}
-          <div className="pointer-events-none absolute left-0 right-0 top-[72px] hidden h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent md:block" />
+        {/* Progress stepper */}
+        <div className="mx-auto mb-12 hidden max-w-3xl md:block">
+          <div className="flex items-center justify-between">
+            {steps.map((s, i) => (
+              <div key={s.label} className="flex items-center">
+                <div className="flex items-center gap-2.5">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                    {i + 1}
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{s.stepperLabel}</span>
+                </div>
+                {i < steps.length - 1 && (
+                  <div className="mx-6 h-px w-24 bg-border lg:w-36" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+        {/* Cards */}
+        <div className="relative mx-auto max-w-5xl">
+          <div className="grid gap-6 md:grid-cols-3">
             {steps.map((s, i) => (
               <div
-                key={s.step}
-                className="group relative flex flex-col rounded-xl border border-border bg-card p-7 shadow-sm transition-shadow duration-300 hover:shadow-lg"
+                key={s.label}
+                className={`group relative flex flex-col rounded-xl border bg-card p-7 transition-shadow duration-300 ${
+                  i === 0
+                    ? "border-primary shadow-lg shadow-primary/10"
+                    : "border-border shadow-sm hover:shadow-lg"
+                }`}
               >
                 {/* Step number + icon */}
                 <div className="relative z-10 mb-5 flex items-center gap-4">
@@ -67,7 +96,7 @@ const HowItWorks = () => {
 
                 {/* Label */}
                 <span className="mb-1 text-xs font-semibold uppercase tracking-wider text-primary">
-                  {s.step}
+                  {s.label}
                 </span>
 
                 {/* Title */}
@@ -79,18 +108,28 @@ const HowItWorks = () => {
                 <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
                   {s.description}
                 </p>
+
+                {/* First card: CTA + highlights */}
+                {i === 0 && (
+                  <div className="mt-6">
+                    <Link to="/abn-registration">
+                      <Button variant="hero" size="lg" className="h-12 w-full text-sm shadow-lg shadow-primary/20">
+                        Start Your ABN Registration
+                      </Button>
+                    </Link>
+                    <ul className="mt-4 space-y-1.5">
+                      {highlights.map((h) => (
+                        <li key={h} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Check className="h-4 w-4 shrink-0 text-muted-foreground" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-14 text-center">
-          <Link to="/abn-registration">
-            <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/20">
-              Start my ABN Application
-            </Button>
-          </Link>
         </div>
       </div>
     </section>
