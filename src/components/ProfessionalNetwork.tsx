@@ -16,7 +16,7 @@ const logos = [
 
 const ProfessionalNetwork = () => {
   return (
-    <section className="bg-background" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
+    <section className="bg-[#F5F6FA]" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
       <div className="mx-auto max-w-7xl px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[140px]">
           {/* Left column - Text */}
