@@ -17,7 +17,7 @@ const footerNav = [
       { label: "ABN Register", href: "/abn-registration" },
       { label: "Renew my ABN", href: "/abn-registration?purpose=renew" },
       { label: "GST Register", href: "#" },
-      { label: "Business Name Register", href: "#" },
+      { label: "Business Name Register", href: "/business-name-registration" },
     ],
   },
   {
