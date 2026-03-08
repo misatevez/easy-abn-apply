@@ -12,12 +12,12 @@ const WhoNeedsABN = () => {
   return (
     <section className="relative overflow-hidden bg-card py-20 md:py-24">
       {/* Subtle decorative circles */}
-      <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-primary/[0.04]" />
-      <div className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-primary/[0.03]" />
-      <div className="pointer-events-none absolute right-1/4 top-10 h-32 w-32 rounded-full bg-primary/[0.025]" />
+      <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-primary/[0.025]" />
+      <div className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-primary/[0.02]" />
+      <div className="pointer-events-none absolute right-1/4 top-10 h-32 w-32 rounded-full bg-primary/[0.015]" />
 
       <div className="container relative px-4">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             Who Needs an ABN?
           </h2>
@@ -27,7 +27,7 @@ const WhoNeedsABN = () => {
             business or invoice clients in Australia.
           </p>
 
-          <div className="mx-auto flex max-w-md flex-col gap-3 text-left">
+          <div className="mx-auto grid max-w-2xl gap-3 text-left sm:grid-cols-2">
             {items.map((item) => (
               <div
                 key={item}
