@@ -73,11 +73,6 @@ const HeroSection = () => {
                   </a>
                 </div>
 
-                {/* Trust line */}
-                <p className="mb-8 text-sm font-medium text-muted-foreground">
-                  Trusted by Australian businesses for fast ABN registration
-                </p>
-
                 {/* Trust indicators - matching ABN Registration page */}
                 <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-bold text-foreground">
                   <span className="flex items-center gap-1.5">
