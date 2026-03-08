@@ -109,7 +109,7 @@ const Header = () => {
         <Link to="/" className="flex items-center gap-2">
           <img src={logoAustralia} alt="ABN Number logo" className="h-12 w-12 rounded-full ring-2 ring-primary-foreground" />
           <span className="text-xl font-bold text-primary-foreground">
-            ABN<span className="text-primary-foreground">Number</span>
+            ABN-Number
           </span>
         </Link>
 
