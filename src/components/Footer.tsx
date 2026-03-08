@@ -55,7 +55,7 @@ const Footer = () => {
               <Shield className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-lg font-bold text-[hsl(0,0%,95%)]">
-              Australian Business Number
+              ABN<span className="text-primary">Number</span>
             </span>
           </div>
           <div className="flex items-center gap-2 text-sm">
@@ -111,7 +111,7 @@ const Footer = () => {
       <div className="border-t border-[hsl(215,20%,20%)]">
         <div className="container py-6 text-center">
           <p className="text-sm text-[hsl(210,15%,55%)]">
-            © {new Date().getFullYear()} ABN Register. All rights reserved.
+            © {new Date().getFullYear()} ABN Number. All rights reserved.
           </p>
           <p className="mt-1.5 text-xs text-[hsl(210,15%,45%)]">
             This is a paid registration service. We are not a government agency.
