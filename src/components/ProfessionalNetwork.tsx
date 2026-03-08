@@ -6,21 +6,21 @@ import logoTaxInstitute from "@/assets/logo-tax-institute-2.png";
 import logoMyob from "@/assets/logo-myob-2.png";
 
 const logos = [
-  { src: logoXero, alt: "Xero" },
-  { src: logoCaanz, alt: "Chartered Accountants ANZ" },
-  { src: logoTpb, alt: "Tax Practitioners Board Registered" },
-  { src: logoQuickbooks, alt: "QuickBooks" },
-  { src: logoTaxInstitute, alt: "The Tax Institute" },
-  { src: logoMyob, alt: "MYOB" },
+  { src: logoXero, alt: "Xero", size: "h-[115px] w-[115px]" },
+  { src: logoCaanz, alt: "Chartered Accountants ANZ", size: "h-[115px] w-[160px]" },
+  { src: logoTpb, alt: "Tax Practitioners Board Registered", size: "h-[115px] w-[115px]" },
+  { src: logoQuickbooks, alt: "QuickBooks", size: "h-[115px] w-[115px]" },
+  { src: logoTaxInstitute, alt: "The Tax Institute", size: "h-[115px] w-[160px]" },
+  { src: logoMyob, alt: "MYOB", size: "h-[115px] w-[115px]" },
 ];
 
 const ProfessionalNetwork = () => {
   return (
     <section className="bg-[hsl(210,33%,98%)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-      <div className="container">
-        <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
+      <div className="mx-auto" style={{ maxWidth: "1240px", paddingLeft: "2rem", paddingRight: "2rem" }}>
+        <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-center" style={{ gap: "150px" }}>
           {/* Left column - Text */}
-          <div>
+          <div className="shrink-0 lg:max-w-[400px]">
             <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">
               Trusted by Leading Accounting & Financial Institutions
             </p>
@@ -30,7 +30,10 @@ const ProfessionalNetwork = () => {
           </div>
 
           {/* Right column - Logos */}
-          <div className="grid grid-cols-3 items-center justify-items-center gap-x-16 gap-y-12">
+          <div
+            className="grid grid-cols-3 items-center justify-items-center"
+            style={{ gap: "65px 85px", width: "540px" }}
+          >
             {logos.map((logo) => (
               <div
                 key={logo.alt}
@@ -39,7 +42,7 @@ const ProfessionalNetwork = () => {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-[200px] w-[200px] object-contain"
+                  className={`${logo.size} object-contain`}
                   loading="lazy"
                 />
               </div>
