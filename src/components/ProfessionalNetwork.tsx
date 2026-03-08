@@ -16,29 +16,35 @@ const logos = [
 
 const ProfessionalNetwork = () => {
   return (
-    <section className="bg-[hsl(210_40%_98%)] py-20 md:py-24">
+    <section className="bg-secondary/30 py-20 md:py-24">
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold leading-tight text-foreground md:text-4xl">
-            Our partners and associations
-          </h2>
-        </div>
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          {/* Left – text */}
+          <div>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
+              Trusted by leading accounting and financial institutions
+            </p>
+            <h2 className="text-3xl font-bold leading-tight text-foreground md:text-4xl">
+              Our partners and associations
+            </h2>
+          </div>
 
-        <div className="mx-auto mt-12 grid max-w-[820px] grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-12">
-          {logos.map((logo) => (
-            <div
-              key={logo.alt}
-              className="flex items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
-              style={{ minHeight: 160 }}
-            >
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                className="h-auto w-[140px] max-h-[100px] object-contain"
-                loading="lazy"
-              />
-            </div>
-          ))}
+          {/* Right – logos */}
+          <div className="grid grid-cols-2 gap-x-16 gap-y-10 sm:grid-cols-3">
+            {logos.map((logo) => (
+              <div
+                key={logo.alt}
+                className="flex items-center justify-center transition-transform duration-200 hover:scale-105"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-auto w-[130px] max-h-[90px] object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
