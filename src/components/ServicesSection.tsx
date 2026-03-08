@@ -42,7 +42,7 @@ const services = [
   {
     icon: RefreshCw,
     title: "Cancellations & Updates",
-    price: "From $69",
+    price: "$69",
     priceNote: "Multiple changes supported",
     description: "Cancel or update your registrations with expert assistance.",
     cta: "Start Cancellation",
