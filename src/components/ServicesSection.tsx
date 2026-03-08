@@ -51,9 +51,10 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative bg-white py-20">
-      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-primary/[0.03] blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-primary/[0.03] blur-3xl" />
+    <section id="services" className="relative overflow-hidden bg-white py-20">
+      <div className="pointer-events-none absolute -right-28 -top-20 h-[400px] w-[400px] rounded-full bg-[#DCE6FF]/[0.20] blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 bottom-0 h-[350px] w-[350px] rounded-full bg-[#DCE6FF]/[0.18] blur-3xl" />
+      <div className="pointer-events-none absolute right-1/4 bottom-1/3 h-[280px] w-[280px] rounded-full bg-[#DCE6FF]/[0.15] blur-2xl" />
 
       <div className="container relative">
         <div className="mb-14 text-center">
