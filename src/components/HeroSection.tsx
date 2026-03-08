@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section
       className="relative overflow-hidden pb-24 pt-20 md:pb-36 md:pt-32"
       style={{
-        background: "linear-gradient(180deg, #F5F8FF 0%, #EEF4FF 45%, #FFFFFF 100%)",
+        background: "linear-gradient(180deg, #E4E8FF 0%, #F4FBFD 100%)",
       }}
     >
       {/* Decorative circles */}
