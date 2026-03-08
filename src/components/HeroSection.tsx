@@ -37,7 +37,7 @@ const HeroSection = () => {
                 in minutes with expert compliance review.
               </p>
 
-              <p className="mx-auto mb-4 max-w-md text-sm font-medium text-primary">
+              <p className="mx-auto mb-4 max-w-md text-sm font-bold text-primary">
                 ✔ Most ABN applications processed within 24 hours
               </p>
 
