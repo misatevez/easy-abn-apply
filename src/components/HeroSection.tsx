@@ -82,7 +82,7 @@ const HeroSection = () => {
                   <Lock className="h-4 w-4 text-primary" /> SSL Protected
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-primary" /> Expert Reviewed
+                  <CheckCircle2 className="h-4 w-4 text-primary" /> Expert Compliance Review
                 </span>
               </div>
             </div>
