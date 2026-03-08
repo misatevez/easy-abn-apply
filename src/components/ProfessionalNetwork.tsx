@@ -17,10 +17,10 @@ const logos = [
 const ProfessionalNetwork = () => {
   return (
     <section className="bg-[hsl(210,33%,98%)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
-      <div className="mx-auto" style={{ maxWidth: "1240px", paddingLeft: "2rem", paddingRight: "2rem" }}>
-        <div className="flex flex-col items-start gap-12 lg:flex-row lg:items-center lg:gap-[140px]">
+      <div className="mx-auto max-w-7xl px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[140px]">
           {/* Left column - Text */}
-          <div className="shrink-0 lg:max-w-[400px]">
+          <div>
             <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">
               Trusted by Leading Accounting & Financial Institutions
             </p>
@@ -32,7 +32,7 @@ const ProfessionalNetwork = () => {
           {/* Right column - Logos */}
           <div
             className="grid grid-cols-3 items-center justify-items-center"
-            style={{ gap: "65px 85px", width: "540px" }}
+            style={{ gap: "60px 80px" }}
           >
             {logos.map((logo) => (
               <div
