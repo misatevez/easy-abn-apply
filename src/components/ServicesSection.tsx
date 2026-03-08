@@ -73,45 +73,38 @@ const ServicesSection = () => {
               key={service.title}
               className="group relative flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg"
             >
-              {/* Top content — grows to fill space */}
-              <div className="flex flex-1 flex-col">
-                {/* Icon */}
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
-                </div>
-
-                {/* Title */}
-                <h3 className="mb-2 text-lg font-semibold text-foreground">
-                  {service.title}
-                </h3>
-
-                {/* Description + Includes — fixed height for alignment */}
-                <div className="mb-4 min-h-[8rem]">
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
-                  </p>
-
-                  {service.includes && (
-                    <ul className="mt-3 space-y-1.5">
-                      {service.includes.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+              {/* Icon */}
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                <service.icon className="h-6 w-6 text-primary" />
               </div>
 
-              {/* Bottom content — always aligned */}
-              <div className="mt-auto flex flex-col">
-                {/* Price / Options — fixed height zone for cross-card alignment */}
-                <div className="mb-5 min-h-[3.5rem] flex items-end">
-                  {service.price && (
-                    <p className="text-3xl font-bold text-foreground">{service.price}</p>
-                  )}
-                </div>
+              {/* Title */}
+              <h3 className="mb-2 text-lg font-semibold text-foreground">
+                {service.title}
+              </h3>
+
+              {/* Description + Includes — grows to push price/CTA down */}
+              <div className="mb-4 flex-1">
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {service.description}
+                </p>
+
+                {service.includes && (
+                  <ul className="mt-3 space-y-1.5">
+                    {service.includes.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {/* Price */}
+              <div className="mb-5">
+                <p className="text-3xl font-bold text-foreground">{service.price}</p>
+              </div>
 
                 {/* CTA */}
                 <Link to="/abn-registration">
