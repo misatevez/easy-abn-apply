@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, CheckCircle2, Clock } from "lucide-react";
+import { Shield, Lock, CheckCircle2, Clock, Search, RefreshCw } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -16,56 +16,77 @@ const HeroSection = () => {
       <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DBEAFE]/60 blur-xl" />
 
       <div className="container relative z-10 px-4 text-center">
-        {/* Badge */}
-        <div className="mb-10 inline-flex items-center gap-2.5 rounded-full border border-[#DBEAFE] bg-[#EEF2FF]/80 px-5 py-2.5 text-sm font-medium text-[#2563EB] shadow-[0_0_16px_rgba(37,99,235,0.06)]">
+        {/* Floating Badge */}
+        <div
+          className="mb-10 inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-sm font-medium text-[#2563EB]"
+          style={{
+            background: "rgba(255,255,255,0.6)",
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 6px 18px rgba(0,0,0,0.05)",
+          }}
+        >
           <Shield className="h-4 w-4" />
           Accredited Tax Agent – Licence No. 24666831
         </div>
 
         {/* Headline */}
         <h1 className="mb-5 text-4xl font-extrabold leading-[1.15] tracking-tight text-[#0F172A] md:text-5xl lg:text-6xl">
-          Register Your ABN{" "}
+          ABN Registration{" "}
           <span className="text-[#2563EB]">Online</span>
         </h1>
 
         {/* Subtitle */}
         <p className="mx-auto mb-3 max-w-xl text-lg leading-relaxed text-[#475569] md:text-xl">
-          Apply for your Australian Business Number in minutes.
+          Apply for your Australian Business Number (ABN) in minutes
         </p>
 
         {/* Supporting text */}
         <p className="mx-auto mb-12 max-w-lg text-base leading-relaxed text-[#64748B]">
-          Register your ABN, GST, and Business Name at the same application.
+          You can also register for GST or apply for a Business Name in the same application.
         </p>
 
-        {/* Primary CTA */}
-        <div className="mb-4">
+        {/* Primary buttons */}
+        <div className="mb-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link to="/abn-registration">
             <Button
               size="lg"
               className="h-14 rounded-lg bg-[#2563EB] px-10 text-base font-semibold text-white hover:bg-[#1D4ED8]"
-              style={{
-                boxShadow: "0 10px 24px rgba(37, 99, 235, 0.22)",
-              }}
+              style={{ boxShadow: "0 10px 24px rgba(37, 99, 235, 0.22)" }}
             >
-              Start ABN Application
+              Apply for a new ABN
+            </Button>
+          </Link>
+          <Link to="/abn-registration">
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 rounded-lg border-[#2563EB]/30 bg-[#2563EB]/5 px-10 text-base font-semibold text-[#2563EB] hover:bg-[#2563EB]/10"
+            >
+              <RefreshCw className="mr-2 h-4 w-4" />
+              Renew my ABN
             </Button>
           </Link>
         </div>
 
-        {/* Micro reassurance */}
-        <p className="mb-10 flex items-center justify-center gap-1.5 text-sm text-[#64748B]">
-          <Clock className="h-3.5 w-3.5" />
-          Takes less than 5 minutes
-        </p>
+        {/* Secondary buttons */}
+        <div className="mb-10 flex items-center justify-center gap-4">
+          <Button variant="ghost" className="text-sm font-medium text-[#64748B] hover:text-[#2563EB]">
+            <Search className="mr-1.5 h-3.5 w-3.5" />
+            ABN Finder
+          </Button>
+          <Button variant="ghost" className="text-sm font-medium text-[#64748B] hover:text-[#2563EB]">
+            <Search className="mr-1.5 h-3.5 w-3.5" />
+            ABN Lookup
+          </Button>
+        </div>
 
         {/* Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-medium text-[#475569]">
           <span className="flex items-center gap-2">
-            <Shield className="h-4 w-4 text-[#3B82F6]" /> Accredited Tax Agent
+            <Lock className="h-4 w-4 text-[#3B82F6]" /> Secure & Encrypted
           </span>
           <span className="flex items-center gap-2">
-            <Lock className="h-4 w-4 text-[#3B82F6]" /> SSL Protected
+            <Shield className="h-4 w-4 text-[#3B82F6]" /> SSL Protected
           </span>
           <span className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-[#3B82F6]" /> Expert Reviewed
