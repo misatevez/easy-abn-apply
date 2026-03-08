@@ -7,24 +7,21 @@ const steps = [
     icon: ClipboardList,
     label: "REGISTRATION",
     title: "Complete the Online Form",
-    description:
-      "Provide your details to generate your ABN. You can also register a business name and GST in the same form.",
+    description: "Submit your business details in our secure online form.",
     stepperLabel: "Submit your details",
   },
   {
     icon: ShieldCheck,
     label: "REVIEW",
-    title: "Expert Compliance Check",
-    description:
-      "Our team verifies your application meets ATO requirements and resolves any issues before submission.",
+    title: "Expert Compliance Review",
+    description: "Our tax professionals review your application before submission.",
     stepperLabel: "Expert compliance review",
   },
   {
     icon: Mail,
     label: "DELIVERY",
-    title: "Receive Your ABN Fast",
-    description:
-      "Your ABN is sent via email typically within 5 minutes, always within 2 hours.",
+    title: "Receive Your ABN",
+    description: "Your ABN is typically delivered within minutes by email.",
     stepperLabel: "Receive your ABN",
   },
 ];
@@ -32,41 +29,55 @@ const steps = [
 const highlights = [
   "Takes about 5 minutes",
   "Reviewed by accredited tax professionals",
-  "Secure & encrypted submission",
 ];
 
 const HowItWorks = () => {
   return (
     <section id="how-it-works" className="relative overflow-hidden bg-background py-24">
-      {/* Subtle decorative accent */}
       <div className="pointer-events-none absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03]" />
       <div className="pointer-events-none absolute -right-28 bottom-0 h-[280px] w-[280px] rounded-full bg-primary/[0.02]" />
 
       <div className="container relative">
         {/* Header */}
-        <div className="mx-auto mb-16 max-w-2xl text-center">
+        <div className="mx-auto mb-14 max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
-            How to register your official ABN?
+            How to Register Your ABN
           </h2>
           <p className="text-muted-foreground md:text-lg">
-            Because simplifying your business tasks just makes sense—we're here to make ABN registration quick and effortless.
+            We make ABN registration simple, secure, and fast.
           </p>
         </div>
 
         {/* Progress stepper */}
-        <div className="mx-auto mb-12 hidden max-w-3xl md:block">
+        <div className="mx-auto mb-14 hidden max-w-2xl md:block">
           <div className="flex items-center justify-between">
             {steps.map((s, i) => (
-              <div key={s.label} className="flex items-center">
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+              <div key={s.label} className="flex flex-1 items-center">
+                {/* Line before (except first) */}
+                {i > 0 && <div className="h-px flex-1 bg-primary/20" />}
+
+                {/* Step circle + label */}
+                <div className="flex flex-col items-center gap-2">
+                  <div
+                    className={`flex items-center justify-center rounded-full font-bold text-primary-foreground ${
+                      i === 1
+                        ? "h-10 w-10 bg-primary text-base"
+                        : "h-7 w-7 bg-primary/60 text-xs"
+                    }`}
+                  >
                     {i + 1}
                   </div>
-                  <span className="text-sm font-medium text-foreground">{s.stepperLabel}</span>
+                  <span
+                    className={`max-w-[120px] text-center text-sm leading-tight ${
+                      i === 1 ? "font-semibold text-primary" : "text-muted-foreground"
+                    }`}
+                  >
+                    {s.stepperLabel}
+                  </span>
                 </div>
-                {i < steps.length - 1 && (
-                  <div className="mx-6 h-px w-24 bg-border lg:w-36" />
-                )}
+
+                {/* Line after (except last) */}
+                {i < steps.length - 1 && <div className="h-px flex-1 bg-primary/20" />}
               </div>
             ))}
           </div>
@@ -78,19 +89,16 @@ const HowItWorks = () => {
             {steps.map((s, i) => (
               <div
                 key={s.label}
-                className={`group relative flex flex-col rounded-xl border bg-card p-7 transition-shadow duration-300 ${
-                  i === 0
-                    ? "border-primary shadow-lg shadow-primary/10"
-                    : "border-border shadow-sm hover:shadow-lg"
+                className={`group relative flex flex-col rounded-xl p-7 transition-shadow duration-300 ${
+                  i <= 1
+                    ? "border-2 border-dashed border-primary/50 shadow-lg shadow-primary/5"
+                    : "border border-dashed border-border shadow-sm"
                 }`}
               >
-                {/* Step number + icon */}
-                <div className="relative z-10 mb-5 flex items-center gap-4">
+                {/* Icon */}
+                <div className="mb-5">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <s.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                    {i + 1}
                   </div>
                 </div>
 
@@ -113,7 +121,7 @@ const HowItWorks = () => {
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">
-                      <Button variant="hero" size="lg" className="h-12 w-full text-sm shadow-lg shadow-primary/20">
+                      <Button variant="hero" size="lg" className="h-12 px-8 text-sm shadow-lg shadow-primary/20">
                         Start Your ABN Registration
                       </Button>
                     </Link>
