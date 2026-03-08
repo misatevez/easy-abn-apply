@@ -12,12 +12,12 @@ const Index = () => {
   return (
     <Layout>
       <HeroSection />
+      <TrustStrip />
       <HowItWorks />
       <WhoNeedsABN />
       <TrustSection />
       <div className="container"><hr className="border-border" /></div>
       <ServicesSection />
-      <TrustStrip />
       <FAQSection />
       
     </Layout>
