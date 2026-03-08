@@ -61,7 +61,7 @@ const Footer = () => {
                 </span>
               </div>
 
-              <p className="text-sm leading-relaxed text-[hsl(210,15%,52%)] max-w-[300px]">
+              <p className="text-sm leading-relaxed text-[hsl(210,15%,72%)] max-w-[300px]">
                 Secure ABN &amp; GST registration services compliant with Australian regulations.
               </p>
 
