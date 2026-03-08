@@ -107,7 +107,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={logoAustralia} alt="ABN Number logo" className="h-9 w-9 rounded-lg" />
+          <img src={logoAustralia} alt="ABN Number logo" className="h-11 w-11 rounded-lg" />
           <span className="text-xl font-bold text-primary-foreground">
             ABN<span className="text-primary-foreground">Number</span>
           </span>
