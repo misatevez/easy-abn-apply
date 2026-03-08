@@ -45,14 +45,14 @@ const TrustSection = () => {
             <div className="mx-auto mb-14 h-px w-24 bg-border/40" />
 
             <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
-              Why Australian businesses trust our ABN service
+              Why Australian Businesses Trust Our ABN Service
             </h2>
 
             {/* 4 features with vertical separators */}
             <div className="mb-14 hidden sm:flex">
               {conversionBenefits.map((benefit, i) => (
                 <div key={benefit.title} className="flex flex-1">
-                  <div className="flex flex-1 flex-col items-center px-5 text-center">
+                  <div className="group flex flex-1 flex-col items-center rounded-xl px-5 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border hover:border-primary/20" style={{ border: "1px solid transparent" }}>
                     <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
                       <benefit.icon className="h-6 w-6 text-primary" />
                     </div>
@@ -94,6 +94,9 @@ const TrustSection = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
+              <p className="mt-3 text-xs text-muted-foreground">
+                Takes about 5 minutes • Secure submission
+              </p>
             </div>
           </div>
         </div>
