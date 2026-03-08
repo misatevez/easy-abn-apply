@@ -32,7 +32,7 @@ const ProfessionalNetwork = () => {
           {/* Right column - Logos */}
           <div
             className="grid grid-cols-3 items-center justify-items-center"
-            style={{ gap: "60px 80px" }}
+            style={{ gap: "19px 80px" }}
           >
             {logos.map((logo) => (
               <div
