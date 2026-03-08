@@ -49,7 +49,7 @@ const HeroSection = () => {
                 <Link to="/abn-registration">
                   <Button
                     size="lg"
-                    className="h-[50px] rounded-[10px] bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_6px_18px_rgba(37,99,235,0.25)] hover:bg-primary/90"
+                    className="h-[50px] rounded-[10px] bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_6px_18px_rgba(37,99,235,0.25)] hover:brightness-110 hover:bg-primary/85 transition-all"
                   >
                     Apply for a new ABN
                   </Button>
