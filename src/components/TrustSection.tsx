@@ -53,13 +53,13 @@ const TrustSection = () => {
               {conversionBenefits.map((benefit, i) => (
                 <div key={benefit.title} className="flex flex-1 items-start">
                   <div className="group flex flex-1 flex-col items-center px-8 text-center">
-                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted/50 transition-colors duration-200 group-hover:bg-muted/80">
+                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted transition-colors duration-200 group-hover:bg-muted/80">
                       <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                     </div>
-                    <h3 className="mb-2 text-sm font-extrabold text-foreground">
+                    <h3 className="mb-2 text-base font-extrabold text-foreground">
                       {benefit.title}
                     </h3>
-                    <p className="text-xs leading-relaxed text-muted-foreground">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {benefit.description}
                     </p>
                   </div>
@@ -74,13 +74,13 @@ const TrustSection = () => {
             <div className="mb-20 flex flex-col gap-10 sm:hidden">
               {conversionBenefits.map((benefit) => (
                 <div key={benefit.title} className="group flex flex-col items-center text-center">
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted/50 transition-colors duration-200 group-hover:bg-muted/80">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted transition-colors duration-200 group-hover:bg-muted/80">
                     <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                   </div>
-                  <h3 className="mb-2 text-sm font-extrabold text-foreground">
+                  <h3 className="mb-2 text-base font-extrabold text-foreground">
                     {benefit.title}
                   </h3>
-                  <p className="text-xs leading-relaxed text-muted-foreground">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     {benefit.description}
                   </p>
                 </div>
