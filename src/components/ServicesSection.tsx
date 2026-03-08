@@ -9,9 +9,8 @@ const services = [
     price: "$69",
     priceNote: "One-time service fee",
     description: "Apply for a new ABN or renew an existing one online.",
-    cta: "Apply for ABN",
+    cta: "Apply or Renew ABN",
     ctaLink: "/abn-registration",
-    renewLink: "/abn-registration?purpose=renew",
     note: "Add Business Name or GST during the application.",
     popular: true,
   },
@@ -109,16 +108,6 @@ const ServicesSection = () => {
                   {service.cta}
                 </Button>
               </Link>
-
-              {/* Renew link */}
-              {service.renewLink && (
-                <Link
-                  to={service.renewLink}
-                  className="mt-2.5 block text-center text-sm font-medium text-primary hover:underline"
-                >
-                  or Renew my ABN →
-                </Link>
-              )}
 
               {/* Note */}
               <p className="mt-4 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground">
