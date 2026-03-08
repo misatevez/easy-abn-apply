@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logoAustralia from "@/assets/logo-australia.png";
+import logoAustralia from "@/assets/logo-australia-flag.png";
 
 interface DropdownItem {
   label: string;
