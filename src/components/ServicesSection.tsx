@@ -51,16 +51,16 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-20" style={{ backgroundColor: '#F8FAFC' }}>
+    <section id="services" className="relative py-20 bg-background">
       <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-primary/[0.03] blur-3xl" />
       <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-primary/[0.03] blur-3xl" />
 
       <div className="container relative">
         <div className="mb-14 text-center">
-          <h2 className="mb-3 text-3xl font-bold md:text-4xl" style={{ color: '#0F172A' }}>
+          <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
             Business Registration Services
           </h2>
-          <p className="mx-auto max-w-xl" style={{ color: '#64748B' }}>
+          <p className="mx-auto max-w-xl text-muted-foreground">
             Choose the service you need. Additional services can be added during the application.
           </p>
         </div>
@@ -70,7 +70,7 @@ const ServicesSection = () => {
             <div key={service.title} className="relative">
               {service.badge && (
                 <div className="absolute -top-[11px] left-1/2 -translate-x-1/2 z-10">
-                  <span className="rounded-full bg-[#FFE8B9] px-4 py-1 text-xs font-medium shadow-sm whitespace-nowrap" style={{ color: '#0F172A' }}>
+                  <span className="rounded-full bg-[#FFE8B9] px-4 py-1 text-xs font-medium text-foreground shadow-sm whitespace-nowrap">
                     {service.badge}
                   </span>
                 </div>
@@ -78,24 +78,26 @@ const ServicesSection = () => {
               <div
                 className="group relative flex h-full flex-col rounded-2xl border-2 border-border bg-card p-7 shadow-sm transition-all duration-[250ms] hover:-translate-y-1 hover:border-primary hover:shadow-lg"
               >
+                {/* Top content */}
                 <div className="flex flex-1 flex-col">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl" style={{ backgroundColor: '#EEF2FF' }}>
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                     <service.icon className="h-6 w-6 text-primary" />
                   </div>
 
-                  <h3 className="mb-2 text-lg font-bold" style={{ color: '#0F172A' }}>
+                  <h3 className="mb-2 text-lg font-bold text-foreground">
                     {service.title}
                   </h3>
 
-                  <p className="mb-5 text-sm leading-relaxed" style={{ color: '#475569' }}>
+                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
                     {service.description}
                   </p>
                 </div>
 
+                {/* Bottom content */}
                 <div className="mt-auto flex flex-col">
                   <div className="mb-5">
-                    <p className="text-3xl font-bold" style={{ color: '#0F172A' }}>{service.price}</p>
-                    <p className="mt-0.5 text-xs" style={{ color: '#64748B' }}>{service.priceNote}</p>
+                    <p className="text-3xl font-bold text-foreground">{service.price}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{service.priceNote}</p>
                   </div>
 
                   <Link to={service.ctaLink}>
@@ -104,7 +106,7 @@ const ServicesSection = () => {
                     </Button>
                   </Link>
 
-                  <p className="mt-3 text-xs leading-relaxed" style={{ color: '#94A3B8' }}>
+                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground/70">
                     {service.note}
                   </p>
                 </div>
@@ -113,7 +115,7 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        <p className="mt-12 text-center text-sm" style={{ color: '#64748B' }}>
+        <p className="mt-12 text-center text-sm text-muted-foreground">
           Register an ABN, GST, and Business Name in one application, or manage multiple updates and cancellations together.
         </p>
       </div>

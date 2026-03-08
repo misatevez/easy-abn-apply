@@ -43,10 +43,10 @@ const HowItWorks = () => {
       <div className="container relative">
         {/* Header */}
         <div className="mx-auto mb-14 max-w-2xl text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl" style={{ color: '#0F172A' }}>
+          <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
             How to Register Your ABN
           </h2>
-          <p className="md:text-lg" style={{ color: '#64748B' }}>
+          <p className="text-muted-foreground md:text-lg">
             We make ABN registration simple, secure, and fast.
           </p>
         </div>
@@ -105,7 +105,7 @@ const HowItWorks = () => {
               >
                 {/* Icon */}
                 <div className="mb-5">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: '#EEF2FF' }}>
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                     <s.icon className="h-6 w-6 text-primary" />
                   </div>
                 </div>
@@ -114,25 +114,25 @@ const HowItWorks = () => {
                   {s.label}
                 </span>
 
-                <h3 className="mb-3 text-lg font-semibold leading-snug" style={{ color: '#0F172A' }}>
+                <h3 className="mb-3 text-lg font-semibold leading-snug text-foreground">
                   {s.title}
                 </h3>
 
-                <p className="flex-1 text-sm leading-relaxed" style={{ color: '#475569' }}>
+                <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
                   {s.description}
                 </p>
 
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">
-                      <Button variant="hero" size="lg" className="h-12 px-8 text-sm" style={{ boxShadow: '0 6px 14px rgba(37, 99, 235, 0.2)' }}>
+                      <Button variant="hero" size="lg" className="h-12 px-8 text-sm shadow-lg shadow-primary/20">
                         Start Your ABN Registration
                       </Button>
                     </Link>
                     <ul className="mt-4 space-y-1.5">
                       {highlights.map((h) => (
-                        <li key={h} className="flex items-center gap-2 text-sm" style={{ color: '#64748B' }}>
-                          <Check className="h-4 w-4 shrink-0" style={{ color: '#64748B' }} />
+                        <li key={h} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <Check className="h-4 w-4 shrink-0 text-muted-foreground" />
                           {h}
                         </li>
                       ))}
