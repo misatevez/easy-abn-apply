@@ -38,7 +38,7 @@ const TrustSection = () => {
       </section>
 
       {/* Conversion Bridge */}
-      <section className="bg-background py-24">
+      <section className="bg-[#E6EDFB] py-24">
         <div className="container">
           <div className="mx-auto max-w-5xl">
             {/* Divider */}
@@ -94,9 +94,6 @@ const TrustSection = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Takes about 5 minutes • Secure submission
-              </p>
             </div>
           </div>
         </div>
