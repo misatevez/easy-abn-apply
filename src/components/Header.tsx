@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logoAustralia from "@/assets/logo-australia.png";
+import logoAustralia from "@/assets/logo-australia-flag.png";
 
 interface DropdownItem {
   label: string;
@@ -107,7 +107,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={logoAustralia} alt="ABN Number logo" className="h-11 w-11 rounded-lg" />
+          <img src={logoAustralia} alt="ABN Number logo" className="h-12 w-12 rounded-full" />
           <span className="text-xl font-bold text-primary-foreground">
             ABN<span className="text-primary-foreground">Number</span>
           </span>

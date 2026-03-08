@@ -1,6 +1,6 @@
 import { Lock, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import logoAustralia from "@/assets/logo-australia.png";
+import logoAustralia from "@/assets/logo-australia-flag.png";
 
 const footerNav = [
 {
