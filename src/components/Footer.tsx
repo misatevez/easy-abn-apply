@@ -61,16 +61,16 @@ const Footer = () => {
                 </span>
               </div>
 
-              <p className="text-sm leading-relaxed text-[hsl(210,15%,52%)] max-w-[300px]">
+              <p className="text-sm leading-relaxed text-[hsl(210,15%,72%)] max-w-[300px]">
                 Secure ABN &amp; GST registration services compliant with Australian regulations.
               </p>
 
               <div className="space-y-2.5">
-                <div className="flex items-center gap-2.5 text-[13px] text-[hsl(210,18%,68%)]">
+                <div className="flex items-center gap-2.5 text-[13px] text-[hsl(210,18%,82%)]">
                   <Lock className="h-3.5 w-3.5 shrink-0 text-primary" />
                   <span>SSL Secure Transaction</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-[13px] text-[hsl(210,18%,68%)]">
+                <div className="flex items-start gap-2.5 text-[13px] text-[hsl(210,18%,82%)]">
                   <Shield className="h-3.5 w-3.5 shrink-0 text-primary mt-0.5" />
                   <span>Licensed Australian Tax Agent – Licence No. 24666831</span>
                 </div>
@@ -108,7 +108,7 @@ const Footer = () => {
                         <li key={link.label}>
                           <Link
                             to={link.href}
-                            className="text-[13px] text-[hsl(210,15%,58%)] transition-colors duration-200 hover:text-[hsl(0,0%,92%)]"
+                            className="text-[13px] text-[hsl(210,15%,75%)] transition-colors duration-200 hover:text-[hsl(0,0%,95%)]"
                           >
                             {link.label}
                           </Link>
@@ -127,15 +127,15 @@ const Footer = () => {
       <div style={{ backgroundColor: "#09121d" }}>
         <div className="container py-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[hsl(210,15%,50%)]">
-              <Link to="/terms-and-conditions" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">Terms &amp; Conditions</Link>
-              <Link to="/privacy-policy" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">Privacy Policy</Link>
-              <Link to="/faq" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">FAQ</Link>
-              <Link to="/contact-us" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">Contact Us</Link>
+            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[hsl(210,15%,70%)]">
+              <Link to="/terms-and-conditions" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Terms &amp; Conditions</Link>
+              <Link to="/privacy-policy" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Privacy Policy</Link>
+              <Link to="/faq" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">FAQ</Link>
+              <Link to="/contact-us" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Contact Us</Link>
             </nav>
             <a
               href="mailto:info@abn-number.com"
-              className="flex items-center gap-1.5 text-[13px] text-[hsl(210,15%,50%)] transition-colors duration-200 hover:text-[hsl(0,0%,88%)]"
+              className="flex items-center gap-1.5 text-[13px] text-[hsl(210,15%,70%)] transition-colors duration-200 hover:text-[hsl(0,0%,95%)]"
             >
               <Mail className="h-3.5 w-3.5" />
               info@abn-number.com
@@ -143,10 +143,10 @@ const Footer = () => {
           </div>
 
           <div className="mt-5 border-t border-[hsl(215,20%,12%)] pt-5 text-center">
-            <p className="text-xs text-[hsl(210,15%,40%)]">
+            <p className="text-xs text-[hsl(210,15%,60%)]">
               © {new Date().getFullYear()} ABN Number. All rights reserved.
             </p>
-            <p className="mt-1 text-[11px] text-[hsl(210,15%,33%)]">
+            <p className="mt-1 text-[11px] text-[hsl(210,15%,50%)]">
               ABN-Number is a private registration service and is not affiliated with the Australian Government.
             </p>
           </div>
