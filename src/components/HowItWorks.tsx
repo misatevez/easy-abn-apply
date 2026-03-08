@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ClipboardList, ShieldCheck, Mail } from "lucide-react";
@@ -6,20 +7,23 @@ const steps = [
   {
     icon: ClipboardList,
     step: "Registration",
+    indicator: "Submit your details",
     title: "Complete the Online Form",
     description:
-      "Provide your details to generate your ABN. You can also register a business name and GST in the same form.",
+      "Provide your details to generate your ABN. Register a business name and GST in the same form.",
   },
   {
     icon: ShieldCheck,
     step: "Review",
+    indicator: "Expert compliance review",
     title: "Expert Compliance Check",
     description:
-      "Our team verifies your application meets ATO requirements and resolves any issues before submission.",
+      "Our team verifies your application meets ATO requirements before submission.",
   },
   {
     icon: Mail,
     step: "Delivery",
+    indicator: "Receive your ABN",
     title: "Receive Your ABN Fast",
     description:
       "Your ABN is sent via email typically within 5 minutes, always within 2 hours.",
@@ -27,6 +31,8 @@ const steps = [
 ];
 
 const HowItWorks = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section id="how-it-works" className="relative overflow-hidden bg-background py-24">
       <div className="pointer-events-none absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03]" />
@@ -43,29 +49,67 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* Steps */}
         <div className="relative mx-auto max-w-5xl">
-          <div className="pointer-events-none absolute left-0 right-0 top-[72px] hidden h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent md:block" />
+          {/* Step Indicator */}
+          <div className="mb-10 hidden md:block">
+            <div className="relative flex items-center justify-between px-[calc(100%/6)]">
+              {/* Connecting line */}
+              <div className="absolute inset-x-[calc(100%/6)] top-1/2 h-px -translate-y-1/2 bg-border" />
 
+              {/* Highlighted line segments */}
+              {hoveredIndex !== null && hoveredIndex > 0 && (
+                <div
+                  className="absolute top-1/2 h-px -translate-y-1/2 bg-primary/40 transition-all duration-300"
+                  style={{
+                    left: "calc(100% / 6)",
+                    width: `calc(${hoveredIndex} * (100% - 100% / 3) / 2)`,
+                  }}
+                />
+              )}
+
+              {steps.map((s, i) => (
+                <div
+                  key={s.step}
+                  className={`relative z-10 flex items-center gap-2.5 transition-colors duration-300 ${
+                    hoveredIndex === i ? "text-primary" : "text-muted-foreground"
+                  }`}
+                >
+                  <div
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${
+                      hoveredIndex === i
+                        ? "bg-primary text-primary-foreground scale-110"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {i + 1}
+                  </div>
+                  <span className="text-sm font-medium whitespace-nowrap">{s.indicator}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Cards */}
           <div className="grid gap-8 md:grid-cols-3">
             {steps.map((s, i) => (
               <div
                 key={s.step}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 className={`group relative flex flex-col rounded-xl border-2 px-7 py-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl ${
                   i === 0
                     ? "border-primary bg-primary/[0.03] shadow-lg"
                     : "border-border bg-card shadow-sm"
                 }`}
               >
-                {/* Step number + icon */}
-                <div className="relative z-10 mb-5 flex items-center gap-4">
-                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 group-hover:bg-primary/15 ${
-                    i === 0 ? "bg-primary/15" : "bg-primary/10"
-                  }`}>
+                {/* Icon */}
+                <div className="relative z-10 mb-5">
+                  <div
+                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 group-hover:bg-primary/15 ${
+                      i === 0 ? "bg-primary/15" : "bg-primary/10"
+                    }`}
+                  >
                     <s.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground transition-transform duration-300 group-hover:scale-110">
-                    {i + 1}
                   </div>
                 </div>
 
@@ -88,7 +132,11 @@ const HowItWorks = () => {
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">
-                      <Button variant="hero" size="lg" className="h-14 w-full text-base shadow-lg shadow-primary/20">
+                      <Button
+                        variant="hero"
+                        size="lg"
+                        className="h-14 w-full text-base shadow-lg shadow-primary/20"
+                      >
                         Start Your ABN Registration
                       </Button>
                     </Link>
