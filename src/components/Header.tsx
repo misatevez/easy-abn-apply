@@ -110,7 +110,7 @@ const Header = () => {
             <Shield className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="text-xl font-bold text-primary-foreground">
-            ABN<span className="text-primary">Register</span>
+            ABN<span className="text-primary">Number</span>
           </span>
         </Link>
 
