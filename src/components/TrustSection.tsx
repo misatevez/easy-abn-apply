@@ -37,26 +37,22 @@ const TrustSection = () => {
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="py-4">
-        <div className="container">
-          <div className="h-px bg-border/60" />
-        </div>
-      </div>
-
       {/* Conversion Bridge */}
       <section className="bg-background py-20">
         <div className="container">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-14 text-3xl font-bold text-foreground md:text-4xl">
+          <div className="mx-auto max-w-4xl">
+            {/* Thin centered divider above title */}
+            <div className="mx-auto mb-10 h-px w-16 bg-border" />
+
+            <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
               Why Australian businesses trust our ABN service
             </h2>
 
-            {/* 4 items with vertical dividers */}
-            <div className="mb-14 flex flex-col items-center gap-10 sm:flex-row sm:gap-0">
+            {/* 4 features with vertical separators */}
+            <div className="mb-14 hidden sm:flex">
               {conversionBenefits.map((benefit, i) => (
-                <div key={benefit.title} className="flex flex-1 items-start">
-                  <div className="flex flex-col items-center px-6 text-center">
+                <div key={benefit.title} className="flex flex-1">
+                  <div className="flex flex-1 flex-col items-center px-5 text-center">
                     <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
                       <benefit.icon className="h-6 w-6 text-primary" />
                     </div>
@@ -68,18 +64,37 @@ const TrustSection = () => {
                     </p>
                   </div>
                   {i < conversionBenefits.length - 1 && (
-                    <div className="hidden h-24 w-px shrink-0 self-center bg-border sm:block" />
+                    <div className="w-px shrink-0 self-stretch bg-border/60" style={{ marginTop: "12px", marginBottom: "12px" }} />
                   )}
                 </div>
               ))}
             </div>
 
-            <Link to="/abn-registration">
-              <Button variant="hero" size="lg" className="px-10 shadow-lg shadow-primary/20">
-                Start Your ABN Application
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            {/* Mobile stack */}
+            <div className="mb-14 flex flex-col gap-10 sm:hidden">
+              {conversionBenefits.map((benefit) => (
+                <div key={benefit.title} className="flex flex-col items-center text-center">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+                    <benefit.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="mb-2 text-sm font-bold text-foreground">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    {benefit.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Link to="/abn-registration">
+                <Button variant="hero" size="lg" className="px-10 shadow-lg shadow-primary/20">
+                  Start Your ABN Application
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
