@@ -1,6 +1,6 @@
 import logoXero from "@/assets/logo-xero-2.svg";
 import logoCaanz from "@/assets/logo-caanz-2.png";
-import logoTpb from "@/assets/logo-tpb-2.png";
+import logoTpb from "@/assets/logo-tpb-3.webp";
 import logoQuickbooks from "@/assets/logo-quickbooks-2.webp";
 import logoTaxInstitute from "@/assets/logo-tax-institute-2.png";
 import logoMyob from "@/assets/logo-myob-2.png";
