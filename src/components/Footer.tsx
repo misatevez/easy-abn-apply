@@ -66,11 +66,11 @@ const Footer = () => {
               </p>
 
               <div className="space-y-2.5">
-                <div className="flex items-center gap-2.5 text-[13px] text-[hsl(210,18%,68%)]">
+                <div className="flex items-center gap-2.5 text-[13px] text-[hsl(210,18%,82%)]">
                   <Lock className="h-3.5 w-3.5 shrink-0 text-primary" />
                   <span>SSL Secure Transaction</span>
                 </div>
-                <div className="flex items-start gap-2.5 text-[13px] text-[hsl(210,18%,68%)]">
+                <div className="flex items-start gap-2.5 text-[13px] text-[hsl(210,18%,82%)]">
                   <Shield className="h-3.5 w-3.5 shrink-0 text-primary mt-0.5" />
                   <span>Licensed Australian Tax Agent – Licence No. 24666831</span>
                 </div>
