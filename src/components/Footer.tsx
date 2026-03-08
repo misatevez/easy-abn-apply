@@ -75,6 +75,18 @@ const Footer = () => {
               </p>
             </div>
 
+            {/* Conversion CTA */}
+            <div className="rounded-lg border border-[hsl(215,25%,18%)] bg-[hsl(215,25%,13%)] p-5 space-y-3">
+              <p className="text-[hsl(0,0%,95%)] font-semibold">
+                Need an ABN today?
+              </p>
+              <Button asChild variant="hero" size="lg" className="w-full">
+                <Link to="/abn-registration">
+                  Register ABN Now
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           </div>
 
           {/* Service columns */}
@@ -131,7 +143,7 @@ const Footer = () => {
             © {new Date().getFullYear()} ABN Number. All rights reserved.
           </p>
           <p className="mt-1.5 text-xs text-[hsl(210,15%,40%)]">
-            This is a paid registration service. We are not a government agency.
+            ABN-Number is a private registration service and is not affiliated with the Australian Government.
           </p>
         </div>
       </div>
