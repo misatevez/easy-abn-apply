@@ -64,7 +64,7 @@ const TrustSection = () => {
                     </p>
                   </div>
                   {i < conversionBenefits.length - 1 && (
-                    <div className="w-px shrink-0 self-stretch bg-border/20" style={{ marginTop: "16px", marginBottom: "16px" }} />
+                    <div className="w-px shrink-0 self-stretch bg-border/40" style={{ marginTop: "24px", marginBottom: "24px" }} />
                   )}
                 </div>
               ))}
