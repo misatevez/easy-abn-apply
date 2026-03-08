@@ -30,11 +30,11 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-20">
+    <section id="faq" className="bg-background py-20">
       <div className="container">
         <div className="mb-14 text-center">
-          <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Frequently Asked Questions</h2>
-          <p className="text-muted-foreground">Everything you need to know about ABN registration</p>
+          <h2 className="mb-3 text-3xl font-bold md:text-4xl" style={{ color: '#0F172A' }}>Frequently Asked Questions</h2>
+          <p style={{ color: '#64748B' }}>Everything you need to know about ABN registration</p>
         </div>
 
         <div className="mx-auto max-w-2xl">
@@ -45,10 +45,10 @@ const FAQSection = () => {
                 value={`faq-${i}`}
                 className="rounded-xl border border-border bg-card px-6"
               >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
+                <AccordionTrigger className="text-left font-semibold hover:no-underline" style={{ color: '#0F172A' }}>
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent style={{ color: '#475569' }}>
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

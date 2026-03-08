@@ -20,15 +20,15 @@ const TrustSection = () => {
   return (
     <>
       {/* Trust Strip */}
-      <section className="bg-primary/[0.04] py-10">
+      <section className="py-10" style={{ backgroundColor: '#F8FAFC' }}>
         <div className="container">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
             {trustIndicators.map((item) => (
               <div key={item.label} className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ backgroundColor: '#EEF2FF' }}>
                   <item.icon className="h-5 w-5 text-primary" />
                 </div>
-                <span className="text-sm font-semibold text-foreground">
+                <span className="text-sm font-semibold" style={{ color: '#0F172A' }}>
                   {item.label}
                 </span>
               </div>
@@ -44,7 +44,7 @@ const TrustSection = () => {
             {/* Divider */}
             <div className="mx-auto mb-14 h-px w-24 bg-border/40" />
 
-            <h2 className="mb-16 text-center text-3xl font-bold text-foreground md:text-4xl">
+            <h2 className="mb-16 text-center text-3xl font-bold md:text-4xl" style={{ color: '#0F172A' }}>
               Why Australian Businesses Trust Our ABN Service
             </h2>
 
@@ -53,13 +53,13 @@ const TrustSection = () => {
               {conversionBenefits.map((benefit, i) => (
                 <div key={benefit.title} className="flex flex-1 items-start">
                   <div className="group flex flex-1 flex-col items-center px-8 text-center">
-                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-[#E6EDFB] transition-colors duration-200 group-hover:bg-[#dce5f8]">
+                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl transition-colors duration-200 group-hover:bg-primary/10" style={{ backgroundColor: '#EEF2FF' }}>
                       <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                     </div>
-                    <h3 className="mb-2 text-base font-extrabold text-foreground">
+                    <h3 className="mb-2 text-base font-extrabold" style={{ color: '#0F172A' }}>
                       {benefit.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
+                    <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>
                       {benefit.description}
                     </p>
                   </div>
@@ -74,13 +74,13 @@ const TrustSection = () => {
             <div className="mb-20 flex flex-col gap-10 sm:hidden">
               {conversionBenefits.map((benefit) => (
                 <div key={benefit.title} className="group flex flex-col items-center text-center">
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted transition-colors duration-200 group-hover:bg-muted/80">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl transition-colors duration-200 group-hover:bg-primary/10" style={{ backgroundColor: '#EEF2FF' }}>
                     <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                   </div>
-                  <h3 className="mb-2 text-base font-extrabold text-foreground">
+                  <h3 className="mb-2 text-base font-extrabold" style={{ color: '#0F172A' }}>
                     {benefit.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
+                  <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>
                     {benefit.description}
                   </p>
                 </div>
@@ -89,7 +89,7 @@ const TrustSection = () => {
 
             <div className="text-center">
               <Link to="/abn-registration">
-                <Button variant="hero" size="lg" className="px-10 shadow-lg shadow-primary/20">
+                <Button variant="hero" size="lg" className="px-10" style={{ boxShadow: '0 6px 14px rgba(37, 99, 235, 0.2)' }}>
                   Start Your ABN Application
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
