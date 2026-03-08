@@ -20,7 +20,7 @@ const TrustSection = () => {
             <div className="mx-auto mb-14 h-px w-24 bg-border/40" />
 
             <h2 className="mb-16 text-center text-3xl font-bold text-foreground md:text-4xl">
-              Why Australian Businesses Trust Our ABN Service
+              Why Businesses Trust Our ABN Registration Service
             </h2>
 
             {/* Desktop: 4 benefits with separators */}
