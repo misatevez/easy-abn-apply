@@ -143,7 +143,7 @@ const Footer = () => {
             © {new Date().getFullYear()} ABN Number. All rights reserved.
           </p>
           <p className="mt-1.5 text-xs text-[hsl(210,15%,40%)]">
-            This is a paid registration service. We are not a government agency.
+            ABN-Number is a private registration service and is not affiliated with the Australian Government.
           </p>
         </div>
       </div>
