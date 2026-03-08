@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileText, Building2, Receipt, XCircle } from "lucide-react";
+import { FileText, Building2, Receipt, RefreshCw } from "lucide-react";
 
 const services = [
   {
@@ -12,22 +12,18 @@ const services = [
     description: "Apply for a new ABN or renew an existing one online.",
     cta: "Apply or Renew ABN",
     ctaLink: "/abn-registration",
-    renewLabel: null,
-    renewLink: null,
-    note: "You can also add Business Name or GST registration during the application.",
+    note: "Add Business Name or GST during the application.",
   },
   {
     icon: Building2,
     title: "Business Name Registration",
     badge: null,
-    price: "From $99",
+    price: "$99",
     priceNote: "ASIC registration options",
     description: "Register or renew your business name with ASIC.",
     cta: "Register Business Name",
     ctaLink: "/business-name-registration",
-    renewLabel: null,
-    renewLink: null,
-    note: "1 year ($99) or 3 year ($199) registration available.",
+    note: "ABN and GST can be added in the same form.",
   },
   {
     icon: Receipt,
@@ -38,22 +34,18 @@ const services = [
     description: "Register for GST quickly and securely online.",
     cta: "Register for GST",
     ctaLink: "/abn-registration",
-    renewLabel: null,
-    renewLink: null,
-    note: "You can also register an ABN or Business Name during the application.",
+    note: "ABN or Business Name can be added during the application.",
   },
   {
-    icon: XCircle,
+    icon: RefreshCw,
     title: "Cancellations & Updates",
     badge: null,
-    price: "From $69",
+    price: "$69",
     priceNote: "Multiple changes supported",
     description: "Cancel or update your registrations with expert assistance.",
     cta: "Start Cancellation",
     ctaLink: "/abn-cancellation",
-    renewLabel: null,
-    renewLink: null,
-    note: "Manage ABN, GST, and Business Name cancellations in one form.",
+    note: "Handle multiple cancellations in one form.",
   },
 ];
 
@@ -81,7 +73,7 @@ const ServicesSection = () => {
             >
               {/* Badge */}
               {service.badge && (
-                <div className="absolute -top-3 left-6">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-sm">
                     {service.badge}
                   </span>
@@ -90,48 +82,32 @@ const ServicesSection = () => {
 
               {/* Top content */}
               <div className="flex flex-1 flex-col">
-                {/* Icon */}
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
                   <service.icon className="h-6 w-6 text-primary" />
                 </div>
 
-                {/* Title */}
                 <h3 className="mb-2 text-lg font-bold text-foreground">
                   {service.title}
                 </h3>
 
-                {/* Description */}
                 <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
                   {service.description}
                 </p>
               </div>
 
-              {/* Bottom content — aligned across cards */}
+              {/* Bottom content */}
               <div className="mt-auto flex flex-col">
-                {/* Price */}
                 <div className="mb-5">
                   <p className="text-3xl font-bold text-foreground">{service.price}</p>
                   <p className="mt-0.5 text-xs text-muted-foreground">{service.priceNote}</p>
                 </div>
 
-                {/* CTA */}
                 <Link to={service.ctaLink}>
                   <Button variant="hero" className="w-full">
                     {service.cta}
                   </Button>
                 </Link>
 
-                {/* Renew text link */}
-                {service.renewLink && service.renewLabel && (
-                  <Link
-                    to={service.renewLink}
-                    className="mt-2.5 text-center text-xs font-medium text-primary hover:underline"
-                  >
-                    {service.renewLabel}
-                  </Link>
-                )}
-
-                {/* Note */}
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground/70">
                   {service.note}
                 </p>
@@ -140,7 +116,6 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Bottom text */}
         <p className="mt-12 text-center text-sm text-muted-foreground">
           Register an ABN, GST, and Business Name in one application, or manage multiple updates and cancellations together.
         </p>
