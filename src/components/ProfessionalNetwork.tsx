@@ -39,7 +39,7 @@ const ProfessionalNetwork = () => {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-[60px] w-[130px] object-contain"
+                  className="h-[75px] w-[75px] object-contain"
                   loading="lazy"
                 />
               </div>
