@@ -70,7 +70,7 @@ const ServicesSection = () => {
             <div key={service.title} className="relative">
               {service.badge && (
                 <div className="absolute -top-[11px] left-1/2 -translate-x-1/2 z-10">
-                  <span className="rounded-full bg-foreground px-4 py-1 text-xs font-medium text-background shadow-sm whitespace-nowrap">
+                  <span className="rounded-full bg-[#FFE8B9] px-4 py-1 text-xs font-medium text-foreground shadow-sm whitespace-nowrap">
                     {service.badge}
                   </span>
                 </div>
