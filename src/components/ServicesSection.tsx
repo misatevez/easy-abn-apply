@@ -69,8 +69,10 @@ const ServicesSection = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-7 shadow-sm transition-all duration-[250ms] hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
             >
+              {/* Top hover indicator line */}
+              <div className="absolute inset-x-0 top-0 h-[3px] scale-x-0 bg-primary transition-transform duration-[250ms] group-hover:scale-x-100" />
               {/* Badge */}
               {service.badge && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
