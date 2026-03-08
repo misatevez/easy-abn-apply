@@ -335,7 +335,7 @@ const ABNRegistration = () => {
               </div>
 
               {/* Submit */}
-              <div className="border-t border-border p-6 md:p-8 pb-28 text-center">
+              <div className="border-t border-border px-6 pt-6 md:px-8 md:pt-8 text-center">
                 <Button
                   variant="hero"
                   size="lg"
@@ -344,6 +344,7 @@ const ABNRegistration = () => {
                   Lodge my ABN application
                   <ArrowRight className="h-5 w-5" />
                 </Button>
+                <div className="h-28" />
               </div>
             </div>
           </div>
