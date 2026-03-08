@@ -71,7 +71,7 @@ const HowItWorks = () => {
                   className={`flex h-[28px] w-[28px] items-center justify-center rounded-full text-xs font-bold transition-all duration-200 border-2 ${
                     hoveredIndex === i
                       ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border bg-muted text-muted-foreground"
+                      : "border-primary/30 bg-muted text-muted-foreground"
                   }`}
                 >
                   {i + 1}
