@@ -53,11 +53,11 @@ const HowItWorks = () => {
 
         <div className="mx-auto max-w-5xl">
           {/* Step indicator */}
-          <div className="relative mx-auto mb-14 hidden md:flex items-start justify-between" style={{ maxWidth: "600px" }}>
+          <div className="relative mx-auto mb-14 hidden md:flex items-start justify-between" style={{ maxWidth: "700px" }}>
             {/* Horizontal line behind circles */}
             <div
-              className="absolute top-[13px] h-px bg-border"
-              style={{ left: "16.67%", right: "16.67%" }}
+              className="absolute top-[13px] h-[1.5px] bg-muted-foreground/20"
+              style={{ left: "5%", right: "5%" }}
             />
 
             {steps.map((s, i) => (
