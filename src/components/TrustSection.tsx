@@ -47,7 +47,6 @@ const TrustSection = () => {
             <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
               Why Australian Businesses Trust Our ABN Service
             </h2>
-            </h2>
 
             {/* 4 features with vertical separators */}
             <div className="mb-14 hidden sm:flex">
