@@ -20,7 +20,7 @@ const TrustSection = () => {
   return (
     <>
       {/* Trust Strip */}
-      <section className="bg-primary/[0.04] py-10">
+      <section className="py-10" style={{ background: "#F7F8FE" }}>
         <div className="container">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
             {trustIndicators.map((item) => (
@@ -38,7 +38,7 @@ const TrustSection = () => {
       </section>
 
       {/* Conversion Bridge */}
-      <section className="bg-background py-24">
+      <section className="py-24" style={{ background: "#FAFBFF" }}>
         <div className="container">
           <div className="mx-auto max-w-5xl">
             {/* Divider */}

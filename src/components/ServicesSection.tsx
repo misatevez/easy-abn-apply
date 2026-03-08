@@ -51,7 +51,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="relative py-20 bg-background">
+    <section id="services" className="relative py-20" style={{ background: "#FAFBFF" }}>
       <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-primary/[0.03] blur-3xl" />
       <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-primary/[0.03] blur-3xl" />
 
