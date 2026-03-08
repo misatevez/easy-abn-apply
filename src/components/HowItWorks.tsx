@@ -36,7 +36,7 @@ const HowItWorks = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-white py-24">
+    <section id="how-it-works" className="relative overflow-hidden bg-white py-16">
       <div className="pointer-events-none absolute -left-32 -top-20 h-[400px] w-[400px] rounded-full bg-[#DCE6FF]/[0.22] blur-3xl" />
       <div className="pointer-events-none absolute -right-24 bottom-10 h-[350px] w-[350px] rounded-full bg-[#DCE6FF]/[0.18] blur-3xl" />
       <div className="pointer-events-none absolute left-1/3 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.15] blur-2xl" />

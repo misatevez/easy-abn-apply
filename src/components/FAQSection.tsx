@@ -30,7 +30,7 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="relative overflow-hidden bg-white py-20">
+    <section id="faq" className="relative overflow-hidden bg-white py-16">
       <div className="pointer-events-none absolute -left-24 -top-16 h-[350px] w-[350px] rounded-full bg-[#DCE6FF]/[0.20] blur-3xl" />
       <div className="pointer-events-none absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.18] blur-3xl" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[250px] w-[250px] rounded-full bg-[#DCE6FF]/[0.15] blur-2xl" />

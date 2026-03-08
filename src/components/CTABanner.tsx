@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const CTABanner = () => {
   return (
-    <section className="relative overflow-hidden py-20 md:py-24" style={{ background: "linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(217 85% 62%) 100%)" }}>
+    <section className="relative overflow-hidden py-16" style={{ background: "linear-gradient(180deg, hsl(var(--primary)) 0%, hsl(217 85% 62%) 100%)" }}>
       {/* Decorative circles */}
       <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary-foreground/[0.06]" />
       <div className="pointer-events-none absolute -bottom-16 -left-16 h-60 w-60 rounded-full bg-primary-foreground/[0.05]" />
