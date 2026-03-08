@@ -18,7 +18,7 @@ const ProfessionalNetwork = () => {
   return (
     <section className="bg-[hsl(210,33%,98%)]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
       <div className="mx-auto" style={{ maxWidth: "1240px", paddingLeft: "2rem", paddingRight: "2rem" }}>
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-center" style={{ gap: "150px" }}>
+        <div className="flex flex-col items-start gap-12 lg:flex-row lg:items-center lg:gap-[140px]">
           {/* Left column - Text */}
           <div className="shrink-0 lg:max-w-[400px]">
             <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">
