@@ -9,24 +9,21 @@ const steps = [
     step: "Registration",
     indicator: "Submit your details",
     title: "Complete the Online Form",
-    description:
-      "Provide your details to generate your ABN. Register a business name and GST in the same form.",
+    description: "Submit your business details in our secure online form.",
   },
   {
     icon: ShieldCheck,
     step: "Review",
     indicator: "Expert compliance review",
-    title: "Expert Compliance Check",
-    description:
-      "Our team verifies your application meets ATO requirements before submission.",
+    title: "Expert Compliance Review",
+    description: "Our tax professionals review your application before submission.",
   },
   {
     icon: Mail,
     step: "Delivery",
     indicator: "Receive your ABN",
-    title: "Receive Your ABN Fast",
-    description:
-      "Your ABN is sent via email typically within 5 minutes, always within 2 hours.",
+    title: "Receive Your ABN",
+    description: "Your ABN is typically delivered within minutes by email.",
   },
 ];
 
