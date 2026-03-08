@@ -121,7 +121,7 @@ const ServicesSection = () => {
               )}
 
               {/* Note */}
-              <p className="mt-4 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground/70">
+              <p className="mt-4 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground">
                 <Info className="mt-0.5 h-3 w-3 shrink-0 text-primary/40" />
                 {service.note}
               </p>
