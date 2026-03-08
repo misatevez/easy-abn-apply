@@ -10,10 +10,10 @@ const trustIndicators = [
 ];
 
 const conversionBenefits = [
-  { icon: Zap, title: "Fast Online Application", description: "Apply for your ABN in minutes using our simple online form." },
-  { icon: ClipboardCheck, title: "Expert Compliance Review", description: "Every application is reviewed by accredited tax professionals." },
-  { icon: ShieldIcon, title: "Secure Submission to the ABR", description: "Your details are encrypted and securely submitted." },
-  { icon: HeadphonesIcon, title: "Support When You Need It", description: "Our team is available if you need assistance." },
+  { icon: Zap, title: "Fast online application", description: "Complete your registration in minutes with our streamlined process." },
+  { icon: ClipboardCheck, title: "Expert compliance review", description: "Every submission is reviewed by our qualified professionals." },
+  { icon: ShieldIcon, title: "Secure submission to the ABR", description: "Your data is encrypted and submitted directly to the Australian Business Register." },
+  { icon: HeadphonesIcon, title: "Support if you need help", description: "Our team is available to assist you throughout the process." },
 ];
 
 const TrustSection = () => {
@@ -49,7 +49,7 @@ const TrustSection = () => {
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
-              Why Australian Businesses Trust Our ABN Service
+              Why Australian businesses trust our ABN service
             </h2>
             <p className="mb-12 text-muted-foreground">
               Trusted by thousands of Australian businesses
@@ -57,11 +57,8 @@ const TrustSection = () => {
 
             <div className="mb-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {conversionBenefits.map((benefit) => (
-                <div
-                  key={benefit.title}
-                  className="group flex flex-col items-center rounded-xl border-2 border-border bg-card p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl"
-                >
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary/15">
+                <div key={benefit.title} className="flex flex-col items-center text-center">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
                     <benefit.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="mb-2 text-base font-semibold text-foreground">
@@ -76,13 +73,10 @@ const TrustSection = () => {
 
             <Link to="/abn-registration">
               <Button variant="hero" size="lg" className="px-10">
-                Start Your ABN Application
+                Start my ABN Application
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Takes about 5 minutes • Secure submission
-            </p>
           </div>
         </div>
       </section>
