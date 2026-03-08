@@ -2,13 +2,6 @@ import { Zap, ClipboardCheck, Shield, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-const trustIndicators = [
-  { icon: ShieldCheck, label: "Accredited Tax Agent" },
-  { icon: Lock, label: "Secure & Encrypted Application" },
-  { icon: CheckCircle, label: "Government Compliant" },
-  { icon: UserCheck, label: "Expert Review Before Submission" },
-];
-
 const conversionBenefits = [
   { icon: Zap, title: "Fast Online Application", description: "Apply for your ABN in minutes using our simple online form." },
   { icon: ClipboardCheck, title: "Expert Compliance Review", description: "Every application is reviewed by accredited tax professionals." },
