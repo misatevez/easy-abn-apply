@@ -25,8 +25,9 @@ const ProfessionalNetwork = () => {
               Trusted by Leading Accounting & Financial Institutions
             </p>
             <h2 className="text-3xl font-bold leading-tight text-foreground md:text-4xl">
-              Our Professional Partners & Industry Associations
-            </h2>
+               Trusted by Australian Businesses
+               <br />and Accounting Professionals
+             </h2>
           </div>
 
           {/* Right column - Logos */}
