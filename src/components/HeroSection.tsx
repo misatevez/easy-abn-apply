@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, CheckCircle2, RefreshCw, Search } from "lucide-react";
+import { Shield, Lock, CheckCircle2, RefreshCw } from "lucide-react";
 
 const HeroSection = () => {
   return (
