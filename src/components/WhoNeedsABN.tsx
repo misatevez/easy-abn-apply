@@ -1,6 +1,4 @@
-import { CheckCircle2, Shield, FileText, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { CheckCircle2 } from "lucide-react";
 import illustrationImg from "@/assets/who-needs-abn-illustration.png";
 
 const items = [
@@ -9,12 +7,6 @@ const items = [
   "Consultants & Online Service Providers",
   "Professionals Who Invoice Clients",
   "Startups or New Businesses",
-];
-
-const trustItems = [
-  { icon: Lock, label: "Secure & Encrypted" },
-  { icon: FileText, label: "Licensed Australian Tax Agent" },
-  { icon: Shield, label: "Expert Compliance Review" },
 ];
 
 const WhoNeedsABN = () => {
@@ -50,18 +42,6 @@ const WhoNeedsABN = () => {
               ))}
             </div>
 
-            <Button asChild size="lg" className="mb-5 px-8">
-              <Link to="/apply">Start Your ABN Application</Link>
-            </Button>
-
-            <div className="flex flex-wrap items-center gap-5 text-xs text-muted-foreground">
-              {trustItems.map(({ icon: Icon, label }) => (
-                <span key={label} className="flex items-center gap-1.5">
-                  <Icon className="h-3.5 w-3.5" />
-                  {label}
-                </span>
-              ))}
-            </div>
           </div>
 
           {/* Right illustration */}
