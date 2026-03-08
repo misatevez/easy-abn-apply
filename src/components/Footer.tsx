@@ -143,10 +143,10 @@ const Footer = () => {
           </div>
 
           <div className="mt-5 border-t border-[hsl(215,20%,12%)] pt-5 text-center">
-            <p className="text-xs text-[hsl(210,15%,40%)]">
+            <p className="text-xs text-[hsl(210,15%,60%)]">
               © {new Date().getFullYear()} ABN Number. All rights reserved.
             </p>
-            <p className="mt-1 text-[11px] text-[hsl(210,15%,33%)]">
+            <p className="mt-1 text-[11px] text-[hsl(210,15%,50%)]">
               ABN-Number is a private registration service and is not affiliated with the Australian Government.
             </p>
           </div>
