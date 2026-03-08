@@ -8,7 +8,7 @@ const services = [
     title: "ABN Registration",
     price: "$69",
     description:
-      "Apply for a new ABN or renew an existing one through our streamlined online application. Our experts review your submission to ensure compliance before lodging it with the Australian Business Register.",
+      "Apply for a new ABN or renew an existing one through our streamlined online process. Our experts review every submission for compliance before lodging it with the Australian Business Register.",
     cta: "Apply for ABN",
     renewLink: "/abn-registration?purpose=renew",
     note: "You can also add Business Name or GST registration during the application.",
@@ -20,7 +20,7 @@ const services = [
     title: "Business Name Registration",
     price: null,
     description:
-      "Register your business name with ASIC and protect your brand identity.",
+      "Register your business name with ASIC and protect your brand identity. Choose a one-year or three-year registration period to suit your business plan and compliance needs.",
     cta: "Register Business Name",
     note: "You can also apply for an ABN and GST in the same form.",
     options: [
@@ -34,7 +34,7 @@ const services = [
     title: "GST Registration",
     price: "$79",
     description:
-      "Register for Goods and Services Tax if your business turnover exceeds $75,000. Our experts ensure your registration is correctly submitted.",
+      "Register for Goods and Services Tax if your business turnover exceeds $75,000 per year. Our experts ensure your GST registration is correctly submitted to the Australian Taxation Office.",
     cta: "Register for GST",
     note: "You can also register an ABN or Business Name during the application.",
     options: null,
@@ -44,7 +44,8 @@ const services = [
     icon: XCircle,
     title: "Cancellations & Updates",
     price: "$69",
-    description: "Cancel or update your existing registrations easily.",
+    description:
+      "Cancel or update your existing registrations quickly and easily. We handle the paperwork and ensure your changes are processed correctly and without delay.",
     cta: "Start Cancellation",
     note: "Multiple registrations can be cancelled within the same form.",
     options: null,
@@ -87,22 +88,23 @@ const ServicesSection = () => {
                   {service.title}
                 </h3>
 
-                {/* Description */}
-                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
+                {/* Description + Includes — fixed height for alignment */}
+                <div className="mb-4 min-h-[8rem]">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {service.description}
+                  </p>
 
-                {/* Includes list */}
-                {service.includes && (
-                  <ul className="mb-4 space-y-1.5">
-                    {service.includes.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                  {service.includes && (
+                    <ul className="mt-3 space-y-1.5">
+                      {service.includes.map((item) => (
+                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
 
               {/* Bottom content — always aligned */}
