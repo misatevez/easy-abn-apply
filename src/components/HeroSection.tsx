@@ -7,13 +7,13 @@ const HeroSection = () => {
     <section
       className="relative overflow-hidden pb-24 pt-20 md:pb-36 md:pt-32"
       style={{
-        background: "linear-gradient(180deg, #F4F7FF 0%, #EEF3FF 50%, #FFFFFF 100%)",
+        background: "linear-gradient(180deg, #F3F6FF 0%, #EAF0FF 45%, #FFFFFF 100%)",
       }}
     >
       {/* Decorative circles */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#BFDBFE]/50 blur-2xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-[#C7D2FE]/45 blur-2xl" />
-      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DBEAFE]/60 blur-xl" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#DCE6FF]/[0.07] blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-[#DCE6FF]/[0.06] blur-3xl" />
+      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.08] blur-2xl" />
 
       <div className="container relative z-10 px-4 text-center">
         {/* Floating Badge */}
