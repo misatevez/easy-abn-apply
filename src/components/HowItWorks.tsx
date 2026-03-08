@@ -52,14 +52,14 @@ const HowItWorks = () => {
         <div className="relative mx-auto max-w-5xl">
           {/* Step Indicator */}
           <div className="mb-10 hidden md:block">
-            <div className="relative flex items-center justify-between px-[calc(100%/6)]">
-              {/* Connecting line */}
-              <div className="absolute inset-x-[calc(100%/6)] top-1/2 h-px -translate-y-1/2 bg-border" />
+            <div className="relative flex justify-between px-[calc(100%/6)]">
+              {/* Connecting line — centered on circles */}
+              <div className="absolute inset-x-[calc(100%/6)] top-4 h-0.5 -translate-y-1/2 bg-muted-foreground/25" />
 
-              {/* Highlighted line segments */}
+              {/* Highlighted line segment */}
               {hoveredIndex !== null && hoveredIndex > 0 && (
                 <div
-                  className="absolute top-1/2 h-px -translate-y-1/2 bg-primary/40 transition-all duration-300"
+                  className="absolute top-4 h-0.5 -translate-y-1/2 bg-primary/40 transition-all duration-300"
                   style={{
                     left: "calc(100% / 6)",
                     width: `calc(${hoveredIndex} * (100% - 100% / 3) / 2)`,
@@ -70,7 +70,7 @@ const HowItWorks = () => {
               {steps.map((s, i) => (
                 <div
                   key={s.step}
-                  className={`relative z-10 flex items-center gap-2.5 transition-colors duration-300 ${
+                  className={`relative z-10 flex flex-col items-center gap-2 transition-colors duration-300 ${
                     hoveredIndex === i ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
@@ -83,7 +83,7 @@ const HowItWorks = () => {
                   >
                     {i + 1}
                   </div>
-                  <span className="text-sm font-medium whitespace-nowrap">{s.indicator}</span>
+                  <span className="text-center text-sm font-medium max-w-[120px]">{s.indicator}</span>
                 </div>
               ))}
             </div>
