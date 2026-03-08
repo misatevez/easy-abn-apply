@@ -18,16 +18,23 @@ const ProfessionalNetwork = () => {
   return (
     <section className="bg-[#F8FAFC]" style={{ paddingTop: "80px", paddingBottom: "80px" }}>
       <div className="container">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-12 text-3xl font-bold text-foreground md:text-4xl">
-            Our partners and associations
-          </h2>
+        <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2 lg:gap-24">
+          {/* Left column - Text */}
+          <div>
+            <p className="mb-2 text-sm font-medium tracking-wide text-muted-foreground">
+              Trusted by leading accounting and financial institutions
+            </p>
+            <h2 className="text-3xl font-bold leading-tight text-foreground md:text-4xl">
+              Our partners and associations
+            </h2>
+          </div>
 
-          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 sm:gap-12">
+          {/* Right column - Logos */}
+          <div className="grid grid-cols-3 items-center justify-items-center gap-x-16 gap-y-12">
             {logos.map((logo) => (
               <div
                 key={logo.alt}
-                className="group flex h-[170px] w-full items-center justify-center rounded-2xl bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)]"
+                className="flex items-center justify-center transition-transform duration-200 hover:scale-105"
               >
                 <img
                   src={logo.src}
