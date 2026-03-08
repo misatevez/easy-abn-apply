@@ -127,15 +127,15 @@ const Footer = () => {
       <div style={{ backgroundColor: "#09121d" }}>
         <div className="container py-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[hsl(210,15%,50%)]">
-              <Link to="/terms-and-conditions" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">Terms &amp; Conditions</Link>
-              <Link to="/privacy-policy" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">Privacy Policy</Link>
-              <Link to="/faq" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">FAQ</Link>
-              <Link to="/contact-us" className="transition-colors duration-200 hover:text-[hsl(0,0%,88%)]">Contact Us</Link>
+            <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[hsl(210,15%,70%)]">
+              <Link to="/terms-and-conditions" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Terms &amp; Conditions</Link>
+              <Link to="/privacy-policy" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Privacy Policy</Link>
+              <Link to="/faq" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">FAQ</Link>
+              <Link to="/contact-us" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Contact Us</Link>
             </nav>
             <a
               href="mailto:info@abn-number.com"
-              className="flex items-center gap-1.5 text-[13px] text-[hsl(210,15%,50%)] transition-colors duration-200 hover:text-[hsl(0,0%,88%)]"
+              className="flex items-center gap-1.5 text-[13px] text-[hsl(210,15%,70%)] transition-colors duration-200 hover:text-[hsl(0,0%,95%)]"
             >
               <Mail className="h-3.5 w-3.5" />
               info@abn-number.com
