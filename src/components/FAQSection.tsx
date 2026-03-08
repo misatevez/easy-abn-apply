@@ -30,7 +30,7 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-20" style={{ background: "#FAFBFF" }}>
+    <section id="faq" className="bg-white py-20">
       <div className="container">
         <div className="mb-14 text-center">
           <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Frequently Asked Questions</h2>
