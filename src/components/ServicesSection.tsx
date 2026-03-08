@@ -18,15 +18,12 @@ const services = [
   {
     icon: Building2,
     title: "Business Name Registration",
-    price: null,
+    price: "From $99",
     description:
       "Register your business name with ASIC and protect your brand identity. Choose a one-year or three-year registration period to suit your business plan and compliance needs.",
     cta: "Register Business Name",
     note: "You can also apply for an ABN and GST in the same form.",
-    options: [
-      { label: "1 year registration", price: "$99" },
-      { label: "3 year registration", price: "$199" },
-    ],
+    options: null,
     includes: null,
   },
   {
@@ -110,19 +107,9 @@ const ServicesSection = () => {
               {/* Bottom content — always aligned */}
               <div className="mt-auto flex flex-col">
                 {/* Price / Options — fixed height zone for cross-card alignment */}
-                <div className="mb-5 min-h-[5rem] flex items-end">
+                <div className="mb-5 min-h-[3.5rem] flex items-end">
                   {service.price && (
                     <p className="text-3xl font-bold text-foreground">{service.price}</p>
-                  )}
-                  {service.options && (
-                    <div className="w-full space-y-1.5 rounded-xl bg-secondary/50 p-3">
-                      {service.options.map((opt) => (
-                        <div key={opt.label} className="flex items-center justify-between">
-                          <span className="text-sm text-muted-foreground">{opt.label}</span>
-                          <span className="text-sm font-bold text-foreground">{opt.price}</span>
-                        </div>
-                      ))}
-                    </div>
                   )}
                 </div>
 
