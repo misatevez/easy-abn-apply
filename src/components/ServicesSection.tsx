@@ -59,7 +59,7 @@ const ServicesSection = () => {
       <div className="container relative">
         <div className="mb-14 text-center">
           <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
-            Business Registration Services
+            Our Business Registration Services
           </h2>
           <p className="mx-auto max-w-xl text-muted-foreground">
             Choose the service you need. Additional services can be added during the application.
