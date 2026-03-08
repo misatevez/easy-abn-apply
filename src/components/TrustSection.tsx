@@ -42,7 +42,7 @@ const TrustSection = () => {
         <div className="container">
           <div className="mx-auto max-w-4xl">
             {/* Thin centered divider above title */}
-            <div className="mx-auto mb-10 h-px w-16 bg-border" />
+            <div className="mx-auto mb-14 h-px w-24 bg-border/40" />
 
             <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
               Why Australian businesses trust our ABN service
@@ -53,7 +53,7 @@ const TrustSection = () => {
               {conversionBenefits.map((benefit, i) => (
                 <div key={benefit.title} className="flex flex-1">
                   <div className="flex flex-1 flex-col items-center px-5 text-center">
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
                       <benefit.icon className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="mb-2 text-sm font-bold text-foreground">
@@ -64,7 +64,7 @@ const TrustSection = () => {
                     </p>
                   </div>
                   {i < conversionBenefits.length - 1 && (
-                    <div className="w-px shrink-0 self-stretch bg-border/60" style={{ marginTop: "12px", marginBottom: "12px" }} />
+                    <div className="w-px shrink-0 self-stretch bg-border/30" style={{ marginTop: "12px", marginBottom: "12px" }} />
                   )}
                 </div>
               ))}
@@ -74,7 +74,7 @@ const TrustSection = () => {
             <div className="mb-14 flex flex-col gap-10 sm:hidden">
               {conversionBenefits.map((benefit) => (
                 <div key={benefit.title} className="flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
                     <benefit.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="mb-2 text-sm font-bold text-foreground">
