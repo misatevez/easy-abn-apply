@@ -18,11 +18,11 @@ const HeroSection = () => {
       <div className="container relative z-10 px-4 text-center">
         {/* Floating Badge */}
         <div
-          className="mb-10 inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 text-sm font-medium text-[#2563EB]"
+          className="mb-12 inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-medium text-[#2563EB] backdrop-blur-md"
           style={{
-            background: "rgba(255,255,255,0.6)",
-            border: "1px solid rgba(0,0,0,0.08)",
-            boxShadow: "0 6px 18px rgba(0,0,0,0.05)",
+            background: "rgba(255,255,255,0.65)",
+            border: "1px solid rgba(255,255,255,0.35)",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.06)",
           }}
         >
           <Shield className="h-4 w-4" />
