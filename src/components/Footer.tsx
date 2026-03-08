@@ -43,65 +43,63 @@ const serviceColumns = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[hsl(215,25%,10%)] text-[hsl(210,20%,75%)]">
-      {/* Main footer */}
-      <div className="container pt-16 pb-14">
-        <div className="grid gap-12 lg:grid-cols-[320px_1fr]">
-          {/* Brand & Trust column */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
+    <footer className="bg-[hsl(215,25%,9%)] text-[hsl(210,18%,70%)]">
+      {/* ── Top Row: Brand + Navigation ── */}
+      <div className="container py-20">
+        <div className="grid gap-16 lg:grid-cols-[380px_1fr]">
+          {/* Brand & Trust Block */}
+          <div className="space-y-7">
+            <div className="flex items-center gap-3.5">
               <img
                 src={logoAustralia}
                 alt="ABN Number logo"
-                className="h-11 w-11 rounded-full ring-2 ring-[hsl(0,0%,100%,0.15)]"
+                className="h-12 w-12 rounded-full ring-2 ring-[hsl(0,0%,100%,0.12)]"
               />
-              <span className="text-xl font-bold tracking-tight text-[hsl(0,0%,98%)]">
+              <span className="text-2xl font-bold tracking-tight text-[hsl(0,0%,98%)]">
                 ABN-Number
               </span>
             </div>
 
+            <p className="text-sm leading-relaxed text-[hsl(210,15%,55%)] max-w-xs">
+              Secure ABN &amp; GST registration services compliant with Australian regulations.
+            </p>
+
             {/* Trust signals */}
-            <div className="space-y-3 text-sm">
-              <div className="flex items-center gap-2.5">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2.5 text-sm">
                 <Lock className="h-4 w-4 shrink-0 text-primary" />
                 <span>SSL Secure Transaction</span>
               </div>
-              <div className="flex items-start gap-2.5">
+              <div className="flex items-start gap-2.5 text-sm">
                 <Shield className="h-4 w-4 shrink-0 text-primary mt-0.5" />
                 <span>Licensed Australian Tax Agent – Licence No. 24666831</span>
               </div>
-              <p className="pl-[26px] text-[hsl(210,15%,55%)] leading-relaxed">
-                Secure ABN &amp; GST registration services compliant with Australian regulations.
-              </p>
             </div>
 
-            {/* Conversion CTA */}
-            <div className="rounded-lg border border-[hsl(215,25%,18%)] bg-[hsl(215,25%,13%)] p-5 space-y-3">
-              <p className="text-[hsl(0,0%,95%)] font-semibold">
-                Need an ABN today?
-              </p>
-              <Button asChild variant="hero" size="lg" className="w-full">
+            {/* CTA */}
+            <div className="pt-1">
+              <Button asChild variant="hero" size="lg">
                 <Link to="/abn-registration">
                   Register ABN Now
-                  <ArrowRight className="ml-1 h-4 w-4" />
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </div>
 
-          {/* Service columns */}
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Service Navigation Columns */}
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:pt-1">
             {serviceColumns.map((col) => {
               const Icon = col.icon;
               return (
                 <div key={col.title}>
-                  <div className="mb-4 flex items-center gap-2">
-                    <Icon className="h-4 w-4 text-primary" />
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.15em] text-[hsl(0,0%,95%)]">
+                  <div className="mb-5 flex items-center gap-2">
+                    <Icon className="h-4 w-4 text-primary/70" />
+                    <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[hsl(0,0%,92%)]">
                       {col.title}
                     </h4>
                   </div>
-                  <ul className="space-y-2.5">
+                  <ul className="space-y-3">
                     {col.links.map((link) => (
                       <li key={link.label}>
                         <Link
@@ -120,31 +118,35 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-[hsl(215,20%,18%)]">
-        <div className="container flex flex-col items-center gap-4 py-6 text-sm sm:flex-row sm:justify-between">
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link to="/terms-and-conditions" className="transition-colors hover:text-[hsl(0,0%,95%)]">Terms &amp; Conditions</Link>
-            <Link to="/privacy-policy" className="transition-colors hover:text-[hsl(0,0%,95%)]">Privacy Policy</Link>
-            <Link to="/faq" className="transition-colors hover:text-[hsl(0,0%,95%)]">FAQ</Link>
-            <Link to="/contact-us" className="transition-colors hover:text-[hsl(0,0%,95%)]">Contact Us</Link>
-            <a href="mailto:info@abn-number.com" className="flex items-center gap-1.5 transition-colors hover:text-[hsl(0,0%,95%)]">
+      {/* ── Bottom Row ── */}
+      <div className="border-t border-[hsl(215,20%,16%)]">
+        <div className="container py-7">
+          {/* Links + Email */}
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+              <Link to="/terms-and-conditions" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Terms &amp; Conditions</Link>
+              <Link to="/privacy-policy" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Privacy Policy</Link>
+              <Link to="/faq" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">FAQ</Link>
+              <Link to="/contact-us" className="transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">Contact Us</Link>
+            </nav>
+            <a
+              href="mailto:info@abn-number.com"
+              className="flex items-center gap-2 text-sm transition-colors duration-200 hover:text-[hsl(0,0%,95%)]"
+            >
               <Mail className="h-3.5 w-3.5" />
               info@abn-number.com
             </a>
           </div>
-        </div>
-      </div>
 
-      {/* Legal bar */}
-      <div className="border-t border-[hsl(215,20%,18%)]">
-        <div className="container py-5 text-center">
-          <p className="text-sm text-[hsl(210,15%,50%)]">
-            © {new Date().getFullYear()} ABN Number. All rights reserved.
-          </p>
-          <p className="mt-1.5 text-xs text-[hsl(210,15%,40%)]">
-            ABN-Number is a private registration service and is not affiliated with the Australian Government.
-          </p>
+          {/* Copyright & Disclaimer */}
+          <div className="mt-7 border-t border-[hsl(215,20%,14%)] pt-6 text-center">
+            <p className="text-xs text-[hsl(210,15%,45%)]">
+              © {new Date().getFullYear()} ABN Number. All rights reserved.
+            </p>
+            <p className="mt-1.5 text-xs text-[hsl(210,15%,38%)]">
+              ABN-Number is a private registration service and is not affiliated with the Australian Government.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
