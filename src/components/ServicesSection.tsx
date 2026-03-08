@@ -67,9 +67,9 @@ const ServicesSection = () => {
 
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
-            <div key={service.title} className="relative pt-3">
+            <div key={service.title} className="relative">
               {service.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+                <div className="absolute -top-[11px] left-1/2 -translate-x-1/2 z-10">
                   <span className="rounded-full bg-foreground px-4 py-1 text-xs font-medium text-background shadow-sm whitespace-nowrap">
                     {service.badge}
                   </span>
