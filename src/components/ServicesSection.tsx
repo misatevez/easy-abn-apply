@@ -12,8 +12,8 @@ const services = [
     description: "Apply for a new ABN or renew an existing one online.",
     cta: "Apply or Renew ABN",
     ctaLink: "/abn-registration",
-    renewLabel: "Renew an existing ABN →",
-    renewLink: "/abn-registration?purpose=renew",
+    renewLabel: null,
+    renewLink: null,
     note: "You can also add Business Name or GST registration during the application.",
   },
   {
