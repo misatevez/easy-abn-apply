@@ -1,88 +1,82 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Shield, Lock, CheckCircle2, RefreshCw } from "lucide-react";
+import { Shield, Lock, CheckCircle2, Clock, Search, RefreshCw } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <section
       className="relative overflow-hidden pb-24 pt-20 md:pb-36 md:pt-32"
       style={{
-        background: "linear-gradient(180deg, #2F6DE0 0%, #3E74DA 40%, #6C93D8 100%)",
+        background: "linear-gradient(180deg, #F3F6FF 0%, #EAF0FF 45%, #FFFFFF 100%)",
       }}
     >
       {/* Decorative circles */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-white/[0.07] blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-white/[0.06] blur-3xl" />
-      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-white/[0.09] blur-2xl" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#DCE6FF]/[0.07] blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-[#DCE6FF]/[0.06] blur-3xl" />
+      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.08] blur-2xl" />
 
       <div className="container relative z-10 px-4 text-center">
-        {/* Soft translucent floating panel */}
+        {/* Floating Badge */}
         <div
-          className="mx-auto max-w-2xl rounded-[18px] px-8 py-12 md:px-14 md:py-16"
+          className="mb-12 inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-medium text-[#2563EB] backdrop-blur-md"
           style={{
-            background: "rgba(255,255,255,0.85)",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-            backdropFilter: "blur(4px)",
+            background: "rgba(255,255,255,0.65)",
+            border: "1px solid rgba(255,255,255,0.35)",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.06)",
           }}
         >
-          {/* Badge */}
-          <div
-            className="mb-10 inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-sm font-medium text-[#2563EB]"
-            style={{
-              background: "rgba(237,242,255,0.7)",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.04)",
-            }}
-          >
-            <Shield className="h-4 w-4" />
-            Accredited Tax Agent – Licence No. 24666831
-          </div>
+          <Shield className="h-4 w-4" />
+          Accredited Tax Agent – Licence No. 24666831
+        </div>
 
-          {/* Headline */}
-          <h1 className="mb-5 text-3xl font-extrabold leading-[1.15] tracking-tight text-[#0F172A] md:text-4xl lg:text-5xl">
-            ABN Registration{" "}
-            <span className="text-[#2563EB]">Online</span>
-          </h1>
+        {/* Headline */}
+        <h1 className="mb-6 text-4xl font-extrabold leading-[1.15] tracking-tight text-[#0F172A] md:text-5xl lg:text-6xl">
+          Register Your ABN{" "}
+          <span className="text-[#2563EB]">Online</span>
+        </h1>
 
-          {/* Subtitle */}
-          <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-[#475569] md:text-lg">
-            Apply for your Australian Business Number (ABN) in minutes.
-          </p>
+        {/* Subtitle */}
+        <p className="mx-auto mb-4 max-w-xl text-lg leading-relaxed text-[#475569] md:text-xl">
+          Apply for your Australian Business Number in minutes.
+        </p>
 
-          {/* Buttons */}
-          <div className="mb-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link to="/abn-registration">
-              <Button
-                size="lg"
-                className="h-13 rounded-[10px] bg-[#2563EB] px-8 text-base font-semibold text-white hover:bg-[#1D4ED8]"
-                style={{ boxShadow: "0 6px 18px rgba(37,99,235,0.25)" }}
-              >
-                Apply for a new ABN
-              </Button>
-            </Link>
-            <Link to="/abn-registration">
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-13 rounded-[10px] border-[#2563EB]/25 bg-transparent px-8 text-base font-semibold text-[#2563EB] hover:bg-[#2563EB]/5"
-              >
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Renew my ABN
-              </Button>
-            </Link>
-          </div>
+        {/* Supporting text */}
+        <p className="mx-auto mb-14 max-w-lg text-base leading-relaxed text-[#64748B]">
+          Register your ABN, GST, and Business Name at the same application.
+        </p>
 
-          {/* Trust indicators */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-[#64748B]">
-            <span className="flex items-center gap-1.5">
-              <Lock className="h-3.5 w-3.5 text-[#3B82F6]" /> Secure & Encrypted
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Shield className="h-3.5 w-3.5 text-[#3B82F6]" /> SSL Protected
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-[#3B82F6]" /> Expert Reviewed
-            </span>
-          </div>
+        {/* Primary CTA */}
+        <div className="mb-4">
+          <Link to="/abn-registration">
+            <Button
+              size="lg"
+              className="h-14 rounded-[10px] bg-[#2563EB] px-7 text-base font-semibold text-white hover:bg-[#1D4ED8]"
+              style={{
+                boxShadow: "0 8px 20px rgba(37, 99, 235, 0.25)",
+              }}
+            >
+              Start ABN Application
+            </Button>
+          </Link>
+        </div>
+
+        {/* Micro reassurance */}
+        <p className="mb-12 flex items-center justify-center gap-1.5 text-sm text-[#64748B]">
+          <Clock className="h-3.5 w-3.5" />
+          Takes less than 5 minutes
+        </p>
+
+        {/* Trust indicators */}
+        <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-medium text-[#475569]">
+          <span className="flex items-center gap-2">
+            <Shield className="h-4 w-4 text-[#3B82F6]" /> Accredited Tax Agent
+          </span>
+          <span className="flex items-center gap-2">
+            <Lock className="h-4 w-4 text-[#3B82F6]" /> SSL Protected
+          </span>
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-[#3B82F6]" /> Expert Reviewed
+          </span>
         </div>
       </div>
     </section>
