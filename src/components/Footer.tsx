@@ -2,47 +2,47 @@ import { Shield, Lock, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const footerNav = [
-  {
-    title: "Check Services",
-    links: [
-      { label: "ABN Find", href: "#" },
-      { label: "ABN Lookup", href: "#" },
-      { label: "GST Status", href: "#" },
-      { label: "Business Name Availability", href: "#" },
-    ],
-  },
-  {
-    title: "Registration Services",
-    links: [
-      { label: "ABN Register", href: "/abn-registration" },
-      { label: "Renew my ABN", href: "/abn-registration?purpose=renew" },
-      { label: "GST Register", href: "#" },
-      { label: "Business Name Register", href: "/business-name-registration" },
-    ],
-  },
-  {
-    title: "Cancellation Services",
-    links: [
-      { label: "ABN Cancellation", href: "/abn-cancellation" },
-      { label: "GST Cancellation", href: "/gst-cancellation" },
-      { label: "Business Name Cancellation", href: "/business-name-cancellation" },
-    ],
-  },
-  {
-    title: "Other Services",
-    links: [
-      { label: "Update ABN Details", href: "/update-abn-details" },
-      { label: "Backdate ABN / GST", href: "#" },
-      { label: "Xero Set Up", href: "#" },
-    ],
-  },
-  {
-    title: "Professional Consultation",
-    links: [
-      { label: "Consultation with a Qualified Accountant", href: "#" },
-    ],
-  },
-];
+{
+  title: "Check Services",
+  links: [
+  { label: "ABN Find", href: "#" },
+  { label: "ABN Lookup", href: "#" },
+  { label: "GST Status", href: "#" },
+  { label: "Business Name Availability", href: "#" }]
+
+},
+{
+  title: "Registration Services",
+  links: [
+  { label: "ABN Register", href: "/abn-registration" },
+  { label: "Renew my ABN", href: "/abn-registration?purpose=renew" },
+  { label: "GST Register", href: "#" },
+  { label: "Business Name Register", href: "/business-name-registration" }]
+
+},
+{
+  title: "Cancellation Services",
+  links: [
+  { label: "ABN Cancellation", href: "/abn-cancellation" },
+  { label: "GST Cancellation", href: "/gst-cancellation" },
+  { label: "Business Name Cancellation", href: "/business-name-cancellation" }]
+
+},
+{
+  title: "Other Services",
+  links: [
+  { label: "Update ABN Details", href: "/update-abn-details" },
+  { label: "Backdate ABN / GST", href: "#" },
+  { label: "Xero Set Up", href: "#" }]
+
+},
+{
+  title: "Professional Consultation",
+  links: [
+  { label: "Consultation with a Qualified Accountant", href: "#" }]
+
+}];
+
 
 const Footer = () => {
   return (
@@ -71,25 +71,25 @@ const Footer = () => {
 
         {/* Navigation columns */}
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          {footerNav.map((section) => (
-            <div key={section.title}>
+          {footerNav.map((section) =>
+          <div key={section.title}>
               <h4 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-[hsl(0,0%,95%)]">
                 {section.title}
               </h4>
               <ul className="space-y-2.5">
-                {section.links.map((link) => (
-                  <li key={link.label}>
+                {section.links.map((link) =>
+              <li key={link.label}>
                     <a
-                      href={link.href}
-                      className="text-sm transition-colors duration-200 hover:text-[hsl(0,0%,95%)]"
-                    >
+                  href={link.href}
+                  className="text-sm transition-colors duration-200 hover:text-[hsl(0,0%,95%)]">
+                  
                       {link.label}
                     </a>
                   </li>
-                ))}
+              )}
               </ul>
             </div>
-          ))}
+          )}
         </div>
       </div>
 
@@ -100,7 +100,7 @@ const Footer = () => {
           <a href="#" className="transition-colors hover:text-[hsl(0,0%,95%)]">Privacy Policy</a>
           <a href="/faq" className="transition-colors hover:text-[hsl(0,0%,95%)]">FAQ</a>
           <a href="/contact-us" className="transition-colors hover:text-[hsl(0,0%,95%)]">Contact Us</a>
-          <a href="mailto:info@yourdomain.com" className="flex items-center gap-1.5 transition-colors hover:text-[hsl(0,0%,95%)]">
+          <a href="mailto:info@yourdomain.com" className="flex items-center gap-1.5 transition-colors hover:text-[hsl(0,0%,95%)]">info@abn-number.com
             <Mail className="h-3.5 w-3.5" />
             info@yourdomain.com
           </a>
@@ -118,8 +118,8 @@ const Footer = () => {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default Footer;
