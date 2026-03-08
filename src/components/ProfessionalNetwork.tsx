@@ -16,8 +16,8 @@ const logos = [
 
 const ProfessionalNetwork = () => {
   return (
-    <section className="px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1100px] rounded-2xl bg-card p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] md:p-12">
+    <section className="bg-[hsl(210,33%,98%)]" style={{ paddingTop: "40px", paddingBottom: "40px" }}>
+      <div className="mx-auto max-w-7xl px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1fr] lg:gap-[140px]">
           {/* Left column - Text */}
           <div>
