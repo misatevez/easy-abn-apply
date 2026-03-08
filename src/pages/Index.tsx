@@ -14,7 +14,7 @@ const Index = () => {
       <TrustSection />
       <ServicesSection />
       <FAQSection />
-      <CTABanner />
+      
     </Layout>
   );
 };
