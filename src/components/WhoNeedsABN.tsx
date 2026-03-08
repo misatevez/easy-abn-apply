@@ -2,11 +2,11 @@ import { CheckCircle2 } from "lucide-react";
 import illustrationImg from "@/assets/who-needs-abn-illustration.png";
 
 const items = [
-  "Freelancers & Independent Contractors",
-  "Sole Traders & Small Business Owners",
-  "Consultants & Online Service Providers",
-  "Professionals Who Invoice Clients",
-  "Startups or New Businesses",
+  "Freelancers & Contractors",
+  "Sole Traders & Small Businesses",
+  "Consultants & Online Services",
+  "Professionals Billing Clients",
+  "Startups & New Businesses",
 ];
 
 const WhoNeedsABN = () => {
@@ -49,7 +49,7 @@ const WhoNeedsABN = () => {
             <img
               src={illustrationImg}
               alt="Business professionals illustration"
-              className="w-[340px] object-contain"
+              className="w-[260px] object-contain"
             />
           </div>
         </div>
