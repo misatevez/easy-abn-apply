@@ -8,7 +8,7 @@ import logoMyob from "@/assets/logo-myob-2.png";
 const logos = [
   { src: logoXero, alt: "Xero", size: "h-[115px] w-[115px]" },
   { src: logoCaanz, alt: "Chartered Accountants ANZ", size: "h-[115px] w-[160px]" },
-  { src: logoTpb, alt: "Tax Practitioners Board Registered", size: "h-[135px] w-[135px]" },
+  { src: logoTpb, alt: "Tax Practitioners Board Registered", size: "h-[155px] w-[155px]" },
   { src: logoQuickbooks, alt: "QuickBooks", size: "h-[115px] w-[115px]" },
   { src: logoTaxInstitute, alt: "The Tax Institute", size: "h-[115px] w-[160px]" },
   { src: logoMyob, alt: "MYOB", size: "h-[115px] w-[115px]" },
