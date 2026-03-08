@@ -37,12 +37,12 @@ const ProfessionalNetwork = () => {
             {logos.map((logo) => (
               <div
                 key={logo.alt}
-                className="flex items-center justify-center transition-transform duration-200 hover:scale-105"
+                className="flex h-[75px] w-[75px] items-center justify-center transition-transform duration-200 hover:scale-105"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className={`${logo.size} object-contain`}
+                  className="h-full w-full object-contain"
                   loading="lazy"
                 />
               </div>
