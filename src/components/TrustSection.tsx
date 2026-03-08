@@ -38,7 +38,7 @@ const TrustSection = () => {
       </section>
 
       {/* Conversion Bridge */}
-      <section className="bg-background py-24">
+      <section className="bg-[#E6EDFB] py-24">
         <div className="container">
           <div className="mx-auto max-w-5xl">
             {/* Divider */}
