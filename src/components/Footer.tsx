@@ -54,7 +54,7 @@ const Footer = () => {
           <div className="mb-4 flex items-center gap-2">
             <img src={logoAustralia} alt="ABN Number logo" className="h-12 w-12 rounded-full ring-2 ring-primary-foreground" />
             <span className="text-lg font-bold text-[hsl(0,0%,95%)]">
-              ABN<span className="text-primary">Number</span>
+              ABN-Number
             </span>
           </div>
           <div className="flex items-center gap-2 text-sm">
