@@ -42,7 +42,7 @@ const TrustSection = () => {
         <div className="container">
           <div className="mx-auto max-w-4xl">
             {/* Thin centered divider above title */}
-            <div className="mx-auto mb-10 h-px w-16 bg-border" />
+            <div className="mx-auto mb-14 h-px w-24 bg-border/40" />
 
             <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
               Why Australian businesses trust our ABN service
