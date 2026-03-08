@@ -55,7 +55,7 @@ const Footer = () => {
               <Shield className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="text-lg font-bold text-[hsl(0,0%,95%)]">
-              Australian Business Number
+              ABN<span className="text-primary">Number</span>
             </span>
           </div>
           <div className="flex items-center gap-2 text-sm">
