@@ -10,6 +10,7 @@ import UpdateABNDetails from "./pages/UpdateABNDetails";
 import ABNCancellation from "./pages/ABNCancellation";
 import BusinessNameCancellation from "./pages/BusinessNameCancellation";
 import GSTCancellation from "./pages/GSTCancellation";
+import BusinessNameRegistration from "./pages/BusinessNameRegistration";
 import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/abn-cancellation" element={<ABNCancellation />} />
           <Route path="/business-name-cancellation" element={<BusinessNameCancellation />} />
           <Route path="/gst-cancellation" element={<GSTCancellation />} />
+          <Route path="/business-name-registration" element={<BusinessNameRegistration />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
