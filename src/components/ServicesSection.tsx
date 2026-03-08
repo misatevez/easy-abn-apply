@@ -18,7 +18,7 @@ const services = [
   {
     icon: Building2,
     title: "Business Name Registration",
-    price: "From $99",
+    price: "$99",
     priceNote: "ASIC registration options",
     description: "Register or renew your business name with ASIC.",
     cta: "Register Business Name",
