@@ -1,4 +1,4 @@
-import { ShieldCheck, Lock, CheckCircle, UserCheck, Zap, ClipboardCheck, ShieldCheck as ShieldIcon, HeadphonesIcon, ArrowRight } from "lucide-react";
+import { ShieldCheck, Lock, CheckCircle, UserCheck, Zap, ClipboardCheck, Shield, Headphones, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -10,10 +10,10 @@ const trustIndicators = [
 ];
 
 const conversionBenefits = [
-  { icon: Zap, title: "Fast online application", description: "Complete your registration in minutes with our streamlined process." },
-  { icon: ClipboardCheck, title: "Expert compliance review", description: "Every submission is reviewed by our qualified professionals." },
-  { icon: ShieldIcon, title: "Secure submission to the ABR", description: "Your data is encrypted and submitted directly to the Australian Business Register." },
-  { icon: HeadphonesIcon, title: "Support if you need help", description: "Our team is available to assist you throughout the process." },
+  { icon: Zap, title: "Fast Online Application", description: "Apply for your ABN in minutes using our simple online form." },
+  { icon: ClipboardCheck, title: "Expert Compliance Review", description: "Every application is reviewed by accredited tax professionals." },
+  { icon: Shield, title: "Secure Submission to the ABR", description: "Your details are encrypted and securely submitted." },
+  { icon: Headphones, title: "Support When You Need It", description: "Our team is available if you need assistance." },
 ];
 
 const TrustSection = () => {
@@ -48,32 +48,35 @@ const TrustSection = () => {
       <section className="bg-background py-20">
         <div className="container">
           <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
+            <h2 className="mb-14 text-3xl font-bold text-foreground md:text-4xl">
               Why Australian businesses trust our ABN service
             </h2>
-            <p className="mb-12 text-muted-foreground">
-              Trusted by thousands of Australian businesses
-            </p>
 
-            <div className="mb-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {conversionBenefits.map((benefit) => (
-                <div key={benefit.title} className="flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-                    <benefit.icon className="h-6 w-6 text-primary" />
+            {/* 4 items with vertical dividers */}
+            <div className="mb-14 flex flex-col items-center gap-10 sm:flex-row sm:gap-0">
+              {conversionBenefits.map((benefit, i) => (
+                <div key={benefit.title} className="flex flex-1 items-start">
+                  <div className="flex flex-col items-center px-6 text-center">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+                      <benefit.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="mb-2 text-sm font-bold text-foreground">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      {benefit.description}
+                    </p>
                   </div>
-                  <h3 className="mb-2 text-base font-semibold text-foreground">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {benefit.description}
-                  </p>
+                  {i < conversionBenefits.length - 1 && (
+                    <div className="hidden h-24 w-px shrink-0 self-center bg-border sm:block" />
+                  )}
                 </div>
               ))}
             </div>
 
             <Link to="/abn-registration">
-              <Button variant="hero" size="lg" className="px-10">
-                Start my ABN Application
+              <Button variant="hero" size="lg" className="px-10 shadow-lg shadow-primary/20">
+                Start Your ABN Application
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
