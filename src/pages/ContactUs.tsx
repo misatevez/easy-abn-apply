@@ -25,7 +25,7 @@ const ContactUs = () => {
               </div>
 
               {/* Content */}
-              <div className="px-6 md:px-10 pt-4 pb-[3cm]">
+              <div className="px-6 md:px-10 pt-4 pb-16">
                 <p className="text-[15px] leading-relaxed text-muted-foreground">
                   Our team specialises in Australian business registration and compliance services. We aim to provide a smooth, reliable, and professional experience for all our clients. Whether you are establishing a new business or updating your existing details, our experienced team will be pleased to assist you.
                 </p>
