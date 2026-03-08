@@ -37,8 +37,9 @@ const HowItWorks = () => {
 
   return (
     <section id="how-it-works" className="relative overflow-hidden bg-white py-24">
-      <div className="pointer-events-none absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03]" />
-      <div className="pointer-events-none absolute -right-28 bottom-0 h-[280px] w-[280px] rounded-full bg-primary/[0.02]" />
+      <div className="pointer-events-none absolute -left-32 -top-20 h-[400px] w-[400px] rounded-full bg-[#DCE6FF]/[0.22] blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-10 h-[350px] w-[350px] rounded-full bg-[#DCE6FF]/[0.18] blur-3xl" />
+      <div className="pointer-events-none absolute left-1/3 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.15] blur-2xl" />
 
       <div className="container relative">
         {/* Header */}
