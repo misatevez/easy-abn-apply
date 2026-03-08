@@ -10,10 +10,10 @@ const trustIndicators = [
 ];
 
 const conversionBenefits = [
-  { icon: Zap, title: "Fast online application", description: "Complete your registration in minutes with our streamlined process." },
-  { icon: ClipboardCheck, title: "Expert compliance review", description: "Every submission is reviewed by our qualified professionals." },
-  { icon: ShieldIcon, title: "Secure submission to the ABR", description: "Your data is encrypted and submitted directly to the Australian Business Register." },
-  { icon: HeadphonesIcon, title: "Support if you need help", description: "Our team is available to assist you throughout the process." },
+  { icon: Zap, title: "Fast Online Application", description: "Apply for your ABN in minutes using our simple online form." },
+  { icon: ClipboardCheck, title: "Expert Compliance Review", description: "Every application is reviewed by accredited tax professionals." },
+  { icon: ShieldIcon, title: "Secure Submission to the ABR", description: "Your details are encrypted and securely submitted." },
+  { icon: HeadphonesIcon, title: "Support When You Need It", description: "Our team is available if you need assistance." },
 ];
 
 const TrustSection = () => {
@@ -47,21 +47,18 @@ const TrustSection = () => {
       {/* Conversion Bridge */}
       <section className="bg-background py-20">
         <div className="container">
-          <div className="mx-auto max-w-4xl text-center">
-            <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
+          <div className="mx-auto max-w-5xl text-center">
+            <h2 className="mb-16 text-3xl font-bold text-foreground md:text-4xl">
               Why Australian businesses trust our ABN service
             </h2>
-            <p className="mb-12 text-muted-foreground">
-              Trusted by thousands of Australian businesses
-            </p>
 
-            <div className="mb-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mb-20 flex flex-col items-center gap-10 sm:flex-row sm:gap-0 sm:divide-x sm:divide-border/50">
               {conversionBenefits.map((benefit) => (
-                <div key={benefit.title} className="flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
-                    <benefit.icon className="h-6 w-6 text-primary" />
+                <div key={benefit.title} className="group flex flex-1 flex-col items-center px-8 text-center">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                    <benefit.icon className="h-7 w-7 text-primary" strokeWidth={2.25} />
                   </div>
-                  <h3 className="mb-2 text-base font-semibold text-foreground">
+                  <h3 className="mb-2 text-base font-bold text-foreground">
                     {benefit.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">
@@ -73,7 +70,7 @@ const TrustSection = () => {
 
             <Link to="/abn-registration">
               <Button variant="hero" size="lg" className="px-10">
-                Start my ABN Application
+                Start Your ABN Application
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
