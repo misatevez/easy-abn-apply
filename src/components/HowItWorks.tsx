@@ -22,7 +22,7 @@ const steps = [
     step: "Delivery",
     title: "Receive Your ABN Fast",
     description:
-      "Your ABN is sent via email and SMS — typically within 5 minutes, always within 2 hours.",
+      "Your ABN is sent via email typically within 5 minutes, always within 2 hours.",
   },
 ];
 
