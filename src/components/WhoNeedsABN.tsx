@@ -9,12 +9,6 @@ const items = [
   "Startups or New Businesses",
 ];
 
-const trustItems = [
-  { icon: Lock, label: "Secure & Encrypted" },
-  { icon: FileText, label: "Licensed Australian Tax Agent" },
-  { icon: Shield, label: "Expert Compliance Review" },
-];
-
 const WhoNeedsABN = () => {
   return (
     <section className="relative overflow-hidden bg-[#F5F6FA] py-20 md:py-24">
