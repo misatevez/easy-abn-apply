@@ -1,4 +1,4 @@
-import { ShieldCheck, Lock, CheckCircle, UserCheck, Zap, ClipboardCheck, Shield, Headphones, ArrowRight } from "lucide-react";
+import { Zap, ClipboardCheck, Shield, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
