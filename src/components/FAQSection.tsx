@@ -30,8 +30,8 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section id="faq" className="py-20">
-      <div className="container">
+    <section id="faq" className="px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1100px] rounded-2xl bg-card p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] md:p-12">
         <div className="mb-14 text-center">
           <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Frequently Asked Questions</h2>
           <p className="text-muted-foreground">Everything you need to know about ABN registration</p>
@@ -43,7 +43,7 @@ const FAQSection = () => {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="rounded-xl border border-border bg-card px-6"
+                className="rounded-xl border border-border bg-muted/30 px-6"
               >
                 <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
                   {faq.q}

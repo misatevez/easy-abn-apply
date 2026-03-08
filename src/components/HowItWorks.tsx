@@ -31,11 +31,8 @@ const HowItWorks = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-background py-24">
-      <div className="pointer-events-none absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03]" />
-      <div className="pointer-events-none absolute -right-28 bottom-0 h-[280px] w-[280px] rounded-full bg-primary/[0.02]" />
-
-      <div className="container relative">
+    <section id="how-it-works" className="px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1100px] rounded-2xl bg-card p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] md:p-12">
         {/* Header */}
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <h2 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
@@ -50,10 +47,8 @@ const HowItWorks = () => {
           {/* Step Indicator */}
           <div className="mb-10 hidden md:block">
             <div className="relative flex justify-between px-[calc(100%/6)]">
-              {/* Connecting line — centered on circles */}
               <div className="absolute inset-x-[calc(100%/6)] top-4 h-0.5 -translate-y-1/2 bg-muted-foreground/25" />
 
-              {/* Highlighted line segment */}
               {hoveredIndex !== null && hoveredIndex > 0 && (
                 <div
                   className="absolute top-4 h-0.5 -translate-y-1/2 bg-primary/40 transition-all duration-300"
@@ -99,7 +94,6 @@ const HowItWorks = () => {
                     : "border-border bg-card shadow-sm"
                 }`}
               >
-                {/* Icon */}
                 <div className="relative z-10 mb-5">
                   <div
                     className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 group-hover:bg-primary/15 ${
@@ -110,22 +104,18 @@ const HowItWorks = () => {
                   </div>
                 </div>
 
-                {/* Label */}
                 <span className="mb-1 text-xs font-semibold uppercase tracking-wider text-primary">
                   {s.step}
                 </span>
 
-                {/* Title */}
                 <h3 className="mb-3 text-lg font-bold leading-snug text-foreground">
                   {s.title}
                 </h3>
 
-                {/* Description */}
                 <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
                   {s.description}
                 </p>
 
-                {/* CTA under Step 1 */}
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">

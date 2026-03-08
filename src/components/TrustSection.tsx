@@ -18,10 +18,10 @@ const conversionBenefits = [
 
 const TrustSection = () => {
   return (
-    <>
-      {/* Trust Strip */}
-      <section className="bg-primary/[0.04] py-10">
-        <div className="container">
+    <section className="px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1100px] rounded-2xl bg-card p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] md:p-12">
+        {/* Trust Strip */}
+        <div className="mb-10 rounded-xl bg-primary/[0.04] p-6">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
             {trustIndicators.map((item) => (
               <div key={item.label} className="flex items-center gap-3">
@@ -35,49 +35,43 @@ const TrustSection = () => {
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Divider */}
-      <div className="py-4">
-        <div className="container">
+        {/* Divider */}
+        <div className="my-10">
           <div className="h-px bg-border/60" />
         </div>
-      </div>
 
-      {/* Conversion Bridge */}
-      <section className="bg-background py-20">
-        <div className="container">
-          <div className="mx-auto max-w-5xl text-center">
-            <h2 className="mb-16 text-3xl font-bold text-foreground md:text-4xl">
-              Why Australian businesses trust our ABN service
-            </h2>
+        {/* Conversion Bridge */}
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="mb-16 text-3xl font-bold text-foreground md:text-4xl">
+            Why Australian businesses trust our ABN service
+          </h2>
 
-            <div className="mb-20 flex flex-col items-center gap-10 sm:flex-row sm:gap-0 sm:divide-x sm:divide-border/50">
-              {conversionBenefits.map((benefit) => (
-                <div key={benefit.title} className="group flex flex-1 flex-col items-center px-8 text-center">
-                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
-                    <benefit.icon className="h-7 w-7 text-primary" strokeWidth={2.25} />
-                  </div>
-                  <h3 className="mb-2 text-base font-bold text-foreground">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {benefit.description}
-                  </p>
+          <div className="mb-20 flex flex-col items-center gap-10 sm:flex-row sm:gap-0 sm:divide-x sm:divide-border/50">
+            {conversionBenefits.map((benefit) => (
+              <div key={benefit.title} className="group flex flex-1 flex-col items-center px-8 text-center">
+                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                  <benefit.icon className="h-7 w-7 text-primary" strokeWidth={2.25} />
                 </div>
-              ))}
-            </div>
-
-            <Link to="/abn-registration">
-              <Button variant="hero" size="lg" className="px-10">
-                Start Your ABN Application
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+                <h3 className="mb-2 text-base font-bold text-foreground">
+                  {benefit.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {benefit.description}
+                </p>
+              </div>
+            ))}
           </div>
+
+          <Link to="/abn-registration">
+            <Button variant="hero" size="lg" className="px-10">
+              Start Your ABN Application
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
