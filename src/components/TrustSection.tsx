@@ -19,26 +19,6 @@ const conversionBenefits = [
 const TrustSection = () => {
   return (
     <>
-      {/* Trust Strip */}
-      <section className="relative overflow-hidden py-10" style={{ background: "#F1F5FA" }}>
-        <div className="pointer-events-none absolute -right-20 -top-16 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.25] blur-3xl" />
-        <div className="pointer-events-none absolute -left-16 bottom-0 h-[250px] w-[250px] rounded-full bg-[#DCE6FF]/[0.20] blur-3xl" />
-        <div className="container">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
-            {trustIndicators.map((item) => (
-              <div key={item.label} className="flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                  <item.icon className="h-5 w-5 text-primary" />
-                </div>
-                <span className="text-sm font-semibold text-foreground">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Conversion Bridge */}
       <section className="relative overflow-hidden bg-white py-24">
         <div className="pointer-events-none absolute -left-28 top-10 h-[350px] w-[350px] rounded-full bg-[#DCE6FF]/[0.20] blur-3xl" />
