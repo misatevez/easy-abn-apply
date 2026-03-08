@@ -61,7 +61,7 @@ const HeroSection = () => {
                     className="h-[50px] rounded-[10px] border-[#BFD1FF] bg-transparent px-6 text-base font-semibold text-primary hover:bg-accent"
                   >
                     <RefreshCw className="mr-2 h-4 w-4" />
-                    Renew my ABN
+                    Renew an existing ABN
                   </Button>
                 </Link>
               </div>
