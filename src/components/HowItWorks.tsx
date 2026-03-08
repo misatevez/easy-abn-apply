@@ -51,11 +51,17 @@ const HowItWorks = () => {
             {steps.map((s, i) => (
               <div
                 key={s.step}
-                className="group relative flex flex-col rounded-xl border-2 border-border bg-card px-7 py-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl"
+                className={`group relative flex flex-col rounded-xl border-2 px-7 py-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl ${
+                  i === 0
+                    ? "border-primary bg-primary/[0.03] shadow-lg"
+                    : "border-border bg-card shadow-sm"
+                }`}
               >
                 {/* Step number + icon */}
                 <div className="relative z-10 mb-5 flex items-center gap-4">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary/15">
+                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 group-hover:bg-primary/15 ${
+                    i === 0 ? "bg-primary/15" : "bg-primary/10"
+                  }`}>
                     <s.icon className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground transition-transform duration-300 group-hover:scale-110">
@@ -77,18 +83,24 @@ const HowItWorks = () => {
                 <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
                   {s.description}
                 </p>
+
+                {/* CTA under Step 1 */}
+                {i === 0 && (
+                  <div className="mt-6">
+                    <Link to="/abn-registration">
+                      <Button variant="hero" size="lg" className="h-14 w-full text-base shadow-lg shadow-primary/20">
+                        Start Your ABN Registration
+                      </Button>
+                    </Link>
+                    <div className="mt-3 space-y-1 text-xs text-muted-foreground">
+                      <p>✓ Takes about 5 minutes</p>
+                      <p>✓ Reviewed by accredited tax professionals</p>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-20 text-center">
-          <Link to="/abn-registration">
-            <Button variant="hero" size="lg" className="h-14 px-10 text-base shadow-lg shadow-primary/20">
-              Start my ABN Application
-            </Button>
-          </Link>
         </div>
       </div>
     </section>
