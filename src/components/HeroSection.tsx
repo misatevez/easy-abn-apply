@@ -33,15 +33,20 @@ const HeroSection = () => {
 
               {/* Subtitle */}
               <p className="mx-auto mb-4 max-w-lg text-lg leading-relaxed text-muted-foreground">
-                Apply for your Australian Business Number (ABN) in minutes
+                Apply for your Australian Business Number (ABN){" "}
+                in minutes with expert compliance review.
               </p>
 
-              {/* Supporting text */}
+              <p className="mx-auto mb-4 max-w-md text-sm font-medium text-primary">
+                ✔ Most ABN applications processed within 24 hours
+              </p>
+
               <p className="mx-auto mb-2 max-w-md text-base leading-relaxed text-muted-foreground">
-                You can also register for GST or apply for a Business Name in the same application.
+                You can also register for GST or apply for a Business Name{" "}
+                within the same application.
               </p>
               <p className="mx-auto mb-10 max-w-md text-sm text-muted-foreground/70">
-                Official documentation from the Australian Business Register
+                Applications submitted to the Australian Business Register (ABR).
               </p>
 
               {/* Primary buttons */}
