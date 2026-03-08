@@ -12,9 +12,6 @@ const items = [
 const WhoNeedsABN = () => {
   return (
     <section className="relative overflow-hidden bg-[#F5F6FA] py-16">
-      {/* Subtle decorative circles */}
-      <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-primary/[0.02]" />
-      <div className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-primary/[0.015]" />
 
       <div className="container relative px-4">
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1fr_auto]">
