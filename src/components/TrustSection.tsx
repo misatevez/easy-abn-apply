@@ -94,9 +94,6 @@ const TrustSection = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Takes about 5 minutes • Secure submission
-              </p>
             </div>
           </div>
         </div>
