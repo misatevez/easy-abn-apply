@@ -20,7 +20,7 @@ const TrustSection = () => {
   return (
     <>
       {/* Trust Strip */}
-      <section className="bg-white py-10">
+      <section className="py-10" style={{ background: "#F1F5FA" }}>
         <div className="container">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
             {trustIndicators.map((item) => (
