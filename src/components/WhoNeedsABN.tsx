@@ -27,7 +27,7 @@ const WhoNeedsABN = () => {
             business or invoice clients in Australia.
           </p>
 
-          <div className="mx-auto grid max-w-2xl gap-3 text-left sm:grid-cols-2">
+          <div className="mx-auto grid max-w-3xl gap-x-8 gap-y-3 text-left sm:grid-cols-2">
             {items.map((item) => (
               <div
                 key={item}
