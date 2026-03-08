@@ -18,15 +18,12 @@ const services = [
   {
     icon: Building2,
     title: "Business Name Registration",
-    price: null,
+    price: "From $99",
     description:
       "Register your business name with ASIC and protect your brand identity. Choose a one-year or three-year registration period to suit your business plan and compliance needs.",
     cta: "Register Business Name",
     note: "You can also apply for an ABN and GST in the same form.",
-    options: [
-      { label: "1 year registration", price: "$99" },
-      { label: "3 year registration", price: "$199" },
-    ],
+    options: null,
     includes: null,
   },
   {
