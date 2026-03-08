@@ -13,6 +13,7 @@ import GSTCancellation from "./pages/GSTCancellation";
 import BusinessNameRegistration from "./pages/BusinessNameRegistration";
 import FAQ from "./pages/FAQ";
 import ContactUs from "./pages/ContactUs";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/business-name-registration" element={<BusinessNameRegistration />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
