@@ -15,7 +15,7 @@ const HeroSection = () => {
       {/* Floating card overlapping the banner */}
       <section className="relative bg-muted/30 pb-12">
         <div className="container px-4">
-          <div className="mx-auto max-w-[920px] -mt-36 md:-mt-44">
+          <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div
               className="rounded-2xl bg-card px-8 py-12 text-center shadow-xl shadow-primary/[0.08] ring-1 ring-border/50 md:px-16"
             >
