@@ -17,11 +17,11 @@ const CTABanner = () => {
         <p className="mb-8 text-lg text-primary-foreground/85">
           Join thousands of businesses who registered their ABN with us.
         </p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link to="/abn-registration">
             <Button
               size="lg"
-              className="h-13 gap-2 bg-primary-foreground px-8 text-base font-semibold text-primary hover:bg-primary-foreground/90"
+              className="h-14 gap-2.5 rounded-xl bg-primary-foreground px-10 text-base font-semibold text-primary shadow-lg shadow-black/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-primary-foreground/90 hover:shadow-xl hover:shadow-black/15 active:translate-y-0 active:scale-[0.98] active:shadow-md"
             >
               Apply Now
               <ArrowRight className="h-5 w-5" />
@@ -31,7 +31,7 @@ const CTABanner = () => {
             <Button
               variant="outline"
               size="lg"
-              className="h-13 gap-2 border-primary-foreground/30 bg-transparent px-8 text-base font-semibold text-primary-foreground hover:bg-primary-foreground/10"
+              className="h-14 gap-2.5 rounded-xl border-2 border-primary-foreground/40 bg-transparent px-10 text-base font-semibold text-primary-foreground shadow-lg shadow-black/5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary-foreground/60 hover:bg-primary-foreground/10 hover:shadow-xl hover:shadow-black/10 active:translate-y-0 active:scale-[0.98] active:shadow-md"
             >
               Renew my ABN
               <ArrowRight className="h-5 w-5" />
