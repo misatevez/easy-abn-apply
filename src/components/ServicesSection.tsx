@@ -127,7 +127,6 @@ const ServicesSection = () => {
                   <Info className="mt-0.5 h-3 w-3 shrink-0 text-primary/50" />
                   {service.note}
                 </p>
-              </div>
             </div>
           ))}
         </div>
