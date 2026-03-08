@@ -73,7 +73,7 @@ const ServicesSection = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative flex flex-col rounded-2xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+              className="group relative flex flex-col rounded-2xl border-2 border-border bg-card p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl"
             >
               {/* Popular badge */}
               {service.popular && (
@@ -121,7 +121,7 @@ const ServicesSection = () => {
               )}
 
               {/* Note */}
-              <p className="mt-4 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground/70">
+              <p className="mt-4 flex items-start gap-1.5 text-xs leading-relaxed text-muted-foreground">
                 <Info className="mt-0.5 h-3 w-3 shrink-0 text-primary/40" />
                 {service.note}
               </p>
