@@ -74,7 +74,7 @@ const TrustSection = () => {
             <div className="mb-14 flex flex-col gap-10 sm:hidden">
               {conversionBenefits.map((benefit) => (
                 <div key={benefit.title} className="flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted">
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
                     <benefit.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="mb-2 text-sm font-bold text-foreground">
