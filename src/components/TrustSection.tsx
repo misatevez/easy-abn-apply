@@ -52,7 +52,7 @@ const TrustSection = () => {
             <div className="mb-14 hidden sm:flex">
               {conversionBenefits.map((benefit, i) => (
                 <div key={benefit.title} className="flex flex-1">
-                  <div className="flex flex-1 flex-col items-center px-5 text-center">
+                  <div className="group flex flex-1 flex-col items-center rounded-xl px-5 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border hover:border-primary/20" style={{ border: "1px solid transparent" }}>
                     <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
                       <benefit.icon className="h-6 w-6 text-primary" />
                     </div>
