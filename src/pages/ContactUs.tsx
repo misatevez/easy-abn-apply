@@ -25,37 +25,39 @@ const ContactUs = () => {
               </div>
 
               {/* Content */}
-              <div className="px-6 md:px-10 pt-4 pb-16">
-                <p className="text-[15px] leading-relaxed text-muted-foreground">
-                  Our team specialises in Australian business registration and compliance services. We aim to provide a smooth, reliable, and professional experience for all our clients. Whether you are establishing a new business or updating your existing details, our experienced team will be pleased to assist you.
-                </p>
+              <div className="px-6 py-4 md:px-8 md:py-5">
+                <div className="mx-auto max-w-[570px] pb-16">
+                  <p className="text-[15px] leading-relaxed text-muted-foreground">
+                    Our team specialises in Australian business registration and compliance services. We aim to provide a smooth, reliable, and professional experience for all our clients. Whether you are establishing a new business or updating your existing details, our experienced team will be pleased to assist you.
+                  </p>
 
-                <h2 className="mt-10 text-lg font-bold text-foreground">How to Reach Us</h2>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                  📧 Email:{" "}
-                  <a href="mailto:info@abn-number.com" className="text-primary font-semibold hover:underline">
-                    info@abn-number.com
-                  </a>
-                </p>
-                <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                  If you have any questions regarding our services or your application, please feel free to contact us by email. A member of our team will respond to your enquiry as soon as possible, typically within the next business day.
-                </p>
+                  <h2 className="mt-10 text-lg font-bold text-foreground">How to Reach Us</h2>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                    📧 Email:{" "}
+                    <a href="mailto:info@abn-number.com" className="text-primary font-semibold hover:underline">
+                      info@abn-number.com
+                    </a>
+                  </p>
+                  <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                    If you have any questions regarding our services or your application, please feel free to contact us by email. A member of our team will respond to your enquiry as soon as possible, typically within the next business day.
+                  </p>
 
-                <h2 className="mt-10 text-lg font-bold text-foreground">Our Services</h2>
-                <ul className="mt-3 space-y-2 text-[15px] text-muted-foreground">
-                  <li>✔ ABN Registration &amp; Reactivation</li>
-                  <li>✔ ABN Details Updates</li>
-                  <li>✔ Business Name Registration &amp; Renewal</li>
-                  <li>✔ GST Registration &amp; Cancellation</li>
-                  <li>✔ ABN &amp; Business Name Cancellation</li>
-                </ul>
+                  <h2 className="mt-10 text-lg font-bold text-foreground">Our Services</h2>
+                  <ul className="mt-3 space-y-2 text-[15px] text-muted-foreground">
+                    <li>✔ ABN Registration &amp; Reactivation</li>
+                    <li>✔ ABN Details Updates</li>
+                    <li>✔ Business Name Registration &amp; Renewal</li>
+                    <li>✔ GST Registration &amp; Cancellation</li>
+                    <li>✔ ABN &amp; Business Name Cancellation</li>
+                  </ul>
 
-                <p className="mt-10 text-[15px] leading-relaxed text-muted-foreground">
-                  We are committed to delivering efficient, accurate, and professional support, helping ensure your business remains compliant with Australian regulatory requirements.
-                </p>
-                <p className="mt-4 mb-12 text-[15px] leading-relaxed text-muted-foreground">
-                  Should you require any assistance, please do not hesitate to contact our team. We will be happy to help.
-                </p>
+                  <p className="mt-10 text-[15px] leading-relaxed text-muted-foreground">
+                    We are committed to delivering efficient, accurate, and professional support, helping ensure your business remains compliant with Australian regulatory requirements.
+                  </p>
+                  <p className="mt-4 mb-12 text-[15px] leading-relaxed text-muted-foreground">
+                    Should you require any assistance, please do not hesitate to contact our team. We will be happy to help.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
