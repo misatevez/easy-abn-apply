@@ -49,7 +49,7 @@ const WhoNeedsABN = () => {
             <img
               src={illustrationImg}
               alt="Business professionals illustration"
-              className="w-[340px] object-contain"
+              className="w-[260px] object-contain"
             />
           </div>
         </div>
