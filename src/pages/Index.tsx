@@ -12,6 +12,7 @@ const Index = () => {
       <HeroSection />
       <HowItWorks />
       <TrustSection />
+      <div className="container"><hr className="border-border" /></div>
       <ServicesSection />
       <FAQSection />
       
