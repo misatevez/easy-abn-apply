@@ -43,6 +43,23 @@ const HowItWorks = () => {
           </p>
         </div>
 
+        {/* Progress indicator */}
+        <div className="mx-auto mb-14 flex max-w-3xl items-center justify-between">
+          {["Submit your details", "Expert compliance review", "Receive your ABN"].map((label, i) => (
+            <div key={label} className="flex items-center gap-2">
+              <div className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${
+                i === 0 ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+              }`}>
+                {i + 1}
+              </div>
+              <span className={`hidden text-sm sm:block ${i === 0 ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                {label}
+              </span>
+              {i < 2 && <div className="mx-3 hidden h-px w-12 bg-border sm:block md:w-20" />}
+            </div>
+          ))}
+        </div>
+
         {/* Steps */}
         <div className="relative mx-auto max-w-5xl">
           <div className="pointer-events-none absolute left-0 right-0 top-[72px] hidden h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent md:block" />
