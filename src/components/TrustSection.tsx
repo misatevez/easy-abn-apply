@@ -56,10 +56,10 @@ const TrustSection = () => {
                     <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted transition-colors duration-200 group-hover:bg-muted/80">
                       <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                     </div>
-                    <h3 className="mb-2 text-sm font-extrabold text-foreground">
+                    <h3 className="mb-2 text-base font-extrabold text-foreground">
                       {benefit.title}
                     </h3>
-                    <p className="text-xs leading-relaxed text-muted-foreground">
+                    <p className="text-sm leading-relaxed text-muted-foreground">
                       {benefit.description}
                     </p>
                   </div>
