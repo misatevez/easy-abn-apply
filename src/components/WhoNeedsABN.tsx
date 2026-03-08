@@ -1,6 +1,4 @@
-import { CheckCircle2, Shield, FileText, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { CheckCircle2 } from "lucide-react";
 import illustrationImg from "@/assets/who-needs-abn-illustration.png";
 
 const items = [
