@@ -589,7 +589,7 @@ const BusinessNameRegistration = () => {
               </div>
 
               {/* ── Submit ── */}
-              <div className="border-t border-border p-6 md:p-8 pb-[3cm] text-center">
+              <div className="border-t border-border p-6 md:p-8 pb-28 text-center">
                 <Button variant="hero" size="lg" className="mx-auto gap-2 h-14 text-base px-12" onClick={handleSubmit}>
                   Lodge my ABN application
                   <ArrowRight className="h-5 w-5" />
