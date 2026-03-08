@@ -11,9 +11,9 @@ const HeroSection = () => {
       }}
     >
       {/* Decorative circles */}
-      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#DBEAFE]/40 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-[#DBEAFE]/30 blur-3xl" />
-      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-[#EEF2FF]/50 blur-2xl" />
+      <div className="pointer-events-none absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#BFDBFE]/50 blur-2xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-[400px] w-[400px] rounded-full bg-[#C7D2FE]/45 blur-2xl" />
+      <div className="pointer-events-none absolute right-1/4 top-1/2 h-[300px] w-[300px] rounded-full bg-[#DBEAFE]/60 blur-xl" />
 
       <div className="container relative z-10 px-4 text-center">
         {/* Badge */}
