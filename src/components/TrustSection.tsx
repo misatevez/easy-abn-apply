@@ -11,7 +11,7 @@ const TrustSection = () => {
   return (
     <>
       {/* Conversion Bridge */}
-      <section className="relative overflow-hidden bg-white py-24">
+      <section className="relative overflow-hidden bg-white py-16">
         <div className="pointer-events-none absolute -left-28 top-10 h-[350px] w-[350px] rounded-full bg-[#DCE6FF]/[0.20] blur-3xl" />
         <div className="pointer-events-none absolute -right-20 bottom-10 h-[300px] w-[300px] rounded-full bg-[#DCE6FF]/[0.18] blur-3xl" />
         <div className="container">
