@@ -38,25 +38,25 @@ const TrustSection = () => {
       </section>
 
       {/* Conversion Bridge */}
-      <section className="bg-background py-20">
+      <section className="bg-background py-24">
         <div className="container">
-          <div className="mx-auto max-w-4xl">
-            {/* Thin centered divider above title */}
+          <div className="mx-auto max-w-5xl">
+            {/* Divider */}
             <div className="mx-auto mb-14 h-px w-24 bg-border/40" />
 
-            <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
+            <h2 className="mb-16 text-center text-3xl font-bold text-foreground md:text-4xl">
               Why Australian Businesses Trust Our ABN Service
             </h2>
 
-            {/* 4 features with vertical separators */}
-            <div className="mb-14 hidden sm:flex">
+            {/* Desktop: 4 benefits with separators */}
+            <div className="mb-20 hidden sm:flex sm:items-start sm:justify-between sm:gap-0">
               {conversionBenefits.map((benefit, i) => (
-                <div key={benefit.title} className="flex flex-1">
-                  <div className="group flex flex-1 flex-col items-center rounded-xl px-5 py-4 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border hover:border-primary/20" style={{ border: "1px solid transparent" }}>
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
-                      <benefit.icon className="h-6 w-6 text-primary" />
+                <div key={benefit.title} className="flex flex-1 items-start">
+                  <div className="group flex flex-1 flex-col items-center px-8 text-center">
+                    <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted/50 transition-colors duration-200 group-hover:bg-muted/80">
+                      <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                     </div>
-                    <h3 className="mb-2 text-sm font-bold text-foreground">
+                    <h3 className="mb-2 text-sm font-extrabold text-foreground">
                       {benefit.title}
                     </h3>
                     <p className="text-xs leading-relaxed text-muted-foreground">
@@ -64,20 +64,20 @@ const TrustSection = () => {
                     </p>
                   </div>
                   {i < conversionBenefits.length - 1 && (
-                    <div className="w-px shrink-0 self-stretch bg-border/30" style={{ marginTop: "12px", marginBottom: "12px" }} />
+                    <div className="w-px shrink-0 self-stretch bg-border/20" style={{ marginTop: "16px", marginBottom: "16px" }} />
                   )}
                 </div>
               ))}
             </div>
 
             {/* Mobile stack */}
-            <div className="mb-14 flex flex-col gap-10 sm:hidden">
+            <div className="mb-20 flex flex-col gap-10 sm:hidden">
               {conversionBenefits.map((benefit) => (
-                <div key={benefit.title} className="flex flex-col items-center text-center">
-                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-muted/50">
-                    <benefit.icon className="h-6 w-6 text-primary" />
+                <div key={benefit.title} className="group flex flex-col items-center text-center">
+                  <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-muted/50 transition-colors duration-200 group-hover:bg-muted/80">
+                    <benefit.icon className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110" />
                   </div>
-                  <h3 className="mb-2 text-sm font-bold text-foreground">
+                  <h3 className="mb-2 text-sm font-extrabold text-foreground">
                     {benefit.title}
                   </h3>
                   <p className="text-xs leading-relaxed text-muted-foreground">
@@ -94,9 +94,6 @@ const TrustSection = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Takes about 5 minutes • Secure submission
-              </p>
             </div>
           </div>
         </div>
