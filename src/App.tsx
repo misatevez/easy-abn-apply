@@ -13,6 +13,7 @@ import GSTCancellation from "./pages/GSTCancellation";
 import BusinessNameRegistration from "./pages/BusinessNameRegistration";
 import FAQ from "./pages/FAQ";
 import ContactUs from "./pages/ContactUs";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
