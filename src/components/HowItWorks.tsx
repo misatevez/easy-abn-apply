@@ -9,21 +9,21 @@ const steps = [
     label: "REGISTRATION",
     title: "Complete the Online Form",
     description: "Submit your business details in our secure online form.",
-    stepperLabel: "Submit your\ndetails",
+    stepperLabel: "Submit your details",
   },
   {
     icon: ShieldCheck,
     label: "REVIEW",
     title: "Expert Compliance Review",
     description: "Our tax professionals review your application before submission.",
-    stepperLabel: "Expert\ncompliance review",
+    stepperLabel: "Expert compliance review",
   },
   {
     icon: Mail,
     label: "DELIVERY",
     title: "Receive Your ABN",
     description: "Your ABN is typically delivered within minutes by email.",
-    stepperLabel: "Receive your\nABN",
+    stepperLabel: "Receive your ABN",
   },
 ];
 
@@ -53,34 +53,41 @@ const HowItWorks = () => {
 
         <div className="mx-auto max-w-5xl">
           {/* Step indicator */}
-          <div className="relative mx-auto mb-14 hidden max-w-lg md:block">
-            {/* Connecting line behind circles */}
-            <div className="absolute left-[16.67%] right-[16.67%] top-[14px] h-px bg-border" />
+          <div className="relative mx-auto mb-14 hidden md:flex items-start justify-between" style={{ maxWidth: "600px" }}>
+            {/* Horizontal line behind circles */}
+            <div
+              className="absolute top-[13px] h-px bg-border"
+              style={{ left: "16.67%", right: "16.67%" }}
+            />
 
-            <div className="relative flex justify-between">
-              {steps.map((s, i) => (
-                <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
-                  <div
-                    className={`relative z-10 flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200 ${
-                      hoveredIndex === i
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground"
-                    }`}
-                  >
-                    {i + 1}
-                  </div>
-                  <span
-                    className={`mt-2.5 whitespace-pre-line text-center text-sm leading-tight transition-colors duration-200 ${
-                      hoveredIndex === i
-                        ? "font-semibold text-primary"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    {s.stepperLabel}
-                  </span>
+            {steps.map((s, i) => (
+              <div
+                key={i}
+                className="relative z-10 flex flex-col items-center"
+                style={{ width: "33.33%" }}
+              >
+                {/* Circle */}
+                <div
+                  className={`flex h-[28px] w-[28px] items-center justify-center rounded-full text-xs font-bold transition-all duration-200 ${
+                    hoveredIndex === i
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {i + 1}
                 </div>
-              ))}
-            </div>
+                {/* Label */}
+                <span
+                  className={`mt-2 max-w-[130px] text-center text-sm leading-snug transition-colors duration-200 ${
+                    hoveredIndex === i
+                      ? "font-semibold text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {s.stepperLabel}
+                </span>
+              </div>
+            ))}
           </div>
 
           {/* Cards */}
@@ -90,11 +97,11 @@ const HowItWorks = () => {
                 key={s.label}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group flex flex-col rounded-xl border bg-card p-7 transition-all duration-200 ${
+                className={`flex flex-col rounded-xl border bg-card p-7 transition-all duration-200 ease-in-out ${
                   hoveredIndex === i
-                    ? "border-primary shadow-md"
-                    : "border-border shadow-sm"
-                }`}
+                    ? "border-primary"
+                    : "border-border"
+                } shadow-sm`}
               >
                 {/* Icon */}
                 <div className="mb-5">
@@ -103,22 +110,18 @@ const HowItWorks = () => {
                   </div>
                 </div>
 
-                {/* Label */}
                 <span className="mb-1 text-xs font-semibold uppercase tracking-wider text-primary">
                   {s.label}
                 </span>
 
-                {/* Title */}
                 <h3 className="mb-3 text-lg font-semibold leading-snug text-foreground">
                   {s.title}
                 </h3>
 
-                {/* Description */}
                 <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
                   {s.description}
                 </p>
 
-                {/* First card extras */}
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">
