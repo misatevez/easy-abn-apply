@@ -108,7 +108,7 @@ const Footer = () => {
                         <li key={link.label}>
                           <Link
                             to={link.href}
-                            className="text-[13px] text-[hsl(210,15%,58%)] transition-colors duration-200 hover:text-[hsl(0,0%,92%)]"
+                            className="text-[13px] text-[hsl(210,15%,75%)] transition-colors duration-200 hover:text-[hsl(0,0%,95%)]"
                           >
                             {link.label}
                           </Link>
