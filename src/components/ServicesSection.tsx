@@ -67,50 +67,49 @@ const ServicesSection = () => {
 
         <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
-            <div
-              key={service.title}
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-border bg-card p-7 shadow-sm transition-all duration-[250ms] hover:-translate-y-1 hover:border-primary hover:shadow-lg"
-            >
-              {/* Badge */}
+            <div key={service.title} className="relative pt-3">
               {service.badge && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                  <span className="rounded-full bg-[#E6EDFB] px-3 py-1 text-xs font-semibold text-primary shadow-sm">
+                  <span className="rounded-full bg-primary px-4 py-1 text-xs font-medium text-primary-foreground shadow-sm whitespace-nowrap">
                     {service.badge}
                   </span>
                 </div>
               )}
+              <div
+                className="group relative flex h-full flex-col rounded-2xl border-2 border-border bg-card p-7 shadow-sm transition-all duration-[250ms] hover:-translate-y-1 hover:border-primary hover:shadow-lg"
+              >
+                {/* Top content */}
+                <div className="flex flex-1 flex-col">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
+                    <service.icon className="h-6 w-6 text-primary" />
+                  </div>
 
-              {/* Top content */}
-              <div className="flex flex-1 flex-col">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
+                  <h3 className="mb-2 text-lg font-bold text-foreground">
+                    {service.title}
+                  </h3>
+
+                  <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                    {service.description}
+                  </p>
                 </div>
 
-                <h3 className="mb-2 text-lg font-bold text-foreground">
-                  {service.title}
-                </h3>
+                {/* Bottom content */}
+                <div className="mt-auto flex flex-col">
+                  <div className="mb-5">
+                    <p className="text-3xl font-bold text-foreground">{service.price}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{service.priceNote}</p>
+                  </div>
 
-                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
-              </div>
+                  <Link to={service.ctaLink}>
+                    <Button variant="hero" className="w-full">
+                      {service.cta}
+                    </Button>
+                  </Link>
 
-              {/* Bottom content */}
-              <div className="mt-auto flex flex-col">
-                <div className="mb-5">
-                  <p className="text-3xl font-bold text-foreground">{service.price}</p>
-                  <p className="mt-0.5 text-xs text-muted-foreground">{service.priceNote}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground/70">
+                    {service.note}
+                  </p>
                 </div>
-
-                <Link to={service.ctaLink}>
-                  <Button variant="hero" className="w-full">
-                    {service.cta}
-                  </Button>
-                </Link>
-
-                <p className="mt-3 text-xs leading-relaxed text-muted-foreground/70">
-                  {service.note}
-                </p>
               </div>
             </div>
           ))}
