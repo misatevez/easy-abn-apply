@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ClipboardList, ShieldCheck, Mail, Check } from "lucide-react";
@@ -8,21 +9,21 @@ const steps = [
     label: "REGISTRATION",
     title: "Complete the Online Form",
     description: "Submit your business details in our secure online form.",
-    stepperLabel: "Submit your details",
+    stepperLabel: "Submit your\ndetails",
   },
   {
     icon: ShieldCheck,
     label: "REVIEW",
     title: "Expert Compliance Review",
     description: "Our tax professionals review your application before submission.",
-    stepperLabel: "Expert compliance review",
+    stepperLabel: "Expert\ncompliance review",
   },
   {
     icon: Mail,
     label: "DELIVERY",
     title: "Receive Your ABN",
     description: "Your ABN is typically delivered within minutes by email.",
-    stepperLabel: "Receive your ABN",
+    stepperLabel: "Receive your\nABN",
   },
 ];
 
@@ -32,6 +33,8 @@ const highlights = [
 ];
 
 const HowItWorks = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <section id="how-it-works" className="relative overflow-hidden bg-background py-24">
       <div className="pointer-events-none absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-primary/[0.03]" />
@@ -48,51 +51,49 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        {/* Progress stepper */}
-        <div className="mx-auto mb-14 hidden max-w-2xl md:block">
-          <div className="flex items-center justify-between">
-            {steps.map((s, i) => (
-              <div key={s.label} className="flex flex-1 items-center">
-                {/* Line before (except first) */}
-                {i > 0 && <div className="h-px flex-1 bg-primary/20" />}
+        <div className="mx-auto max-w-5xl">
+          {/* Step indicator */}
+          <div className="relative mx-auto mb-14 hidden max-w-lg md:block">
+            {/* Connecting line behind circles */}
+            <div className="absolute left-[16.67%] right-[16.67%] top-[14px] h-px bg-border" />
 
-                {/* Step circle + label */}
-                <div className="flex flex-col items-center gap-2">
+            <div className="relative flex justify-between">
+              {steps.map((s, i) => (
+                <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
                   <div
-                    className={`flex items-center justify-center rounded-full font-bold text-primary-foreground ${
-                      i === 1
-                        ? "h-10 w-10 bg-primary text-base"
-                        : "h-7 w-7 bg-primary/60 text-xs"
+                    className={`relative z-10 flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors duration-200 ${
+                      hoveredIndex === i
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground"
                     }`}
                   >
                     {i + 1}
                   </div>
                   <span
-                    className={`max-w-[120px] text-center text-sm leading-tight ${
-                      i === 1 ? "font-semibold text-primary" : "text-muted-foreground"
+                    className={`mt-2.5 whitespace-pre-line text-center text-sm leading-tight transition-colors duration-200 ${
+                      hoveredIndex === i
+                        ? "font-semibold text-primary"
+                        : "text-muted-foreground"
                     }`}
                   >
                     {s.stepperLabel}
                   </span>
                 </div>
-
-                {/* Line after (except last) */}
-                {i < steps.length - 1 && <div className="h-px flex-1 bg-primary/20" />}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Cards */}
-        <div className="relative mx-auto max-w-5xl">
+          {/* Cards */}
           <div className="grid gap-6 md:grid-cols-3">
             {steps.map((s, i) => (
               <div
                 key={s.label}
-                className={`group relative flex flex-col rounded-xl p-7 transition-shadow duration-300 ${
-                  i <= 1
-                    ? "border-2 border-dashed border-primary/50 shadow-lg shadow-primary/5"
-                    : "border border-dashed border-border shadow-sm"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`group flex flex-col rounded-xl border bg-card p-7 transition-all duration-200 ${
+                  hoveredIndex === i
+                    ? "border-primary shadow-md"
+                    : "border-border shadow-sm"
                 }`}
               >
                 {/* Icon */}
@@ -117,7 +118,7 @@ const HowItWorks = () => {
                   {s.description}
                 </p>
 
-                {/* First card: CTA + highlights */}
+                {/* First card extras */}
                 {i === 0 && (
                   <div className="mt-6">
                     <Link to="/abn-registration">
