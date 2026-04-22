@@ -14,7 +14,255 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      abandoned_carts: {
+        Row: {
+          consent_given: boolean | null
+          consent_timestamp: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          id: string
+          order_id: string | null
+          recovered: boolean | null
+          reminder_1_sent: boolean | null
+          reminder_1_sent_at: string | null
+          reminder_2_sent: boolean | null
+          reminder_2_sent_at: string | null
+          reminder_3_sent: boolean | null
+          reminder_3_sent_at: string | null
+          services: string | null
+        }
+        Insert: {
+          consent_given?: boolean | null
+          consent_timestamp?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          id?: string
+          order_id?: string | null
+          recovered?: boolean | null
+          reminder_1_sent?: boolean | null
+          reminder_1_sent_at?: string | null
+          reminder_2_sent?: boolean | null
+          reminder_2_sent_at?: string | null
+          reminder_3_sent?: boolean | null
+          reminder_3_sent_at?: string | null
+          services?: string | null
+        }
+        Update: {
+          consent_given?: boolean | null
+          consent_timestamp?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          order_id?: string | null
+          recovered?: boolean | null
+          reminder_1_sent?: boolean | null
+          reminder_1_sent_at?: string | null
+          reminder_2_sent?: boolean | null
+          reminder_2_sent_at?: string | null
+          reminder_3_sent?: boolean | null
+          reminder_3_sent_at?: string | null
+          services?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "abandoned_carts_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_activity_log: {
+        Row: {
+          action: string
+          created_at: string
+          details: string | null
+          id: string
+          order_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: string | null
+          id?: string
+          order_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: string | null
+          id?: string
+          order_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "admin_activity_log_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      order_items: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          existing_abn: string | null
+          fields_to_update: string | null
+          gst_start_date: string | null
+          id: string
+          order_id: string
+          price: number
+          proposed_business_name: string | null
+          registration_period: string | null
+          result_abn: string | null
+          result_business_name: string | null
+          result_cancellation_date: string | null
+          result_gst_start_date: string | null
+          result_notes: string | null
+          service_type: string
+          status: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          existing_abn?: string | null
+          fields_to_update?: string | null
+          gst_start_date?: string | null
+          id?: string
+          order_id: string
+          price: number
+          proposed_business_name?: string | null
+          registration_period?: string | null
+          result_abn?: string | null
+          result_business_name?: string | null
+          result_cancellation_date?: string | null
+          result_gst_start_date?: string | null
+          result_notes?: string | null
+          service_type: string
+          status?: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          existing_abn?: string | null
+          fields_to_update?: string | null
+          gst_start_date?: string | null
+          id?: string
+          order_id?: string
+          price?: number
+          proposed_business_name?: string | null
+          registration_period?: string | null
+          result_abn?: string | null
+          result_business_name?: string | null
+          result_cancellation_date?: string | null
+          result_gst_start_date?: string | null
+          result_notes?: string | null
+          service_type?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          address: string | null
+          admin_notified: boolean | null
+          agent_authorisation_accepted: boolean
+          business_activity: string | null
+          completed_at: string | null
+          completion_email_sent: boolean | null
+          confirmation_email_sent: boolean | null
+          created_at: string
+          dob: string
+          email: string
+          first_name: string
+          first_time_applying: boolean | null
+          id: string
+          last_name: string
+          middle_name: string | null
+          payment_amount: number | null
+          phone: string | null
+          postal_code: string | null
+          reason_for_applying: string | null
+          state: string | null
+          status: string
+          stripe_payment_status: string | null
+          stripe_session_id: string | null
+          tax_file_number: string | null
+          terms_accepted: boolean
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          admin_notified?: boolean | null
+          agent_authorisation_accepted?: boolean
+          business_activity?: string | null
+          completed_at?: string | null
+          completion_email_sent?: boolean | null
+          confirmation_email_sent?: boolean | null
+          created_at?: string
+          dob: string
+          email: string
+          first_name: string
+          first_time_applying?: boolean | null
+          id?: string
+          last_name: string
+          middle_name?: string | null
+          payment_amount?: number | null
+          phone?: string | null
+          postal_code?: string | null
+          reason_for_applying?: string | null
+          state?: string | null
+          status?: string
+          stripe_payment_status?: string | null
+          stripe_session_id?: string | null
+          tax_file_number?: string | null
+          terms_accepted?: boolean
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          admin_notified?: boolean | null
+          agent_authorisation_accepted?: boolean
+          business_activity?: string | null
+          completed_at?: string | null
+          completion_email_sent?: boolean | null
+          confirmation_email_sent?: boolean | null
+          created_at?: string
+          dob?: string
+          email?: string
+          first_name?: string
+          first_time_applying?: boolean | null
+          id?: string
+          last_name?: string
+          middle_name?: string | null
+          payment_amount?: number | null
+          phone?: string | null
+          postal_code?: string | null
+          reason_for_applying?: string | null
+          state?: string | null
+          status?: string
+          stripe_payment_status?: string | null
+          stripe_session_id?: string | null
+          tax_file_number?: string | null
+          terms_accepted?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
