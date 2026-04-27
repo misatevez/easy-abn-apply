@@ -1,4 +1,4 @@
-import { Lock, Shield, Mail, ArrowRight, FileText, RefreshCw, XCircle, HelpCircle } from "lucide-react";
+import { Lock, Shield, Mail, ArrowRight, FileText, XCircle, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logoAustralia from "@/assets/logo-australia-flag.png";
@@ -12,15 +12,6 @@ const serviceColumns = [
       { label: "GST Register", href: "#" },
       { label: "Business Name Register", href: "/business-name-registration" },
       { label: "Renew ABN", href: "/abn-registration?purpose=renew" },
-    ],
-  },
-  {
-    title: "Changes & Updates",
-    icon: RefreshCw,
-    links: [
-      { label: "Update ABN Details", href: "/update-abn-details" },
-      { label: "Backdate ABN / GST", href: "#" },
-      { label: "Xero Setup", href: "#" },
     ],
   },
   {

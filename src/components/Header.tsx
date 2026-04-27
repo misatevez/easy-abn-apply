@@ -24,7 +24,6 @@ const navItems: NavItem[] = [
       { label: "Renew my ABN", href: "/abn-registration?purpose=renew" },
       { label: "ABN Finder", href: "/#abn-finder" },
       { label: "ABN Lookup", href: "/#abn-lookup" },
-      { label: "Update ABN Details", href: "/update-abn-details" },
       { label: "ABN Cancellation", href: "/abn-cancellation" },
     ],
   },
