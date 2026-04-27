@@ -19,6 +19,8 @@ const serviceColumns = [
     icon: RefreshCw,
     links: [
       { label: "Update ABN Details", href: "/update-abn-details" },
+      { label: "Backdate ABN / GST", href: "#" },
+      { label: "Xero Setup", href: "#" },
     ],
   },
   {
