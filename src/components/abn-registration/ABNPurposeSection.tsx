@@ -1,6 +1,8 @@
 import { SectionWrapper, StyledInput, FieldError, HelperText } from "./FormField";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Loader2, Search } from "lucide-react";
 import type { SectionProps } from "./types";
 
 const months = [
@@ -8,7 +10,29 @@ const months = [
   "July", "August", "September", "October", "November", "December",
 ];
 
-const ABNPurposeSection = ({ form, errors, update }: SectionProps) => {
+interface ABNLookupResult {
+  businessName: string;
+  entityType: string;
+  abnStatus: string;
+  state: string;
+}
+
+interface ABNPurposeSectionProps extends SectionProps {
+  onABNLookup?: (abn: string) => Promise<void>;
+  abnLookupLoading?: boolean;
+  abnLookupResult?: ABNLookupResult | null;
+  abnLookupError?: string;
+}
+
+const ABNPurposeSection = ({
+  form,
+  errors,
+  update,
+  onABNLookup,
+  abnLookupLoading = false,
+  abnLookupResult,
+  abnLookupError,
+}: ABNPurposeSectionProps) => {
   const today = new Date();
   const defaultDay = form.abnStartDay || String(today.getDate()).padStart(2, "0");
   const defaultMonth = form.abnStartMonth || String(today.getMonth() + 1).padStart(2, "0");
@@ -65,15 +89,56 @@ const ABNPurposeSection = ({ form, errors, update }: SectionProps) => {
       )}
 
       {form.abnPurpose === "reactivate" && (
-        <div className="mt-4">
-          <Label>If you previously had an ABN, please enter it here in order to renew it <span className="text-muted-foreground text-xs">(not mandatory)</span></Label>
-          <StyledInput value={form.previousABN} onChange={(v) => update("previousABN", v)} placeholder="Enter your previous ABN" className="max-w-xs" />
-          <HelperText>
-            If you are unsure about your ABN or can't remember it, feel free to use our complimentary services to assist you in completing the application.
-          </HelperText>
-          <div className="mt-2 flex gap-4">
-            <a href="#abn-lookup" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:underline">ABN Lookup</a>
-            <a href="#abn-finder" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:underline">ABN Finder</a>
+        <div className="mt-4 space-y-3">
+          <div>
+            <Label>If you previously had an ABN, please enter it here <span className="text-muted-foreground text-xs">(not mandatory)</span></Label>
+            <div className="mt-1 flex items-center gap-2">
+              <StyledInput
+                value={form.previousABN}
+                onChange={(v) => update("previousABN", v)}
+                placeholder="e.g. 12 345 678 901"
+                className="max-w-xs"
+              />
+              {onABNLookup && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="shrink-0 gap-1.5"
+                  disabled={!form.previousABN.trim() || abnLookupLoading}
+                  onClick={() => onABNLookup(form.previousABN)}
+                >
+                  {abnLookupLoading
+                    ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                    : <Search className="h-3.5 w-3.5" />}
+                  {abnLookupLoading ? "Looking up…" : "Lookup"}
+                </Button>
+              )}
+            </div>
+
+            {abnLookupError && (
+              <p className="mt-1.5 text-sm text-destructive">{abnLookupError}</p>
+            )}
+
+            {abnLookupResult && (
+              <div className="mt-2 rounded-lg border border-border bg-muted/40 p-3">
+                <p className="text-sm font-semibold text-foreground">
+                  {abnLookupResult.businessName || "—"}
+                </p>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  {abnLookupResult.entityType}
+                  {abnLookupResult.state ? ` · ${abnLookupResult.state}` : ""}
+                  {" · "}
+                  <span className={abnLookupResult.abnStatus === "Active" ? "text-green-600" : "text-orange-600"}>
+                    {abnLookupResult.abnStatus}
+                  </span>
+                </p>
+              </div>
+            )}
+
+            <HelperText>
+              If you are unsure about your ABN, use the Lookup button above to search the Australian Business Register.
+            </HelperText>
           </div>
         </div>
       )}

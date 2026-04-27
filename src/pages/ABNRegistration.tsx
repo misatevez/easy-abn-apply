@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { toast } from "sonner";
 import Layout from "@/components/Layout";
 import ABNRegistrationBanner from "@/components/abn-registration/ABNRegistrationBanner";
 import ApplicantNameSection from "@/components/abn-registration/ApplicantNameSection";
@@ -16,9 +17,21 @@ import GSTSection from "@/components/abn-registration/GSTSection";
 import AccountingTasksSection from "@/components/abn-registration/AccountingTasksSection";
 import FinalConfirmationSection from "@/components/abn-registration/FinalConfirmationSection";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield, Lock, CheckCircle2, ClipboardCheck, Send, Mail, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Shield,
+  Lock,
+  CheckCircle2,
+  ClipboardCheck,
+  Send,
+  Mail,
+  ShieldCheck,
+  Loader2,
+} from "lucide-react";
 import type { ABNFormData } from "@/components/abn-registration/types";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { createOrderFromLovable, buildLineItems } from "@/lib/supabase/orders";
 
 const TOTAL_SECTIONS = 18;
 
@@ -62,26 +75,15 @@ const initialForm: ABNFormData = {
   acceptTerms: false,
   authoriseTaxAgent: false,
   confirmTrueInfo: false,
-  authoriseASICAgent: false
+  authoriseASICAgent: false,
 };
 
-const nextSteps = [
-{
-  icon: ClipboardCheck,
-  title: "Application Review",
-  text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement."
-},
-{
-  icon: Send,
-  title: "Secure Lodgement",
-  text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing."
-},
-{
-  icon: Mail,
-  title: "Email Confirmation",
-  text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed."
-}];
-
+interface ABNLookupResult {
+  businessName: string;
+  entityType: string;
+  abnStatus: string;
+  state: string;
+}
 
 const ABNRegistration = () => {
   const [searchParams] = useSearchParams();
@@ -89,10 +91,14 @@ const ABNRegistration = () => {
 
   const [form, setForm] = useState<ABNFormData>({
     ...initialForm,
-    abnPurpose: purposeParam === "renew" ? "reactivate" : ""
+    abnPurpose: purposeParam === "renew" ? "reactivate" : "",
   });
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
-  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [abnLookupLoading, setABNLookupLoading] = useState(false);
+  const [abnLookupResult, setABNLookupResult] = useState<ABNLookupResult | null>(null);
+  const [abnLookupError, setABNLookupError] = useState("");
 
   const update = useCallback((field: keyof ABNFormData, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -132,21 +138,35 @@ const ABNRegistration = () => {
     return Math.min(count, TOTAL_SECTIONS);
   }, [form]);
 
-  const validate = (): boolean => {
+  // Line items computed from current form state for the pricing summary
+  const lineItems = useMemo(
+    () => buildLineItems("ABN Registration", form as unknown as Record<string, unknown>),
+    [form]
+  );
+  const totalCents = lineItems.reduce((sum, item) => sum + item.amount_cents, 0);
+
+  const validate = (): Partial<Record<string, string>> => {
     const e: Partial<Record<string, string>> = {};
 
     if (!form.lastName.trim()) e.lastName = "Last name is required";
-    if (!form.email.trim()) e.email = "Email is required";else
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
-    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";else
-    if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
-    if (!form.phone.trim()) e.phone = "Phone number is required";else
-    if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
-    if (!form.dobDay || !form.dobMonth || !form.dobYear) e.dobDay = "Date of birth is required";else
-    {
-      const d = parseInt(form.dobDay),m = parseInt(form.dobMonth),y = parseInt(form.dobYear);
+    if (!form.email.trim()) e.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Invalid email format";
+    if (!form.confirmEmail.trim()) e.confirmEmail = "Please confirm your email";
+    else if (form.email !== form.confirmEmail) e.confirmEmail = "Emails do not match";
+    if (!form.phone.trim()) e.phone = "Phone number is required";
+    else if (!/^[\d\s+()-]{8,15}$/.test(form.phone)) e.phone = "Invalid phone number";
+    if (!form.dobDay || !form.dobMonth || !form.dobYear) {
+      e.dobDay = "Date of birth is required";
+    } else {
+      const d = parseInt(form.dobDay), m = parseInt(form.dobMonth), y = parseInt(form.dobYear);
       const date = new Date(y, m - 1, d);
-      if (date.getDate() !== d || date.getMonth() !== m - 1 || date.getFullYear() !== y || y < 1900 || y > new Date().getFullYear()) {
+      if (
+        date.getDate() !== d ||
+        date.getMonth() !== m - 1 ||
+        date.getFullYear() !== y ||
+        y < 1900 ||
+        y > new Date().getFullYear()
+      ) {
         e.dobDay = "Invalid date of birth";
       }
     }
@@ -160,7 +180,6 @@ const ABNRegistration = () => {
     if (form.tfnOption === "now" && form.tfn && !/^\d{3}\s?\d{3}\s?\d{3}$/.test(form.tfn.trim())) {
       e.tfn = "Invalid TFN format (e.g. 123 456 789)";
     }
-
     if (!form.tradeUnderBusinessName) e.tradeUnderBusinessName = "Please select an option";
     if (form.tradeUnderBusinessName === "yes") {
       if (!form.businessNameOption) e.businessNameOption = "Please select an option";
@@ -168,10 +187,8 @@ const ABNRegistration = () => {
       if (form.businessNameOption === "renew" && !form.existingBusinessName.trim()) e.existingBusinessName = "Business name is required";
       if (!form.registrationPeriod) e.registrationPeriod = "Please select a registration period";
     }
-
     if (!form.countryOfBirth) e.countryOfBirth = "Country of birth is required";
     if (!form.cityOfBirth.trim()) e.cityOfBirth = "City of birth is required";
-
     if (!form.registerForGST) e.registerForGST = "Please select an option";
     if (form.registerForGST === "yes") {
       if (!form.annualTurnover) e.annualTurnover = "Please select turnover range";
@@ -180,25 +197,69 @@ const ABNRegistration = () => {
       if (!form.importGoods) e.importGoods = "Please select an option";
       if (!form.gstStartDay || !form.gstStartMonth || !form.gstStartYear) e.gstStartDay = "GST start date is required";
     }
-
     if (!form.acceptTerms) e.acceptTerms = "You must accept the Terms & Service";
     if (!form.authoriseTaxAgent) e.authoriseTaxAgent = "This authorisation is required";
     if (!form.confirmTrueInfo) e.confirmTrueInfo = "This confirmation is required";
     if (!form.authoriseASICAgent) e.authoriseASICAgent = "This authorisation is required";
 
     setErrors(e);
-    return Object.keys(e).length === 0;
+    return e;
   };
 
-  const handleSubmit = () => {
-    if (validate()) {
-      navigate("/apply", { state: { service: "ABN Registration", formData: form } });
-    } else {
-      const firstErrorKey = Object.keys(errors)[0];
-      if (firstErrorKey) {
-        const el = document.querySelector(`[name="${firstErrorKey}"]`);
-        el?.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
+  const handleABNLookup = async (abn: string) => {
+    const clean = abn.replace(/\s/g, "");
+    if (!clean) return;
+    setABNLookupLoading(true);
+    setABNLookupError("");
+    setABNLookupResult(null);
+    try {
+      const { data, error } = await supabase.functions.invoke("abn-lookup", {
+        body: { abn: clean },
+      });
+      if (error) throw new Error(error.message);
+      if (data?.error) throw new Error(data.error);
+      setABNLookupResult(data.data as ABNLookupResult);
+    } catch (err) {
+      setABNLookupError(
+        err instanceof Error ? err.message : "Lookup failed. Please enter your details manually."
+      );
+    } finally {
+      setABNLookupLoading(false);
+    }
+  };
+
+  const handleSubmit = async () => {
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      const firstKey = Object.keys(validationErrors)[0];
+      const el = document.querySelector(`[name="${firstKey}"]`);
+      el?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const order = await createOrderFromLovable(
+        "ABN Registration",
+        form as unknown as Record<string, unknown>
+      );
+
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: {
+          orderId: order.id,
+          items: lineItems,
+          customerEmail: form.email,
+          origin: window.location.origin,
+        },
+      });
+
+      if (error) throw new Error(error.message);
+      if (!data?.url) throw new Error("No checkout URL returned from payment provider.");
+
+      window.location.href = data.url;
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setIsSubmitting(false);
     }
   };
 
@@ -212,16 +273,17 @@ const ABNRegistration = () => {
         <div className="container px-4 border-secondary border-solid rounded-none">
           <div className="mx-auto max-w-[1100px] -mt-36 md:-mt-44">
             <div className="rounded-2xl bg-card shadow-xl shadow-primary/[0.08] ring-1 ring-border/50">
+
               {/* Header inside card */}
               <div className="px-6 pt-28 pb-2 md:pt-28 text-center ml-0 border-0 rounded-none md:px-[40px]">
-                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">Register your ABN online in minutes
-
+                <h1 className="text-2xl font-extrabold leading-tight text-foreground md:text-4xl">
+                  Register your ABN online in minutes
                 </h1>
-                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 font-sans pr-[20px] pt-[20px] pb-0 mx-[96px]">You can also add GST registration or apply for a Business Name within the same application.
-
+                <p className="mt-2 text-primary my-[13px] text-lg font-medium px-0 font-sans pr-[20px] pt-[20px] pb-0 mx-[96px]">
+                  You can also add GST registration or apply for a Business Name within the same application.
                 </p>
-                <p className="mt-2 max-w-lg leading-relaxed text-muted-foreground text-base px-0 py-0 mx-[100px] my-[10px] mb-[11px] mr-[100px]">Simply complete the form below with your details and our team will securely process your request. The application only takes a few minutes to complete.
-
+                <p className="mt-2 max-w-lg leading-relaxed text-muted-foreground text-base px-0 py-0 mx-[100px] my-[10px] mb-[11px] mr-[100px]">
+                  Simply complete the form below with your details and our team will securely process your request. The application only takes a few minutes to complete.
                 </p>
 
                 {/* Trust Labels */}
@@ -245,7 +307,13 @@ const ABNRegistration = () => {
 
               {/* ABN Purpose & Business Activity */}
               <div>
-                <ABNPurposeSection {...sectionProps} />
+                <ABNPurposeSection
+                  {...sectionProps}
+                  onABNLookup={handleABNLookup}
+                  abnLookupLoading={abnLookupLoading}
+                  abnLookupResult={abnLookupResult}
+                  abnLookupError={abnLookupError}
+                />
                 <BusinessActivitySection {...sectionProps} />
                 <AddressSection {...sectionProps} />
                 <ReasonSection {...sectionProps} />
@@ -260,9 +328,9 @@ const ABNRegistration = () => {
                   </p>
                 </div>
                 <BusinessNameSection {...sectionProps} />
-                {form.tradeUnderBusinessName === "yes" &&
-                <RegistrationPeriodSection {...sectionProps} />
-                }
+                {form.tradeUnderBusinessName === "yes" && (
+                  <RegistrationPeriodSection {...sectionProps} />
+                )}
                 <BirthDetailsSection {...sectionProps} />
               </div>
 
@@ -307,18 +375,18 @@ const ABNRegistration = () => {
 
                   <div className="mt-5 grid gap-3 sm:grid-cols-3">
                     {[
-                    { icon: ClipboardCheck, title: "Application Review", text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement." },
-                    { icon: Send, title: "Secure Lodgement", text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing." },
-                    { icon: Mail, title: "Email Confirmation", text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed." }].
-                    map(({ icon: Icon, title, text }, i) =>
-                    <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                      { icon: ClipboardCheck, title: "Application Review", text: "Our accredited tax professionals review your application to ensure the information provided is accurate and compliant before lodgement." },
+                      { icon: Send, title: "Secure Lodgement", text: "Once reviewed, your application is securely lodged with the Australian Business Register for processing." },
+                      { icon: Mail, title: "Email Confirmation", text: "You will receive a confirmation email with the details of your ABN registration once the process has been completed." },
+                    ].map(({ icon: Icon, title, text }, i) => (
+                      <div key={i} className="rounded-xl border border-border/60 bg-card p-4 text-center">
                         <div className="mx-auto flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
                           <Icon className="h-4.5 w-4.5 text-primary" />
                         </div>
                         <h4 className="mt-2.5 text-sm font-semibold text-foreground">{title}</h4>
                         <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
                       </div>
-                    )}
+                    ))}
                   </div>
 
                   <div className="mt-5 flex items-center justify-center gap-1.5 text-sm">
@@ -328,10 +396,32 @@ const ABNRegistration = () => {
                 </div>
               </div>
 
-
               {/* Final Confirmation */}
               <div className="border-t border-border">
                 <FinalConfirmationSection {...sectionProps} />
+              </div>
+
+              {/* Pricing summary */}
+              <div className="border-t border-border px-6 pt-6 md:px-8">
+                <div className="mx-auto max-w-[570px] rounded-xl border border-border bg-muted/30 p-4">
+                  <h3 className="text-sm font-semibold text-foreground">Order Summary</h3>
+                  <div className="mt-3 space-y-2">
+                    {lineItems.map((item, i) => (
+                      <div key={i} className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">{item.name}</span>
+                        <span className="font-medium text-foreground">
+                          A${(item.amount_cents / 100).toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                    <div className="border-t border-border pt-2 flex justify-between text-sm font-bold">
+                      <span className="text-foreground">Total (AUD)</span>
+                      <span className="text-primary">
+                        A${(totalCents / 100).toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Submit */}
@@ -340,18 +430,33 @@ const ABNRegistration = () => {
                   variant="hero"
                   size="lg"
                   className="mx-auto gap-2 h-14 text-base px-12"
-                  onClick={handleSubmit}>
-                  Lodge my ABN application
-                  <ArrowRight className="h-5 w-5" />
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Processing…
+                    </>
+                  ) : (
+                    <>
+                      Proceed to Payment
+                      <ArrowRight className="h-5 w-5" />
+                    </>
+                  )}
                 </Button>
-                <div className="h-28" />
+                <p className="mt-3 text-xs text-muted-foreground">
+                  You will be redirected to our secure payment page
+                </p>
+                <div className="h-16" />
               </div>
+
             </div>
           </div>
         </div>
       </section>
-    </Layout>);
-
+    </Layout>
+  );
 };
 
 export default ABNRegistration;
